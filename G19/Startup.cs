@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using G19.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Security.Claims;
 
 namespace G19 {
     public class Startup {
@@ -38,6 +39,16 @@ namespace G19 {
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAuthorization(options => {
+                options.AddPolicy("Lid", policy => policy.RequireClaim(ClaimTypes.Role, "lid"));
+            });
+            services.AddAuthorization(options => {
+                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
+            });
+            services.AddAuthorization(options => {
+                options.AddPolicy("Lesgever", policy => policy.RequireClaim(ClaimTypes.Role, "lesgever"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
