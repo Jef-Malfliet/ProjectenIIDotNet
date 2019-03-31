@@ -14,6 +14,8 @@ using G19.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
+using G19.Models.Repositories;
+using G19.Data.Repositories;
 
 namespace G19 {
     public class Startup {
@@ -49,6 +51,8 @@ namespace G19 {
             services.AddAuthorization(options => {
                 options.AddPolicy("Lesgever", policy => policy.RequireClaim(ClaimTypes.Role, "lesgever"));
             });
+
+            services.AddScoped<ILidRepository, LidRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
