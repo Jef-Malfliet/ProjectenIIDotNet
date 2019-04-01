@@ -66,7 +66,7 @@ namespace G19.Models {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) {
                     throw new ArgumentException("GSM mag niet leeg zijn mag niet leeg zijn.");
                 }
-                Regex regex = new Regex(@"^((0\d{9})|(00\d{11}))$"); //nog niet helemaal juiste regex!
+                Regex regex = new Regex(@"^((0[1-9][0-9]{8})|(0{2}[1-9][0-9]{10}))$");
                 Match match = regex.Match(value);
                 if (!match.Success) {
                     throw new ArgumentException("GSM voldoet niet aan de voorwaarden.");
@@ -80,7 +80,7 @@ namespace G19.Models {
             }
             set {
                 if (value != null) {
-                    Regex regex = new Regex(@"^((0\d{8})|(00\d{10}))$"); //nog niet helemaal juiste regex!
+                    Regex regex = new Regex(@"^((0[1-9]{1}[0-9]{7})|(0{2}[1-9]{1}[0-9]{9}))$");
                     Match match = regex.Match(value);
                     if (!match.Success) {
                         throw new ArgumentException("Telefoon voldoet niet aan de voorwaarden.");
