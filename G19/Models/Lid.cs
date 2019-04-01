@@ -66,7 +66,7 @@ namespace G19.Models {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) {
                     throw new ArgumentException("GSM mag niet leeg zijn mag niet leeg zijn.");
                 }
-                Regex regex = new Regex(@"^((0[1-9][0-9]{8})|(0{2}[1-9][0-9]{10}))$");
+                Regex regex = new Regex(@"^((0[1-9][0-9]{8})|(0{2}[1-9][0-9]{8}))$");
                 Match match = regex.Match(value);
                 if (!match.Success) {
                     throw new ArgumentException("GSM voldoet niet aan de voorwaarden.");

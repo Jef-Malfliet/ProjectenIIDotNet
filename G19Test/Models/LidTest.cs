@@ -267,8 +267,9 @@ namespace G19Test.Models {
         [InlineData("015788441")]
         [InlineData("01578844189")]
         [InlineData("479554479")]
-        [InlineData("0479554479735")]
-        //nog te testen, maar eerst regex aanpassen: starten met 1 nul ==> 11 tekens is te veel en alles met 2 nullen!
+        [InlineData("0049744552")]
+        [InlineData("47911447945")]
+        [InlineData("00479554479735")]
         public void TestFoutieveWaardenGSM(string gsm) {
             Assert.Throws<ArgumentException>(() => new Lid() {
                 Voornaam = voornaam,
@@ -298,8 +299,9 @@ namespace G19Test.Models {
         [InlineData("05347100")]
         [InlineData("53471000")]
         [InlineData("0534710000")]
-        [InlineData("053471000789")]
-        //nog te testen, maar eerst regex aanpassen: starten met 1 nul ==> 10 tekens is te veel en alles met 2 nullen!
+        [InlineData("00325371489")]
+        [InlineData("325371489098")]
+        [InlineData("0032571489405")]
         public void TestFoutieveWaardenTelefoon(string telefoon) {
             Assert.Throws<ArgumentException>(() => new Lid() {
                 Voornaam = voornaam,
