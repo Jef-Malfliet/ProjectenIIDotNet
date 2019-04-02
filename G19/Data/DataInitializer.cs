@@ -26,7 +26,7 @@ namespace G19.Data {
                 //    Lessen = FormuleEnum.Dinsdag,
                 //    GeboorteDatum = DateTime.Now,
                 //    Geslacht = "MAN",
-                //    Graad = GraadEnum.Bbruin,
+                //    Graad = GraadEnum.Bruin,
                 //    GSM = "0483060043",
                 //    Land = LandEnum.België,
                 //    PostCode = "9240",
