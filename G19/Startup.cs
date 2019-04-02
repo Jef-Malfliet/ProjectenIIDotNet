@@ -36,6 +36,7 @@ namespace G19 {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -53,10 +54,11 @@ namespace G19 {
             });
 
             services.AddScoped<ILidRepository, LidRepository>();
+            services.AddScoped<DataInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataInitializer initializer) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -77,6 +79,9 @@ namespace G19 {
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            initializer.InitializeData().Wait();
+            
         }
     }
 }

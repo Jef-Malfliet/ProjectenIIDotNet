@@ -12,6 +12,8 @@ namespace G19.Data {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
+
         }
+
     }
 }
