@@ -17,13 +17,13 @@ namespace G19.Data {
         }
 
         public async Task InitializeData() {
-            if (_context.Database.EnsureCreated()) {
+            
                 Lid INDY = new Lid() {
                     Id = 500,
-                    Busnummer = "0101",
+                    Busnummer = "01",
                     Email = "Indyvancanegem@hotmail.com",
                     Familienaam = "Van CANEGEM",
-                    Formule = FormuleEnum.Dinsdag,
+                    Lessen = FormuleEnum.Dinsdag,
                     GeboorteDatum = DateTime.Now,
                     Geslacht = "MAN",
                     Graad = GraadEnum.Bbruin,
@@ -31,7 +31,7 @@ namespace G19.Data {
                     Land = LandEnum.België,
                     PostCode = "9240",
                     Rijksregisternummer = "98.08.16-183.93",
-                    Rol = RolTypeEnum.Beheerder,
+                    Roltype = RolTypeEnum.Beheerder,
                     Huisnummer = "132",
                     Stad = "Zele",
                     StraatNaam = "Ommegangstraat 132",
@@ -42,7 +42,7 @@ namespace G19.Data {
                 };
 
                 _context.Leden.Add(INDY);
-            }
+            _context.SaveChanges();
         }
     }
 }

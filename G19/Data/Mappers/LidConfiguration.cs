@@ -18,6 +18,7 @@ namespace G19.Data.Mappers {
                 .HasMaxLength(60);
 
             builder.Property(l => l.EmailOuders)
+                .HasColumnName("EMAIL_OUDERS")
                 .IsRequired(false)
                 .HasMaxLength(60);
 
@@ -26,6 +27,7 @@ namespace G19.Data.Mappers {
                 .HasMaxLength(50);
 
             builder.Property(l => l.GeboorteDatum)
+                .HasColumnName("GEBOORTEDATUM")
                 .IsRequired(true);
 
             builder.Property(l => l.Geslacht)
@@ -57,6 +59,7 @@ namespace G19.Data.Mappers {
                 .HasMaxLength(50);
 
             builder.Property(l => l.Telefoon)
+                .HasColumnName("TELEFOON_VAST")
                 .IsRequired(true)
                 .HasMaxLength(20);
 

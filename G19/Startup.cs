@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 using G19.Models.Repositories;
 using G19.Data.Repositories;
+using MySql.Data.EntityFrameworkCore.Extensions;
 
 namespace G19 {
     public class Startup {
@@ -34,7 +35,7 @@ namespace G19 {
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySQL(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()

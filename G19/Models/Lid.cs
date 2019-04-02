@@ -146,7 +146,7 @@ namespace G19.Models {
         public string Geslacht { get; set; }
         public GraadEnum Graad { get; set; }
         public LandEnum Land { get; set; }
-        public FormuleEnum Formule { get; set; }
+        public FormuleEnum Lessen { get; set; }
         public string PostCode {
             get {
                 return _postcode;
@@ -165,7 +165,7 @@ namespace G19.Models {
         }
         public string Stad { get; set; }
         public string StraatNaam { get; set; }
-        public RolTypeEnum Rol { get; set; }
+        public RolTypeEnum Roltype { get; set; }
         public string Wachtwoord { get; set; }
         #endregion
 
