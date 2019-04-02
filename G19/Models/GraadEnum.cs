@@ -10,7 +10,7 @@ namespace G19.Models {
         Oranje,
         Groen,
         Blauw,
-        Bbruin,
+        Bruin,
         Dan1,
         Dan2,
         Dan3,
