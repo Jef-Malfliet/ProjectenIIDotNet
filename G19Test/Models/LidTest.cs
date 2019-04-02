@@ -24,7 +24,7 @@ namespace G19Test.Models {
         private readonly string stad = "Erembodegem";
         private readonly string straatNaam = "GelbertStraat";
         private readonly string wachtwoord = "DitIsZekerMijnEchtWachtWoord!";
-        private readonly RolTypeEnum rol = RolTypeEnum.Beheerder;
+        private readonly RolTypeEnum Roltype = RolTypeEnum.Beheerder;
 
 
         [Fact]
@@ -35,7 +35,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -45,7 +45,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -65,11 +65,11 @@ namespace G19Test.Models {
             Assert.Equal(geslacht, lid.Geslacht);
             Assert.Equal(graad, lid.Graad);
             Assert.Equal(land, lid.Land);
-            Assert.Equal(formule, lid.Formule);
+            Assert.Equal(formule, lid.Lessen);
             Assert.Equal(stad, lid.Stad);
             Assert.Equal(straatNaam, lid.StraatNaam);
             Assert.Equal(wachtwoord, lid.Wachtwoord);
-            Assert.Equal(rol, lid.Rol);
+            Assert.Equal(Roltype, lid.Roltype);
         }
 
         //[Fact]
@@ -90,7 +90,7 @@ namespace G19Test.Models {
         //        Id = 1,
         //        PostCode = postcode,
         //        Rijksregisternummer = rijksregisternummer,
-        //        Rol = rol,
+        //        Roltype = Roltype,
         //        Stad = stad,
         //        StraatNaam = straatNaam,
         //        Telefoon = telefoon,
@@ -114,7 +114,7 @@ namespace G19Test.Models {
         //    Assert.Equal(stad, lid.Stad);
         //    Assert.Equal(straatNaam, lid.StraatNaam);
         //    Assert.Equal(wachtwoord, lid.Wachtwoord);
-        //    Assert.Equal(rol, lid.Rol);
+        //    Assert.Equal(Roltype, lid.Roltype);
         //}
 
         [Theory]
@@ -129,7 +129,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -139,7 +139,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -159,7 +159,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -169,7 +169,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -202,7 +202,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -212,7 +212,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -241,7 +241,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -251,7 +251,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -277,7 +277,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -287,7 +287,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -309,7 +309,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -319,7 +319,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -333,7 +333,7 @@ namespace G19Test.Models {
         [InlineData("                ")]
         [InlineData("\t\n\r")]
         [InlineData("99061426578")]
-        [InlineData("99.06.14-265.77")]//foute controle
+        [InlineData("99.06.14-265.77")]//foute contRoltypee
         [InlineData("99&06.14-265.77")]
         [InlineData("99.06.14.265.77")]
         public void TestFoutieveWaardenRijksregisternummer(string rijksregisternummer) {
@@ -343,7 +343,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -353,7 +353,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -378,7 +378,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -388,7 +388,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
@@ -411,7 +411,7 @@ namespace G19Test.Models {
                 Email = email,
                 Busnummer = busnummer,
                 EmailOuders = emailOuders,
-                Formule = formule,
+                Lessen = formule,
                 GeboorteDatum = geboorteDatum,
                 Geslacht = geslacht,
                 Graad = graad,
@@ -421,7 +421,7 @@ namespace G19Test.Models {
                 Id = 1,
                 PostCode = postcode,
                 Rijksregisternummer = rijksregisternummer,
-                Rol = rol,
+                Roltype = Roltype,
                 Stad = stad,
                 StraatNaam = straatNaam,
                 Telefoon = telefoon,
