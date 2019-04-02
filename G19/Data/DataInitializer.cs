@@ -18,30 +18,30 @@ namespace G19.Data {
 
         public async Task InitializeData() {
             
-                Lid INDY = new Lid() {
-                    Id = 500,
-                    Busnummer = "01",
-                    Email = "Indyvancanegem@hotmail.com",
-                    Familienaam = "Van CANEGEM",
-                    Lessen = FormuleEnum.Dinsdag,
-                    GeboorteDatum = DateTime.Now,
-                    Geslacht = "MAN",
-                    Graad = GraadEnum.Bbruin,
-                    GSM = "0483060043",
-                    Land = LandEnum.België,
-                    PostCode = "9240",
-                    Rijksregisternummer = "98.08.16-183.93",
-                    Roltype = RolTypeEnum.Beheerder,
-                    Huisnummer = "132",
-                    Stad = "Zele",
-                    StraatNaam = "Ommegangstraat 132",
-                    Voornaam = "KELLYYY",
-                    Wachtwoord = "P@ssword1111",
-                    Telefoon = "053444541",
-                    EmailOuders = "test@hotmail.com"
-                };
+                //Lid INDY = new Lid() {
+                //    Id = 500,
+                //    Busnummer = "01",
+                //    Email = "Indyvancanegem@hotmail.com",
+                //    Familienaam = "Van CANEGEM",
+                //    Lessen = FormuleEnum.Dinsdag,
+                //    GeboorteDatum = DateTime.Now,
+                //    Geslacht = "MAN",
+                //    Graad = GraadEnum.Bbruin,
+                //    GSM = "0483060043",
+                //    Land = LandEnum.België,
+                //    PostCode = "9240",
+                //    Rijksregisternummer = "98.08.16-183.93",
+                //    Roltype = RolTypeEnum.Beheerder,
+                //    Huisnummer = "132",
+                //    Stad = "Zele",
+                //    StraatNaam = "Ommegangstraat 132",
+                //    Voornaam = "KELLYYY",
+                //    Wachtwoord = "P@ssword1111",
+                //    Telefoon = "053444541",
+                //    EmailOuders = "test@hotmail.com"
+                //};
 
-                _context.Leden.Add(INDY);
+                //_context.Leden.Add(INDY);
             _context.SaveChanges();
         }
     }
