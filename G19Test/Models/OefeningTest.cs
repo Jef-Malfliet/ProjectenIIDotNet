@@ -28,5 +28,27 @@ namespace G19Test.Models {
             Assert.Empty(comments);
             Assert.Empty(images);
         }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData("\t\r\n")]
+        [InlineData("                      ")]
+        [InlineData(null)]
+        [InlineData("https://www.youtube.com/watch?v5Z2C0wy4bmg")]
+        [InlineData("https://www.youtube.com/watchv=5Z2C0wy4bmg")]
+        [InlineData("https://www.youtube.com/watch?v=")]
+        [InlineData("https://www.youtube.com/")]
+        [InlineData("https://soundcloud.com/nourish")]
+        public void TestFoutieveWaardeURLs(string video) {
+            Assert.Throws<ArgumentException>(() => new Oefening() {
+                Naam = naam,
+                AantalKeerBekeken = aantalKeerBekeken,
+                Comments = comments,
+                Graad = graad,
+                Images = images,
+                Uitleg = uitleg,
+                Video = video
+            });
+        }
     }
 }
