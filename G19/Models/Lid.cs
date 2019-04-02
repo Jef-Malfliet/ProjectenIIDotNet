@@ -15,6 +15,7 @@ namespace G19.Models {
         private string _postcode;
         private string _huisnummer;
         private string _emailOuders;
+        private string _busnummer;
         #endregion
 
         #region Properties
@@ -110,7 +111,19 @@ namespace G19.Models {
                 _rijksregisternummer = value;
             }
         }
-        public string Busnummer { get; set; } = null;
+        public string Busnummer {
+            get {
+                return _busnummer;
+            }
+            set {
+                if (value == "/" || value == null)
+                    _busnummer = "/";
+                else
+                    _busnummer = value;
+
+
+            }
+        }
         public string Huisnummer {
             get {
                 return _huisnummer;
@@ -132,14 +145,19 @@ namespace G19.Models {
                 return _emailOuders;
             }
             set {
-                if (value != null) {
-                    Regex regex = new Regex(@"^([a-zA-Z0-9éèà]+[a-zA-Z0-9.\-éèàïëöüäîôûêâù]*)@([a-zA-Z]+)[.]([a-z]+)([.][a-z]+)*$");
-                    Match match = regex.Match(value);
-                    if (!match.Success) {
-                        throw new ArgumentException("Email voldoet niet aan de voorwaarden.");
-                    }
+                if (value == "/" || value == null)
+                    _emailOuders = "/";
+                else {        
+                        Regex regex = new Regex(@"^([a-zA-Z0-9éèà]+[a-zA-Z0-9.\-éèàïëöüäîôûêâù]*)@([a-zA-Z]+)[.]([a-z]+)([.][a-z]+)*$");
+                        Match match = regex.Match(value);
+
+                        if (!match.Success) {
+                            throw new ArgumentException("Email voldoet niet aan de voorwaarden.");
+                        }
+                    _emailOuders = value;
                 }
-                _emailOuders = value;
+                
+                
             }
         }
         public DateTime GeboorteDatum { get; set; }

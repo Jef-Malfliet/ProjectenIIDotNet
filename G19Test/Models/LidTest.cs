@@ -72,50 +72,50 @@ namespace G19Test.Models {
             Assert.Equal(Roltype, lid.Roltype);
         }
 
-        //[Fact]
-        //public void TestConstructorSommigeWaardenNull() {//need fix, don't know how yet
-        //    Lid lid = new Lid() {
-        //        Voornaam = voornaam,
-        //        Familienaam = familienaam,
-        //        Email = email,
-        //        Busnummer = null,
-        //        EmailOuders = null,
-        //        Formule = formule,
-        //        GeboorteDatum = geboorteDatum,
-        //        Geslacht = geslacht,
-        //        Graad = graad,
-        //        GSM = gsm,
-        //        Huisnummer = huisnummer,
-        //        Land = land,
-        //        Id = 1,
-        //        PostCode = postcode,
-        //        Rijksregisternummer = rijksregisternummer,
-        //        Roltype = Roltype,
-        //        Stad = stad,
-        //        StraatNaam = straatNaam,
-        //        Telefoon = telefoon,
-        //        Wachtwoord = wachtwoord
-        //    };
-        //    Assert.Equal(voornaam, lid.Voornaam);
-        //    Assert.Equal(familienaam, lid.Familienaam);
-        //    Assert.Equal(email, lid.Email);
-        //    Assert.Equal(rijksregisternummer, lid.Rijksregisternummer);
-        //    Assert.Equal(gsm, lid.GSM);
-        //    Assert.Equal(telefoon, lid.Telefoon);
-        //    Assert.Equal(postcode, lid.PostCode);
-        //    Assert.Equal(huisnummer, lid.Huisnummer);
-        //    Assert.Equal(emailOuders, lid.EmailOuders);
-        //    Assert.Equal(busnummer, lid.Busnummer);
-        //    Assert.Equal(geboorteDatum, lid.GeboorteDatum);
-        //    Assert.Equal(geslacht, lid.Geslacht);
-        //    Assert.Equal(graad, lid.Graad);
-        //    Assert.Equal(land, lid.Land);
-        //    Assert.Equal(formule, lid.Formule);
-        //    Assert.Equal(stad, lid.Stad);
-        //    Assert.Equal(straatNaam, lid.StraatNaam);
-        //    Assert.Equal(wachtwoord, lid.Wachtwoord);
-        //    Assert.Equal(Roltype, lid.Roltype);
-        //}
+        [Fact]
+        public void TestConstructorSommigeWaardenNull() {//need fix, don't know how yet
+            Lid lid = new Lid() {
+                Voornaam = voornaam,
+                Familienaam = familienaam,
+                Email = email,
+                Busnummer = null,
+                EmailOuders = null,
+                Lessen = formule,
+                GeboorteDatum = geboorteDatum,
+                Geslacht = geslacht,
+                Graad = graad,
+                GSM = gsm,
+                Huisnummer = huisnummer,
+                Land = land,
+                Id = 1,
+                PostCode = postcode,
+                Rijksregisternummer = rijksregisternummer,
+                Roltype = Roltype,
+                Stad = stad,
+                StraatNaam = straatNaam,
+                Telefoon = telefoon,
+                Wachtwoord = wachtwoord
+            };
+            Assert.Equal(voornaam, lid.Voornaam);
+            Assert.Equal(familienaam, lid.Familienaam);
+            Assert.Equal(email, lid.Email);
+            Assert.Equal(rijksregisternummer, lid.Rijksregisternummer);
+            Assert.Equal(gsm, lid.GSM);
+            Assert.Equal(telefoon, lid.Telefoon);
+            Assert.Equal(postcode, lid.PostCode);
+            Assert.Equal(huisnummer, lid.Huisnummer);
+            Assert.Equal("/", lid.EmailOuders);
+            Assert.Equal("/", lid.Busnummer);
+            Assert.Equal(geboorteDatum, lid.GeboorteDatum);
+            Assert.Equal(geslacht, lid.Geslacht);
+            Assert.Equal(graad, lid.Graad);
+            Assert.Equal(land, lid.Land);
+            Assert.Equal(formule, lid.Lessen);
+            Assert.Equal(stad, lid.Stad);
+            Assert.Equal(straatNaam, lid.StraatNaam);
+            Assert.Equal(wachtwoord, lid.Wachtwoord);
+            Assert.Equal(Roltype, lid.Roltype);
+        }
 
         [Theory]
         [InlineData(null)]
