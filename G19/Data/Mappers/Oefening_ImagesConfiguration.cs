@@ -13,7 +13,7 @@ namespace G19.Data.Mappers {
             
 
             builder.Property(oi => oi.OefeningId).HasColumnName("Oefening_ID");
-
+            builder.HasKey(table => new { table.OefeningId, table.Images });
         }
     }
 }
