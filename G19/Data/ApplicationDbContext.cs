@@ -11,7 +11,6 @@ namespace G19.Data {
 
         public DbSet<Lid> Leden { get; set; }
         public DbSet<Oefening> Oefeningen { get; set; }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
 
@@ -19,9 +18,12 @@ namespace G19.Data {
         protected override void OnModelCreating(ModelBuilder builder) {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new LidConfiguration());
+            builder.ApplyConfiguration(new OefeningConfiguration());
+            builder.ApplyConfiguration(new Oefening_CommentsConfiguration());
+            builder.ApplyConfiguration(new Oefening_ImagesConfiguration());
 
 
         }
 
-        }
+    }
 }

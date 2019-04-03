@@ -11,8 +11,8 @@ namespace G19Test.Models {
         private readonly int aantalKeerBekeken = 5;
         private readonly GraadEnum graad = GraadEnum.Blauw;
         private readonly string video = "https://www.youtube.com/embed/t7pY-PffCTo";
-        private readonly IList<string> comments = new List<string>();
-        private readonly IList<string> images = new List<string>();
+        private readonly IList<Oefening_Comments> comments = new List<Oefening_Comments>();
+        private readonly IList<Oefening_Images> images = new List<Oefening_Images>();
 
         [Fact]
         public void TestCorrecteWaardeConstructor() {

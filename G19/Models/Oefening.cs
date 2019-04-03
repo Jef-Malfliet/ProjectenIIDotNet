@@ -40,8 +40,11 @@ namespace G19.Models {
         }
         public GraadEnum Graad { get; set; }
         public string Naam { get; set; }
-        public IEnumerable<string> Images { get; set; }
-        public IEnumerable<string> Comments { get; set; }
+        public IList<Oefening_Images> Images { get; set; }
+        public IList<Oefening_Comments> Comments { get; set; }
+
+        //public IEnumerable<string> Images { get; set; }
+        //public IEnumerable<string> Comments { get; set; }
         #endregion
 
         #region Constructors
