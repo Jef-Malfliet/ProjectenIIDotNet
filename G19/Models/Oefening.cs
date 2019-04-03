@@ -24,7 +24,7 @@ namespace G19.Models {
                 if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value)) {
                     throw new ArgumentException("VideoURL mag niet leeg zijn.");
                 }
-                Regex normalUrl = new Regex(@"^(?:.+?)?(?:\/v\/|watch\/|\?v=|\&v=|youtu\\.be\/|\/v=|^youtu\.be\/)([a-zA-Z0-9_-]{11})+$");
+                Regex normalUrl = new Regex(@"^(?:.+?)?(?:\/v\/|watch\?v=|\&v=|youtu\\.be\/|\/v=|^youtu\.be\/)([a-zA-Z0-9_-]{11})+$");
                 Match match = normalUrl.Match(value);
                 if (match.Success) {
                     _video = ConvertVideoUrlToEmbed(value);
@@ -40,8 +40,8 @@ namespace G19.Models {
         }
         public GraadEnum Graad { get; set; }
         public string Naam { get; set; }
-        public IEnumerable<string> Images { get; set; }
-        public IEnumerable<string> Comments { get; set; }
+        public IList<Oefening_Images> Images { get; set; }
+        public IList<Oefening_Comments> Comments { get; set; }
         #endregion
 
         #region Constructors
@@ -51,7 +51,7 @@ namespace G19.Models {
         #endregion
 
         #region Methods
-        private string ConvertVideoUrlToEmbed(string url) {
+        public string ConvertVideoUrlToEmbed(string url) {
             Uri uri;
             try {
                 uri = new Uri(url);
@@ -79,7 +79,7 @@ namespace G19.Models {
                 videoId = uri.Segments.Last();
             }
 
-            return uri.Host + "/embed/" + videoId;
+            return "https://" + uri.Host + "/embed/" + videoId;
         }
         #endregion
     }

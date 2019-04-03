@@ -11,8 +11,8 @@ namespace G19Test.Models {
         private readonly int aantalKeerBekeken = 5;
         private readonly GraadEnum graad = GraadEnum.Blauw;
         private readonly string video = "https://www.youtube.com/embed/t7pY-PffCTo";
-        private readonly IList<string> comments = new List<string>();
-        private readonly IList<string> images = new List<string>();
+        private readonly IList<Oefening_Comments> comments = new List<Oefening_Comments>();
+        private readonly IList<Oefening_Images> images = new List<Oefening_Images>();
 
         [Fact]
         public void TestCorrecteWaardeConstructor() {
@@ -39,9 +39,8 @@ namespace G19Test.Models {
         [InlineData("https://www.youtube.com/watch?v=")]
         [InlineData("https://www.youtube.com/")]
         [InlineData("https://soundcloud.com/nourish")]
-        //[InlineData("https://www.youtu.be/?v=qsN1LglrX9s")] deze werkt wel maar mag eigenlijk niet werken
-        // als iemand deze kan fixen, mag altijd is proberen.
-        // het ligt aan de eerste regex check 
+        [InlineData("https://www.youtu.be/?v=qsN1LglrX9s")] 
+        [InlineData("https://www.youtu.be/watdh?v=qsN1LglrX9s")]
         public void TestFoutieveWaardeURLs(string video) {
             Assert.Throws<ArgumentException>(() => new Oefening() {
                 Naam = naam,
@@ -52,6 +51,15 @@ namespace G19Test.Models {
                 Uitleg = uitleg,
                 Video = video
             });
+        }
+        [Theory]
+        [InlineData("https://m.youtube.com/watch?v=GYXKCF33hjI", "https://m.youtube.com/embed/GYXKCF33hjI")]
+        [InlineData("https://www.youtube.com/watch?v=GYXKCF33hjI", "https://www.youtube.com/embed/GYXKCF33hjI")]
+        [InlineData("https://www.youtube.com/watch?v=5Z2C0wy4bmg", "https://www.youtube.com/embed/5Z2C0wy4bmg")]
+        public void TestConvertToEmbededUrl(string urlNormaal,string embeded) {
+
+            string convert = (new Oefening()).ConvertVideoUrlToEmbed(urlNormaal);
+            Assert.Equal(embeded, convert);
         }
     }
 }

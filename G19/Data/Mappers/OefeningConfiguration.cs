@@ -9,8 +9,8 @@ namespace G19.Data.Mappers {
 
             builder.HasKey(o=> o.Id);
 
-            builder.Property(o => o.AantalKeerBekeken)
-              .IsRequired(false);
+            builder.Property(o => o.AantalKeerBekeken);
+              
 
             builder.Property(o => o.Graad)
               .IsRequired(true);
@@ -26,6 +26,13 @@ namespace G19.Data.Mappers {
             builder.Property(o => o.Video)
                 .IsRequired(false)
                 .HasMaxLength(255);
+
+
+
+            builder.HasMany(o => o.Comments).WithOne().HasForeignKey(o => o.OefeningId);
+
+            builder.HasMany(o => o.Images).WithOne().HasForeignKey(o => o.OefeningId);
+
 
         }
     }
