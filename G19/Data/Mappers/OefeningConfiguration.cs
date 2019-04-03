@@ -33,9 +33,6 @@ namespace G19.Data.Mappers {
 
             builder.HasMany(o => o.Images).WithOne().HasForeignKey(o => o.OefeningId);
 
-            //builder.Property(o => o.Comments).HasColumnName("Oefening_COMMENTS");
-
-            //builder.Property(o => o.Images).HasColumnName("Oefening_IMAGES");
 
         }
     }
