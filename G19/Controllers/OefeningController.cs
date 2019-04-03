@@ -18,8 +18,12 @@ namespace G19.Controllers {
             return View(oefeningen);
         }
 
-        public IActionResult geefCommentaar(int id) {
-            return null;
+        public IActionResult geefCommentaar(int id, string commentaar) {
+
+            _oefeningRepository.AddComment(id, commentaar);
+            IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
+            return View("Index", oefeningen);
+
         }
     }
 }
