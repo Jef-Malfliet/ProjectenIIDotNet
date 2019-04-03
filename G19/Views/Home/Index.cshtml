@@ -1,5 +1,15 @@
-﻿@{
+﻿@model IEnumerable<Lid>
+@{
     ViewData["Title"] = "Taijitan Yoshin Ryu VZW";
 }
 
-
+@foreach(var lid in Model) {
+<div class="card">
+    <div class="card-body">
+        <h3 class="lidnaam">@lid.Voornaam + " " + @lid.Familienaam </h3>
+        <!--als graad = dan1 - dan12 ==> zwart-->
+        <div class="graadBox @lid.Graad.ToString().ToLower()"></div>
+        <i class="fas fa-arrow-right"></i>
+    </div>
+</div>
+}

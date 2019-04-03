@@ -75,3 +75,71 @@ body {
     line-height: 60px; /* Vertically center the text there */
     text-align: center;/* Horizontally center the text here */
 }
+
+.wit{
+    background-color: var(--white);
+}
+
+.geel{
+    background-color: var(--yellow);
+}
+
+.oranje{
+    background-color: var(--orange);
+}
+
+.groen{
+    background-color: var(--green);
+}
+
+.blauw{
+    background-color: var(--blue);
+}
+
+.bruin{
+    background-color: var(--brown);
+}
+
+.zwart{
+    background-color: var(--black);
+}
+
+.graadbox {
+    border-radius: 0;
+    border: none;
+    display: inline-block;
+    height: 3vw;
+    width: 21vw;
+    vertical-align: bottom;
+}
+
+.lidnaam {
+    font-family: var(--headerFont);
+    display: inline-block;
+    color: var(--white);
+    font-size: 3vw;
+    width: 60%;
+    vertical-align: middle;
+}
+
+i {
+    font-size: 3vw;
+    width: 3vw;
+    height: 3vw;
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 1;
+    color: #151515;
+}
+
+.card-body {
+    padding: 0;
+    background: var(--primary);
+    border-radius: 0.5rem;
+}
+
+.card {
+    background: var(--primary);
+    border-radius: 0.5rem;
+    margin: 1.5% 0;
+}

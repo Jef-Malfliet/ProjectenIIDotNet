@@ -16,6 +16,12 @@ namespace G19.Data.Repositories {
             _context.Oefeningen.Add(oefening);
         }
 
+        public void AddComment(int id, string commentaar) {
+            Oefening oef = GetById(id);
+            Oefening_Comments comment = new Oefening_Comments(){OefeningId= oef.Id,Comments = commentaar};
+            oef.Comments.Add(comment);
+        }
+
         public IEnumerable<Oefening> GetAll() {
             return _context.Oefeningen.ToList();
         }

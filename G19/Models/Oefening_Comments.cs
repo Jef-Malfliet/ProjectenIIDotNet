@@ -8,5 +8,7 @@ namespace G19.Models {
         //public int Id { get; set; }
         public int OefeningId { get; set; }
         public string Comments { get; set; }
+
+
     }
 }
