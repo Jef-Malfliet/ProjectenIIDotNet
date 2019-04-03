@@ -3,13 +3,15 @@
     ViewData["Title"] = "Taijitan Yoshin Ryu VZW";
 }
 
-@foreach(var lid in Model) {
-<div class="card">
-    <div class="card-body">
-        <h3 class="lidnaam">@lid.Voornaam + " " + @lid.Familienaam </h3>
-        <!--als graad = dan1 - dan12 ==> zwart-->
-        <div class="graadBox @lid.Graad.ToString().ToLower()"></div>
-        <i class="fas fa-arrow-right"></i>
-    </div>
-</div>
+@foreach (var lid in Model) {
+    <button class="" asp-action="" asp-controller="">
+        <div class="card">
+            <div class="card-body">
+                <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
+                <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </button>
 }
+
