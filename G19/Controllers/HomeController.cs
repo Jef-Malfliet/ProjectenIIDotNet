@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using G19.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
