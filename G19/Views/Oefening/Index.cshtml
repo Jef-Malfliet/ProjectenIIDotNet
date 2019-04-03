@@ -1,0 +1,25 @@
+﻿@model IEnumerable<G19.Models.Oefening>
+@{
+    ViewData["Title"] = "Oefeningen";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="content">
+    <!--vertical nav with colapse-->
+    <nav class="nav flex-column graadnav">
+        @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
+            <a class="nav-link" href="#">@graad</a>
+        }
+    </nav>
+
+    <div class="oefeningContainer">
+        @foreach (var oef in Model) {
+            <div class="oefening">
+                <h1>@oef.Naam</h1>
+                <h5>@oef.Graad</h5>
+                <a class="btn" asp-controller="oefening" asp-action="geefCommentaar" asp-route-id="@oef.Id">geef commentaar</a>
+            </div>
+        }
+    </div>
+</div>

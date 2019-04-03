@@ -193,3 +193,25 @@ button {
         outline: none;
         padding: 0;
     }
+}
+
+.oefening {
+    width: 12vw;
+    margin: 1em;
+}
+
+.oefeningContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.content {
+    display: flex;
+}
+
+.graadnav {
+    background-color: var(--black);
+    width: 20%;
+}
