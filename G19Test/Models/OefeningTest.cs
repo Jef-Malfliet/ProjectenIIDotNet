@@ -39,6 +39,9 @@ namespace G19Test.Models {
         [InlineData("https://www.youtube.com/watch?v=")]
         [InlineData("https://www.youtube.com/")]
         [InlineData("https://soundcloud.com/nourish")]
+        //[InlineData("https://www.youtu.be/?v=qsN1LglrX9s")] deze werkt wel maar mag eigenlijk niet werken
+        // als iemand deze kan fixen, mag altijd is proberen.
+        // het ligt aan de eerste regex check 
         public void TestFoutieveWaardeURLs(string video) {
             Assert.Throws<ArgumentException>(() => new Oefening() {
                 Naam = naam,
