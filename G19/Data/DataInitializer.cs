@@ -18,21 +18,21 @@ namespace G19.Data {
         }
 
         public async Task InitializeData() {
-            Oefening oefening = new Oefening() {
-                AantalKeerBekeken = 5,
-                Graad = GraadEnum.Blauw,
-                Id = 1001,
-                Naam = "Nantes oefening",
-                Comments = new List<Oefening_Comments>() { new Oefening_Comments() { OefeningId = 1001, Comments = "comment1" }, new Oefening_Comments() { OefeningId = 1001, Comments = "comment2" } },
-                Images = new List<Oefening_Images>() { new Oefening_Images() { OefeningId = 1001, Images = "PADJE" }, new Oefening_Images() { OefeningId = 1001, Images = "PADJE2" } },
-                //Comments = new List<string>() { "fqsfsdf","qsfsd"},
-                //Images = new List<string>() {  "fqsfsdf", "qsfsd"  },
+            //Oefening oefening = new Oefening() {
+            //    AantalKeerBekeken = 5,
+            //    Graad = GraadEnum.Blauw,
+            //    Id = 10010,
+            //    Naam = "Nantes oefening",
+            //    Comments = new List<Oefening_Comments>() { new Oefening_Comments() { OefeningId = 10010, Comments = "comment1" }, new Oefening_Comments() { OefeningId = 10010, Comments = "comment2" } },
+            //    Images = new List<Oefening_Images>() { new Oefening_Images() { OefeningId = 10010, Images = "PADJE" }, new Oefening_Images() { OefeningId = 10010, Images = "PADJE2" } },
+            //    //Comments = new List<string>() { "fqsfsdf","qsfsd"},
+            //    //Images = new List<string>() {  "fqsfsdf", "qsfsd"  },
 
-                Uitleg = "uitlegoefening",
-                Video = "https://www.youtube.com/embed/t7pY-PffCTo"
+            //    Uitleg = "uitlegoefening",
+            //    Video = "https://www.youtube.com/embed/t7pY-PffCTo"
 
-            };
-            _context.Oefeningen.Add(oefening);
+            //};
+            //_context.Oefeningen.Add(oefening);
 
             //Lid INDY = new Lid() {
             //    Id = 500,

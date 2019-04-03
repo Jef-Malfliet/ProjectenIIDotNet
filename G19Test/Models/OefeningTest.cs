@@ -39,6 +39,8 @@ namespace G19Test.Models {
         [InlineData("https://www.youtube.com/watch?v=")]
         [InlineData("https://www.youtube.com/")]
         [InlineData("https://soundcloud.com/nourish")]
+        [InlineData("https://www.youtu.be/?v=qsN1LglrX9s")] 
+        [InlineData("https://www.youtu.be/watdh?v=qsN1LglrX9s")]
         public void TestFoutieveWaardeURLs(string video) {
             Assert.Throws<ArgumentException>(() => new Oefening() {
                 Naam = naam,
@@ -49,6 +51,15 @@ namespace G19Test.Models {
                 Uitleg = uitleg,
                 Video = video
             });
+        }
+        [Theory]
+        [InlineData("https://m.youtube.com/watch?v=GYXKCF33hjI", "https://m.youtube.com/embed/GYXKCF33hjI")]
+        [InlineData("https://www.youtube.com/watch?v=GYXKCF33hjI", "https://www.youtube.com/embed/GYXKCF33hjI")]
+        [InlineData("https://www.youtube.com/watch?v=5Z2C0wy4bmg", "https://www.youtube.com/embed/5Z2C0wy4bmg")]
+        public void TestConvertToEmbededUrl(string urlNormaal,string embeded) {
+
+            string convert = (new Oefening()).ConvertVideoUrlToEmbed(urlNormaal);
+            Assert.Equal(embeded, convert);
         }
     }
 }
