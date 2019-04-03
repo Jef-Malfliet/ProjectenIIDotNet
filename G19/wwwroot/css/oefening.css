@@ -1,9 +1,0 @@
-﻿.oefening {
-    width: 15vw;
-}
-
-.oefeningContainer{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: red;
-}

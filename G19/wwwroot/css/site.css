@@ -73,34 +73,34 @@ body {
     /* Set the fixed height of the footer here */
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
-    text-align: center;/* Horizontally center the text here */
+    text-align: center; /* Horizontally center the text here */
 }
 
-.wit{
+.wit {
     background-color: var(--white);
 }
 
-.geel{
+.geel {
     background-color: var(--yellow);
 }
 
-.oranje{
+.oranje {
     background-color: var(--orange);
 }
 
-.groen{
+.groen {
     background-color: var(--green);
 }
 
-.blauw{
+.blauw {
     background-color: var(--blue);
 }
 
-.bruin{
+.bruin {
     background-color: var(--brown);
 }
 
-.zwart{
+.zwart {
     background-color: var(--black);
 }
 
@@ -142,4 +142,25 @@ i {
     background: var(--primary);
     border-radius: 0.5rem;
     margin: 1.5% 0;
+}
+
+.oefening {
+    width: 12vw;
+    margin: 1em;
+}
+
+.oefeningContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.content {
+    display: flex;
+}
+
+.graadnav {
+    background-color: var(--black);
+    width: 20%;
 }
