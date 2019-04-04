@@ -30,5 +30,9 @@ namespace G19.Controllers {
             IEnumerable<Oefening> oefeningenPerGraad = _oefeningRepository.GetOefeningenPerGraad(graad);
             return View("Index", oefeningenPerGraad);
         }
+
+        public ActionResult geefTextView(Oefening oef) {
+            return PartialView("~/Views/Oefening/_Text.cshtml", oef);
+        }
     }
 }
