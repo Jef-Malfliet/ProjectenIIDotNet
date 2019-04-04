@@ -1,9 +1,4 @@
-﻿using G19.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
 namespace G19.Data {
@@ -18,6 +13,7 @@ namespace G19.Data {
         }
 
         public async Task InitializeData() {
+
             //Oefening oefening = new Oefening() {
             //    AantalKeerBekeken = 5,
             //    Graad = GraadEnum.Blauw,
@@ -58,7 +54,11 @@ namespace G19.Data {
             //};
 
             //_context.Leden.Add(INDY);
+            IdentityUser user = new IdentityUser("Indy@hotmail.com");
+            await _usermanager.CreateAsync(user, "P@ssword1111");
             _context.SaveChanges();
+
         }
     }
 }
+
