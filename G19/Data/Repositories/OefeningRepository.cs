@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace G19.Data.Repositories {
     public class OefeningRepository : IOefeningRepository {
@@ -29,7 +30,7 @@ namespace G19.Data.Repositories {
 
 
         public Oefening GetById(int id) {
-            return _context.Oefeningen.FirstOrDefault(l => l.Id == id);
+            return _context.Oefeningen.Include(oef => oef.Comments).Include(oef => oef.Images).FirstOrDefault(l => l.Id == id);
         }
 
         public IEnumerable<Oefening> GetOefeningenPerGraad(GraadEnum graad) {
