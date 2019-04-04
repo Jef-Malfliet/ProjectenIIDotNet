@@ -25,5 +25,10 @@ namespace G19.Controllers {
             return View("Index", oefeningen);
 
         }
+
+        public IActionResult geefOefeningenPerGraad(GraadEnum graad) {
+            IEnumerable<Oefening> oefeningenPerGraad = _oefeningRepository.GetOefeningenPerGraad(graad);
+            return View("Index", oefeningenPerGraad);
+        }
     }
 }
