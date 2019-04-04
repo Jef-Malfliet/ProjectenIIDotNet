@@ -1,6 +1,7 @@
 ﻿using G19.Models;
 using G19.Models.Repositories;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,8 +27,13 @@ namespace G19.Data.Repositories {
             return _context.Oefeningen.ToList();
         }
 
+
         public Oefening GetById(int id) {
             return _context.Oefeningen.FirstOrDefault(l => l.Id == id);
+        }
+
+        public IEnumerable<Oefening> GetOefeningenPerGraad(GraadEnum graad) {
+            return _context.Oefeningen.Where(oef => oef.Graad.Equals(graad));
         }
 
         public void Remove(Oefening oefening) {

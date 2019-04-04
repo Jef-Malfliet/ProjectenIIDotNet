@@ -198,8 +198,8 @@ button {
     text-align: initial;
     cursor: pointer;
     display: block;
-}
 
+}
     button,
     button:focus,
     button:active {
@@ -208,7 +208,6 @@ button {
         outline: none;
         padding: 0;
     }
-}
 
 .oefening {
     width: 12vw;
