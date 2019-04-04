@@ -1,7 +1,15 @@
-﻿
+﻿@model G19.Models.Oefening
+
 @{
     ViewData["Title"] = "_Video";
 }
 
-<h1>_Video</h1>
+<h1>Video</h1>
+<div class="embeded-response embed-responsive-16by9">
+    <iframe class="embed-responsive-item"
+        src="@Model.Video"
+        frameborder="0"
+        allowfullscreen></iframe>
+</div>
+
 

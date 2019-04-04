@@ -1,16 +1,27 @@
-﻿@Model G19.Models.Oefening
+﻿@model G19.Models.Oefening
 @{
     ViewData["Title"] = "_Oefening";
 }
 
+<script>
+    document.getElementById("tekst").onclick = function () { myFunction() };
+    function myFunction() {
+
+        $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
+    }
+</script>
+
 <nav class="nav">
-    <a class="nav-link" id="tekst">Tekst</a>
+    <a class="nav-link" id="tekst" href="myFunction()">Tekst</a>
     <a class="nav-link" id="fotos">Foto's</a>
     <a class="nav-link" id="videos">Video's</a>
     <a class="nav-link" id="comments">Commentaar</a>
 </nav>
 
 <div id="contentDiv">
-
+    <partial name="_Text">
+        <partial name="_Fotos">
+            <partial name="_Video">
+                <partial name="_Comments">
 </div>
 
