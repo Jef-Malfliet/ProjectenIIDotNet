@@ -21,6 +21,7 @@ namespace G19.Data {
             builder.ApplyConfiguration(new OefeningConfiguration());
             builder.ApplyConfiguration(new Oefening_CommentsConfiguration());
             builder.ApplyConfiguration(new Oefening_ImagesConfiguration());
+            builder.ApplyConfiguration(new Lid_AanwezighedenConfiguration());
 
 
         }

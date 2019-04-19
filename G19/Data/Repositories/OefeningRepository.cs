@@ -25,7 +25,7 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Oefening> GetAll() {
-            return _context.Oefeningen.ToList();
+            return _context.Oefeningen.Include(oef => oef.Comments).Include(oef => oef.Images).ToList();
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -185,6 +186,7 @@ namespace G19.Models {
         public string StraatNaam { get; set; }
         public RolTypeEnum Roltype { get; set; }
         public string Wachtwoord { get; set; }
+        public IList<Lid_Aanwezigheden> Aanwezigheden { get; set; }
         #endregion
 
         #region Constructors

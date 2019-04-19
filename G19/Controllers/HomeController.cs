@@ -3,6 +3,7 @@ using G19.Models;
 using G19.Models.Repositories;
 using System.Linq;
 using Microsoft.AspNetCore.Routing;
+using System;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
@@ -24,6 +25,16 @@ namespace G19.Controllers {
                 return View(nameof(Index), _lidRepository.GetAll());
             }
 
+        }
+
+        [Route("Home/{lidId}")]
+        public void registreerAanwezigheid(int lidId) {
+            Lid aanwezigLid = _lidRepository.GetById(lidId);
+            aanwezigLid.Aanwezigheden.Add(new Lid_Aanwezigheden() {
+                LidId = lidId,
+                Aanwezigheid = DateTime.Now
+            });
+            _lidRepository.SaveChanges();
         }
 
         //public IActionResult Privacy() {

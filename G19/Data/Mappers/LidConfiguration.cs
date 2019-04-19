@@ -70,6 +70,10 @@ namespace G19.Data.Mappers {
             builder.Property(l => l.Wachtwoord)
                 .IsRequired(true)
                 .HasMaxLength(20);
+
+            //Associatie met Lid_AANWEZIGHEDEN in de MySQL Database
+            builder.HasMany(lid => lid.Aanwezigheden)
+                .WithOne();
         }
     }
 }
