@@ -1,34 +1,45 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Montserrat|Sanchez');
-
-.sidenav {
-    background-color: #454553;
-    width: 20%;
-    height: 100vh;
-    font-family: 'Montserrat', sans-serif;
-    box-sizing:border-box;
+/*-------------------------------------MOBILE FIRST!-------------------------------------*/
+.sidenav{
+    display:none;
 }
 
-    .sidenav ul {
-        display: flex;
-        flex-direction: column;
-        height: 80%;
-        justify-content: space-around;
-        padding-left:15px;
+@media only screen and (min-width:768px){
+    .sidenav {
+        display:block;
+        background-color: #454553;
+        width: 20vw;
+        height: 100vh;
+        font-family: 'Montserrat', sans-serif;
+        box-sizing: border-box;
     }
 
-        .sidenav ul li, .sidenav ul li i {
-            color: #00b4ab;
+        .sidenav ul {
+            display: flex;
+            flex-direction: column;
+            height: 80%;
+            justify-content: space-around;
+            padding-left: 50px;
         }
 
-.sidenav i{
-    font-size:80%;
+            .sidenav ul li, .sidenav ul li i {
+                color: #00b4ab;
+            }
+
+    .sidenav i {
+        font-size: 80%;
+        padding-right:20px;
+    }
+    /*Placing the arrows right.*/
+    .sidenav li {
+        width: 100%;
+    }
+
+    .sidenav ul li i {
+        height: 100%;
+        float: right;
+    }
 }
 
-/*Placing the arrows right.*/
-.sidenav li{
-    width:100%;
-}
-.sidenav ul li i{
-    height:100%;
-    float:right;
-}
+
+

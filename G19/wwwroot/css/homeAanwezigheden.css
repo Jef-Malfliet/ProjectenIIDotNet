@@ -1,0 +1,89 @@
+﻿/*--------------------MOBILE FIRST!---------------------*/
+/*START Variables*/
+:root {
+    /*Color Palette*/
+    --primary: #00b4ab;
+    --counter: #454553;
+    --white: #dfdfdf;
+    --yellow: #fbba0a;
+    --orange: #f08d0c;
+    --green: #269433;
+    --blue: #2962df;
+    --brown: #853f13;
+    --black: #151515;
+    --aanwezigheidGemeld:#00909a;
+    /*Fonts*/
+    --headerFont: 'Montserrat', sans-serif;
+    --bodyFont: 'Sanchez', serif;
+}
+/*END Variables*/
+.wit {
+    background-color: var(--white);
+}
+
+.geel {
+    background-color: var(--yellow);
+}
+
+.oranje {
+    background-color: var(--orange);
+}
+
+.groen {
+    background-color: var(--green);
+}
+
+.blauw {
+    background-color: var(--blue);
+}
+
+.bruin {
+    background-color: var(--brown);
+}
+
+.zwart {
+    background-color: var(--black);
+}
+
+/*START opmaak cards*/
+.containerAanwezigheden {
+    width: 100vw;
+    font-family: var(--headerFont);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    background-color:var(--primary);
+}
+
+.card {
+    background-color: var(--counter);
+    width: 43%;
+    height:100px;
+    margin: 10px;
+    position:relative;
+}
+
+
+.lidNaam{
+    text-align:center;
+    color:var(--white);
+    font-size:15px;
+    padding-top:15px;
+}
+.graadBox{
+    display:block;
+    width:100%;
+    height:30px;
+    position:absolute;
+    bottom:0;
+}
+@media only screen and (min-width:768px) {
+    .containerAanwezigheden {
+        width: 75vw;
+        margin-left: 25vw;
+    }
+    .card{
+        width:20%;
+    }
+}
