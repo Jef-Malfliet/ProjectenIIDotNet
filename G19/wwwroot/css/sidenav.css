@@ -1,45 +1,53 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Montserrat|Sanchez');
 /*-------------------------------------MOBILE FIRST!-------------------------------------*/
-.sidenav{
-    display:none;
+/*START Variables*/
+:root {
+    /*Color Palette*/
+    --primary: #00b4ab;
+    --counter: #454553;
+    --white: #dfdfdf;
+    --yellow: #fbba0a;
+    --orange: #f08d0c;
+    --green: #269433;
+    --blue: #2962df;
+    --brown: #853f13;
+    --black: #151515;
+    --aanwezigheidGemeld: #00909a;
+    /*Fonts*/
+    --headerFont: 'Montserrat', sans-serif;
+    --bodyFont: 'Sanchez', serif;
 }
 
-@media only screen and (min-width:768px){
-    .sidenav {
-        display:block;
-        background-color: #454553;
-        width: 20vw;
-        height: 100vh;
-        font-family: 'Montserrat', sans-serif;
-        box-sizing: border-box;
+
+.sidenav {
+    display: block;
+    background-color: var(--counter);
+    width: 150px;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    position: fixed;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    top: 0;
+}
+
+    .sidenav a, .sidenav a:active {
+        text-decoration: none;
+        color: var(--primary);
+        width: 100%;
+        padding:40px;
+        text-align:center;
     }
 
-        .sidenav ul {
-            display: flex;
-            flex-direction: column;
-            height: 80%;
-            justify-content: space-around;
-            padding-left: 50px;
+        .sidenav a:hover {
+            background-color: var(--white);
         }
 
-            .sidenav ul li, .sidenav ul li i {
-                color: #00b4ab;
-            }
-
-    .sidenav i {
-        font-size: 80%;
-        padding-right:20px;
-    }
-    /*Placing the arrows right.*/
-    .sidenav li {
-        width: 100%;
-    }
-
-    .sidenav ul li i {
-        height: 100%;
-        float: right;
+@media only screen and (min-width:768px) {
+    .sidenav {
+        width: 20vw;
+        height: 100vh;
     }
 }
-
-
-

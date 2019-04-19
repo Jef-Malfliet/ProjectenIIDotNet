@@ -18,7 +18,7 @@ namespace G19Test.Models {
         private readonly string busnummer = "2";
         private readonly DateTime geboorteDatum = new DateTime(1999, 6, 14);
         private readonly string geslacht = "man";
-        private readonly GraadEnum graad = GraadEnum.Dan12;
+        private readonly GraadEnum graad = GraadEnum.DAN12;
         private readonly LandEnum land = LandEnum.België;
         private readonly FormuleEnum formule = FormuleEnum.Woensdag;
         private readonly string stad = "Erembodegem";

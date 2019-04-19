@@ -1,16 +1,18 @@
-﻿<head>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<head>
     <link rel="stylesheet" href="~/css/sidenav.css" />
 </head>
 <body>
     <div class="sidenav">
-        <ul>
-            <li><a>WIT</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>GEEL</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>ORANJE</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>GROEN</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>BLAUW</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>BRUIN</a> <i class="fas fa-chevron-right"></i></li>
-            <li><a>ZWART</a> <i class="fas fa-chevron-right"></i></li>
+        
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="WIT">WIT</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="GEEL">GEEL</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="ORANJE">ORANJE</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="GROEN">GROEN</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="BLAUW">BLAUW</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="BRUIN">BRUIN</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="ZWART">ZWART</a>
+            <a asp-controller="Home" asp-action="PerGraad" asp-route-graad="ALLES">ALLES</a>
         </ul>
     </div>
 </body>

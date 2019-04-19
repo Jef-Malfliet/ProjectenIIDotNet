@@ -16,7 +16,7 @@ namespace G19.Data {
 
             //Oefening oefening = new Oefening() {
             //    AantalKeerBekeken = 5,
-            //    Graad = GraadEnum.Blauw,
+            //    Graad = GraadEnum.BLAUW,
             //    Id = 10010,
             //    Naam = "Nantes oefening",
             //    Comments = new List<Oefening_Comments>() { new Oefening_Comments() { OefeningId = 10010, Comments = "comment1" }, new Oefening_Comments() { OefeningId = 10010, Comments = "comment2" } },
@@ -38,7 +38,7 @@ namespace G19.Data {
             //    Lessen = FormuleEnum.Dinsdag,
             //    GeboorteDatum = DateTime.Now,
             //    Geslacht = "MAN",
-            //    Graad = GraadEnum.Bruin,
+            //    Graad = GraadEnum.BRUIN,
             //    GSM = "0483060043",
             //    Land = LandEnum.België,
             //    PostCode = "9240",

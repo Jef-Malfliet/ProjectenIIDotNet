@@ -47,13 +47,14 @@
 
 /*START opmaak cards*/
 .containerAanwezigheden {
-    width: 100vw;
+    width: 70vw;
     font-family: var(--headerFont);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     box-sizing: border-box;
     background-color:var(--primary);
+    margin-left:150px;
 }
 
 .card {
@@ -79,10 +80,11 @@
     bottom:0;
 }
 .arrow{
-    color:var(--white);
+    color:var(--counter);
     position:absolute;
     bottom:5px;
     right:5px;
+
 }
 @media only screen and (min-width:768px) {
     .containerAanwezigheden {

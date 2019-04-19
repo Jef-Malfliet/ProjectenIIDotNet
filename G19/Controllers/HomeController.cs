@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using G19.Models;
 using G19.Models.Repositories;
+using System.Linq;
+using Microsoft.AspNetCore.Routing;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
@@ -11,6 +13,17 @@ namespace G19.Controllers {
         }
         public IActionResult Index() {
             return View(_lidRepository.GetAll());
+        }
+        [Route("Home/{graad}")]
+        public IActionResult PerGraad(string graad) {
+            if (graad != "ZWART" && graad != "ALLES") {
+                return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString() == graad));
+            } else if (graad == "ZWART") {
+                return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
+            }else{
+                return View(nameof(Index), _lidRepository.GetAll());
+            }
+
         }
 
         //public IActionResult Privacy() {
