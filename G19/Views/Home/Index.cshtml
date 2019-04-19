@@ -13,8 +13,7 @@
                 <button class="" asp-action="" asp-controller="">
                     <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
                     <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
-
-                    <!--<i class="fas fa-arrow-right"></i>-->
+                    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
                 </button>
             </div>
         }

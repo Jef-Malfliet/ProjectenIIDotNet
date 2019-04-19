@@ -78,6 +78,12 @@
     position:absolute;
     bottom:0;
 }
+.arrow{
+    color:var(--white);
+    position:absolute;
+    bottom:5px;
+    right:5px;
+}
 @media only screen and (min-width:768px) {
     .containerAanwezigheden {
         width: 75vw;
