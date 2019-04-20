@@ -24,7 +24,7 @@
     <script>
       
         $("#tekst").click(function () {
-    $.get('@Url.Action("geefTextView", "Oefening",@Model.)', {}, function (response) {
+    $.get('@Url.Action("geefTextView", "Oefening",@Model)', {}, function (response) {
         $("#inhoud").html(response);
     });
         });
