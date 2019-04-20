@@ -13,7 +13,7 @@ for details on configuring this project to bundle and minify static web assets. 
     --blue: #2962df;
     --brown: #853f13;
     --black: #151515;
-    --aanwezigheidGemeld: #00909a;
+    --aanwezigheidGemeld:    #00909a;
     /*Fonts*/
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
@@ -169,3 +169,5 @@ button {
     background-color: var(--black);
     width: 20%;
 }
+
+

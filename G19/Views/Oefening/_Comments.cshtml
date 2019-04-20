@@ -4,5 +4,16 @@
     ViewData["Title"] = "_Comments";
 }
 
-<h1>@Model.Comments</h1>
+@foreach (var comments in @Model.Comments) {
+<div class="container">
+    <div class="card">@comments.Comments</div>
+    <div class="card">@comments.Comments</div>
+    <div class="card">@comments.Comments</div>
+    <div class="card">@comments.Comments</div>
+    <div class="card">@comments.Comments</div>
+
+
+
+</div>
+}
 

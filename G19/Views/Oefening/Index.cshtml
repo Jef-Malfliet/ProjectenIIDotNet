@@ -3,22 +3,23 @@
     ViewData["Title"] = "Oefeningen";
 }
 
-<h2>@ViewData["Title"]</h2>
 
-<div class="content">
+<div>
     @*vertical nav with colapse
-    <ul class="nav flex-column graadnav">
-        @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" asp-controller="oefening" asp-action="SetOefeningenPerGraad" asp-route-graad="@graad">@graad</a>
-                <div class="dropdown-menu">
-                    @foreach (var oef in ViewData["Oefeningen"] as IList<Oefening>) {
-                        <a class="dropdown-item" href="#">@oef.Naam</a>
-                    }
-                </div>
-            </li>
-        }
-    </ul>*@
+        <ul class="nav flex-column graadnav">
+            @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" asp-controller="oefening" asp-action="SetOefeningenPerGraad" asp-route-graad="@graad">@graad</a>
+                    <div class="dropdown-menu">
+                        @foreach (var oef in ViewData["Oefeningen"] as IList<Oefening>) {
+                            <a class="dropdown-item" href="#">@oef.Naam</a>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>*@
     <partial name="_Oefening" model="@Model.Last()" />
-    
+
+
+
 </div>

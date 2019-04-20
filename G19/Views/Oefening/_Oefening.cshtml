@@ -1,27 +1,121 @@
-﻿@model G19.Models.Oefening
+﻿@*@model G19.Models.Oefening
+    @{
+        ViewData["Title"] = "_Oefening";
+
+    }
+
+    <head>
+        <link rel="stylesheet" href="~/css/Oefeningen.css" />
+    </head>
+    <body>
+        <div class="containerOefeningen">
+            <nav class="nav">
+                <a asp-page="/Oefening/Tekst">Tekst</a>
+                <a asp-page="/Oefening/Fotos" >Foto's</a>
+                <a asp-page="/Oefening/Videos" >Video's</a>
+                <a asp-page="/Oefening/Commentaar" >Commentaar</a>
+            </nav>
+        </div>
+        <script>
+        @*function myFunction(){
+
+            $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
+        }
+
+
+        </script>
+    </body>
+*@
+
+
+
+@model G19.Models.Oefening
 @{
     ViewData["Title"] = "_Oefening";
+    String methodename = new String("");
+    bool tekst = false;
+    bool fotos = false;
+    bool videos = false;
+    bool comments = false;
 }
 
-<script>
-    document.getElementById("tekst").onclick = function () { myFunction() };
-    function myFunction() {
+<head>
+    <link rel="stylesheet" href="~/css/Oefeningen.css" />
 
-        $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
-    }
-</script>
+</head>
+<body>
+    <div class="containerOefeningen">
+        <nav class="nav">
+            <a class="nav-link" id="tekst">Tekst</a>
+            <a class="nav-link" id="fotos">Foto's</a>
+            <a class="nav-link" id="videos">Video's</a>
+            <a class="nav-link" id="comments">Commentaar</a>
+        </nav>
+        <div id="inhoud"></div>
+        @if (tekst) {<div id="contentDiv"><partial name="_Text"></div>}
+        @if (fotos) {<div id="contentDiv"><partial name="_Video"></div>}
+        @if (videos) {<div id="contentDiv"><partial name="_Fotos"></div>}
+        @if (comments) {<div id="contentDiv"><partial name="_Comments"></div>}
 
-<nav class="nav">
-    <a class="nav-link" id="tekst" href="myFunction()">Tekst</a>
-    <a class="nav-link" id="fotos">Foto's</a>
-    <a class="nav-link" id="videos">Video's</a>
-    <a class="nav-link" id="comments">Commentaar</a>
-</nav>
+    </div>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
 
-<div id="contentDiv">
-    <partial name="_Text">
-        <partial name="_Fotos">
-            <partial name="_Video">
-                <partial name="_Comments">
-</div>
+    </script>
+    <script>
+      
+        $("#tekst").click(function () {
+    $.get('@Url.Action("geefTextView", "Oefening",@Model.)', {}, function (response) {
+        $("#inhoud").html(response);
+    });
+        });
+                $("#fotos").click(function () {
+    $.get('@Url.Action("geefFotoView", "Oefening",Model)', {}, function (response) {
+        $("#inhoud").html(response);
+    });
+        });
+                        $("#videos").click(function () {
+    $.get('@Url.Action("geefVideoView", "Oefening",Model)', {}, function (response) {
+        $("#inhoud").html(response);
+    });
+});
+        $("#comments").click(function () {
+    $.get('@Url.Action("geefCommentView", "Oefening",Model)', {}, function (response) {
+        $("#inhoud").html(response);
+    });
+});
 
+
+
+
+
+
+
+        //document.getElementById("tekst").onclick = function () { myFunction() };
+
+        @*function myFunction(){
+
+            $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
+        }*@
+
+    </script>
+</body>
+
+
+
+@*render("tekst", "geefTextView");
+            render("fotos", "geefFotoView");
+            render("videos", "geefVideoView");
+            render("comments", "geefCommentView");
+
+
+            function render(id, methodename) {
+    @{methodename = methodename};
+                console.log(@methodename);
+                @methodename = "geefTextView";
+                $(`#${id}`).click(function () {
+                $.get(@Url.Action(@methodename, "Oefening"), {}, function (response) {
+                $("#inhoud").html(response);
+                });
+
+                });
+                }*@

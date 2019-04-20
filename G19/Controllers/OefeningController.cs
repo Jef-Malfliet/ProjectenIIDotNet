@@ -34,5 +34,14 @@ namespace G19.Controllers {
         public ActionResult geefTextView(Oefening oef) {
             return PartialView("~/Views/Oefening/_Text.cshtml", oef);
         }
+        public ActionResult geefVideoView(Oefening oef) {
+            return PartialView("~/Views/Oefening/_Video.cshtml", oef);
+        }
+        public ActionResult geefFotoView(Oefening oef) {
+            return PartialView("~/Views/Oefening/_Fotos.cshtml", oef);
+        }
+        public ActionResult geefCommentView(Oefening oef) {
+            return PartialView("~/Views/Oefening/_Comments.cshtml", oef);
+        }
     }
 }

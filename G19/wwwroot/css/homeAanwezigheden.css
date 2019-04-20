@@ -46,7 +46,7 @@
 }
 
 /*START opmaak cards*/
-.containerAanwezigheden {
+.containerAanwezigheden{
     width: 70vw;
     font-family: var(--headerFont);
     display: flex;

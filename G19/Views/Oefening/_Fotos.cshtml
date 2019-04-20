@@ -3,6 +3,18 @@
 @{
     ViewData["Title"] = "_Fotos";
 }
+<head>
+    <link rel="stylesheet" href="~/css/textPartial.css" />
+</head>
 
-<h1>@Model.Images</h1>
+@foreach (var image in @Model.Images) {
+<div class="container">
+    <div class="card">@image.Images</div>
+    <div class="card">@image.Images</div>
+    <div class="card">@image.Images</div>
+    <div class="card">@image.Images</div>
+    <div class="card">@image.Images</div>
+    
+</div>
+}
 
