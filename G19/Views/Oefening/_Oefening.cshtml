@@ -1,42 +1,6 @@
-﻿@*@model G19.Models.Oefening
-    @{
-        ViewData["Title"] = "_Oefening";
-
-    }
-
-    <head>
-        <link rel="stylesheet" href="~/css/Oefeningen.css" />
-    </head>
-    <body>
-        <div class="containerOefeningen">
-            <nav class="nav">
-                <a asp-page="/Oefening/Tekst">Tekst</a>
-                <a asp-page="/Oefening/Fotos" >Foto's</a>
-                <a asp-page="/Oefening/Videos" >Video's</a>
-                <a asp-page="/Oefening/Commentaar" >Commentaar</a>
-            </nav>
-        </div>
-        <script>
-        @*function myFunction(){
-
-            $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
-        }
-
-
-        </script>
-    </body>
-*@
-
-
-
-@model G19.Models.Oefening
+﻿@model G19.Models.Oefening
 @{
     ViewData["Title"] = "_Oefening";
-    String methodename = new String("");
-    bool tekst = false;
-    bool fotos = false;
-    bool videos = false;
-    bool comments = false;
 }
 
 <head>
@@ -51,11 +15,7 @@
             <a class="nav-link" id="videos">Video's</a>
             <a class="nav-link" id="comments">Commentaar</a>
         </nav>
-        <div id="inhoud"></div>
-        @if (tekst) {<div id="contentDiv"><partial name="_Text"></div>}
-        @if (fotos) {<div id="contentDiv"><partial name="_Video"></div>}
-        @if (videos) {<div id="contentDiv"><partial name="_Fotos"></div>}
-        @if (comments) {<div id="contentDiv"><partial name="_Comments"></div>}
+      
 
     </div>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
@@ -83,11 +43,6 @@
         $("#inhoud").html(response);
     });
 });
-
-
-
-
-
 
 
         //document.getElementById("tekst").onclick = function () { myFunction() };
