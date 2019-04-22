@@ -22,36 +22,36 @@
 
 <body>
     @*<header class="nav">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 flex-grow-1">
-            <div class="container">
-                <a class="navbar-brand headerfont" asp-area="" asp-controller="Home" asp-action="Index"><img />Taijitan Yoshin Ryu VZW</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark headerfont" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3 flex-grow-1">
+                <div class="container">
+                    <a class="navbar-brand headerfont" asp-area="" asp-controller="home" asp-action="index"><img />taijitan yoshin ryu vzw</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarsupportedcontent"
+                            aria-expanded="false" aria-label="toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <partial name="_loginpartial" />
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark headerfont" asp-area="" asp-controller="home" asp-action="index">home</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>*@
+            </nav>
+        </header>*@
+    <partial name="_mainnav" class="mainnav" />
     <div class="container">
-        <partial name="_sidenav" class="sidenav"/>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     @*<footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - Taijitan Yoshin Ryu VZW - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>*@
+            <div class="container">
+                &copy; 2019 - Taijitan Yoshin Ryu VZW - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

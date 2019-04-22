@@ -49,12 +49,15 @@
 .containerAanwezigheden{
     width: 70vw;
     font-family: var(--headerFont);
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     box-sizing: border-box;
     background-color:var(--primary);
     margin-left:150px;
+    margin-top:10vh;
+}
+.containerAanwezighedenCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -85,6 +88,14 @@
     bottom:5px;
     right:5px;
 
+}
+h1{
+    color:var(--white);
+    font-weight:bold;
+    font-family:var(--headerFont);
+    width:100%;
+    font-size:36px;
+    margin-left:15px;
 }
 @media only screen and (min-width:768px) {
     .containerAanwezigheden {

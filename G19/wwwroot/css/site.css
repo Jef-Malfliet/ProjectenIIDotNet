@@ -38,9 +38,6 @@ h6 {
     --bodyFont: 'Sanchez', serif;
 }
 
-html {
-    position: relative;
-}
 
 body {
     /* Margin bottom by footer height */
@@ -49,11 +46,14 @@ body {
 }
 
 /*CONTAINER VOOR ALLE CONTENT DIE GERENDERD WORDT*/
-.container,pb-3,body,html{
+.container,main.pb-3,body,html{
     margin: 0;
     padding: 0;
     width: 100vw;
     height:100vh;
+}
+.container {
+    position: relative;
 }
 
 /*FOOTER*/

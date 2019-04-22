@@ -1,5 +1,4 @@
-﻿    @import url('https://fonts.googleapis.com/css?family=Montserrat|Sanchez');
-/*-------------------------------------MOBILE FIRST!-------------------------------------*/
+﻿/*--------MOBILE FIRST!------------*/
 /*START Variables*/
 :root {
     /*Color Palette*/
@@ -17,28 +16,29 @@
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
 }
-
+/*END Variables*/
 
 .sidenav {
     display: block;
     background-color: var(--counter);
     width: 150px;
-    height: 100vh;
+    height: 96vh;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     position: fixed;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    top: 10vh;
+    z-index: 100;
 }
 
     .sidenav a, .sidenav a:active {
         text-decoration: none;
         color: var(--primary);
         width: 100%;
-        padding:40px;
-        text-align:center;
+        padding: 30px;
+        text-align: center;
     }
 
         .sidenav a:hover {
@@ -48,6 +48,7 @@
 @media only screen and (min-width:768px) {
     .sidenav {
         width: 20vw;
-        height: 100vh;
+        height: 94vh;
+        top:6vh;
     }
 }

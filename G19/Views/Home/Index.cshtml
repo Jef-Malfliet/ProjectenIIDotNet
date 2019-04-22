@@ -4,16 +4,31 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/homeAanwezigheden.css" />
+    <link rel="stylesheet" href="~/css/sidenav.css" />
+
 </head>
 <body>
+    <div id="sidenavAanwezigheden" class="sidenav">
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="WIT">WIT</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GEEL">GEEL</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GROEN">GROEN</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ZWART">ZWART</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ALLES">ALLES</a>
+    </div>
     <div class="containerAanwezigheden">
-        @foreach (var lid in Model) {
-            <div class="card" onclick="registreerAanwezigheid(this)">
-                <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
-                <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
-                <div asp-route ="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>
-            </div>
-        }
+        <h1>Registreer aanwezigheid</h1>
+        <div class="containerAanwezighedenCards">
+            @foreach (var lid in Model) {
+                <div class="card" onclick="registreerAanwezigheid(this)">
+                    <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
+                    <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
+                    <div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>
+                </div>
+            }
+        </div>
     </div>
     <script>
         function registreerAanwezigheid(divObj) {

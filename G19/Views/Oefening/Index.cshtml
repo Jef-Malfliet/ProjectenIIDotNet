@@ -5,38 +5,49 @@
 
 <head>
     <link rel="stylesheet" href="~/css/Oefeningen.css" />
+    <link rel="stylesheet" href="~/css/sidenav.css" />
 
 </head>
 <div>
+    <div id="sidenavOefeningen" class="sidenav">
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+    </div>
     <div class="containerOefeningen">
         @*vertical nav with colapse
-        <ul class="nav flex-column graadnav">
-            @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" asp-controller="oefening" asp-action="SetOefeningenPerGraad" asp-route-graad="@graad">@graad</a>
-                    <div class="dropdown-menu">
-                        @foreach (var oef in ViewData["Oefeningen"] as IList<Oefening>) {
-                            <a class="dropdown-item" href="#">@oef.Naam</a>
-                        }
-                    </div>
-                </li>
-            }
-        </ul>*@
-        <h2>Oefeningen</h2>
+            <ul class="nav flex-column graadnav">
+                @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" asp-controller="oefening" asp-action="SetOefeningenPerGraad" asp-route-graad="@graad">@graad</a>
+                        <div class="dropdown-menu">
+                            @foreach (var oef in ViewData["Oefeningen"] as IList<Oefening>) {
+                                <a class="dropdown-item" href="#">@oef.Naam</a>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>*@
+        <h1>Oefeningen</h1>
         <ul>
             @foreach (var oefening in Model) {
- <li>
-    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id>
-        @oefening.Naam
+                <li>
+                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id>
+                        @oefening.Naam
 
-    </a>
-</li>
+                    </a>
+                </li>
 
 
             }
-            </ul>
-            @*<partial name="_Oefening" model="@Model.First()" />*@
-
-</div>
+        </ul>
+        @*<partial name="_Oefening" model="@Model.First()" />*@
 
     </div>
+
+</div>

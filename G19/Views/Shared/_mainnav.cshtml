@@ -1,1 +1,16 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<head>
+    <link rel="stylesheet" href="~/css/mainnav.css" />
+</head>
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Taijitan Yoshin Ryu VZW<img src="~/img/TaijitanLogo.png" /></a></li>
+            <li><a asp-controller="Home" asp-action="Index" onclick="showSidenavAanwezigheden()">Aanwezigheid registreren</a></li>
+            <li><a asp-controller="Oefening" asp-action="Index" onclick="showSidenavOefeningen()">Raadplegen lesmateriaal</a></li>
+        </ul>
+
+    </div>
+
+</body>

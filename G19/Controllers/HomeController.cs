@@ -16,7 +16,7 @@ namespace G19.Controllers {
             return View(_lidRepository.GetAll());
         }
         [Route("Home/{graad}")]
-        public IActionResult PerGraad(string graad) {
+        public IActionResult GeefAanwezighedenPerGraad(string graad) {
             if (graad != "ZWART" && graad != "ALLES") {
                 return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString() == graad));
             } else if (graad == "ZWART") {
@@ -25,16 +25,6 @@ namespace G19.Controllers {
                 return View(nameof(Index), _lidRepository.GetAll());
             }
 
-        }
-
-        [Route("Home/{lidId}")]
-        public void registreerAanwezigheid(int lidId) {
-            Lid aanwezigLid = _lidRepository.GetById(lidId);
-            aanwezigLid.Aanwezigheden.Add(new Lid_Aanwezigheden() {
-                LidId = lidId,
-                Aanwezigheid = DateTime.Now
-            });
-            _lidRepository.SaveChanges();
         }
 
         //public IActionResult Privacy() {
