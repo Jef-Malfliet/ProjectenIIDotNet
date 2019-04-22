@@ -3,9 +3,13 @@
     ViewData["Title"] = "Oefeningen";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Oefeningen.css" />
 
+</head>
 <div>
-    @*vertical nav with colapse
+    <div class="containerOefeningen">
+        @*vertical nav with colapse
         <ul class="nav flex-column graadnav">
             @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
                 <li class="nav-item dropdown">
@@ -18,8 +22,21 @@
                 </li>
             }
         </ul>*@
-    <partial name="_Oefening" model="@Model.Last()" />
+        <h2>Oefeningen</h2>
+        <ul>
+            @foreach (var oefening in Model) {
+ <li>
+    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id>
+        @oefening.Naam
+
+    </a>
+</li>
 
 
+            }
+            </ul>
+            @*<partial name="_Oefening" model="@Model.First()" />*@
 
 </div>
+
+    </div>

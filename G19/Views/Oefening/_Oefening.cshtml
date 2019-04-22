@@ -1,6 +1,7 @@
 ﻿@model G19.Models.Oefening
 @{
     ViewData["Title"] = "_Oefening";
+
 }
 
 <head>
@@ -15,34 +16,52 @@
             <a class="nav-link" id="videos">Video's</a>
             <a class="nav-link" id="comments">Commentaar</a>
         </nav>
-      
+        @* <div id="inhoud"></div>*@
+        <div id="inhoudtekst"><partial name="_Text" model="@Model" /></div>
+        <div class="hidden" id="inhoudfotos"><partial name="_Fotos" model="@Model" /></div>
+        <div class="hidden" id="inhoudvideos"><partial name="_Video" model="@Model" /></div>
+        <div class="hidden" id="inhoudcomments"><partial name="_Comments" model="@Model" /></div>
 
     </div>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
 
     </script>
     <script>
-      
-        $("#tekst").click(function () {
-    $.get('@Url.Action("geefTextView", "Oefening",@Model)', {}, function (response) {
-        $("#inhoud").html(response);
-    });
+        show("tekst", "inhoudtekst");
+        show("fotos", "inhoudfotos");
+        show("videos", "inhoudvideos");
+        show("comments", "inhoudcomments");
+        var Previousiddiv = "inhoudtekst";
+        function show(idlink,iddiv) {
+            $("#" + idlink).click(function () {
+                if (Previousiddiv != "")
+                    $("#" + Previousiddiv).addClass("hidden");
+                $("#" + iddiv).removeClass("hidden");
+                Previousiddiv = iddiv;
+
+            });
+        }
+         @*$("#tekst").click(function () {
+            $.get('@Url.Action("geefTextView", "Oefening",@Model)', {}, function (response) {
+                $("#inhoud").html(response);
+            });
         });
+
                 $("#fotos").click(function () {
-    $.get('@Url.Action("geefFotoView", "Oefening",Model)', {}, function (response) {
+    $.get('@Url.Action("geefFotoView", "Oefening",@Model)', {}, function (response) {
         $("#inhoud").html(response);
     });
         });
                         $("#videos").click(function () {
-    $.get('@Url.Action("geefVideoView", "Oefening",Model)', {}, function (response) {
+    $.get('@Url.Action("geefVideoView", "Oefening",@Model)', {}, function (response) {
         $("#inhoud").html(response);
     });
 });
         $("#comments").click(function () {
-    $.get('@Url.Action("geefCommentView", "Oefening",Model)', {}, function (response) {
+    $.get('@Url.Action("geefCommentView", "Oefening",@Model)', {}, function (response) {
         $("#inhoud").html(response);
     });
-});
+});*@
 
 
         //document.getElementById("tekst").onclick = function () { myFunction() };

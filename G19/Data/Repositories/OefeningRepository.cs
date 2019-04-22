@@ -25,7 +25,7 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Oefening> GetAll() {
-            return _context.Oefeningen.Include(oef => oef.Comments).Include(oef => oef.Images).ToList();
+            return _context.Oefeningen.ToList();
         }
 
 
@@ -34,6 +34,8 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Oefening> GetOefeningenPerGraad(GraadEnum graad) {
+            if (graad == GraadEnum.ALLES)
+                return _context.Oefeningen;
             return _context.Oefeningen.Where(oef => oef.Graad.Equals(graad));
         }
 

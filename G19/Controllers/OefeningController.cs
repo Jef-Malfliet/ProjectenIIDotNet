@@ -25,10 +25,16 @@ namespace G19.Controllers {
             return View("Index", oefeningen);
 
         }
-
-        public IActionResult geefOefeningenPerGraad(GraadEnum graad) {
+        [Route("Oefening/{graad}")]
+        public IActionResult GeefOefeningenPerGraad(GraadEnum graad) {
+            
             IEnumerable<Oefening> oefeningenPerGraad = _oefeningRepository.GetOefeningenPerGraad(graad);
             return View("Index", oefeningenPerGraad);
+        }
+        [Route("Oefening/{graad}/{id}")]
+        public IActionResult GeefOefeningById(int id) {
+            Oefening oef = _oefeningRepository.GetById(id);
+            return View("_Oefening", oef);
         }
 
         public ActionResult geefTextView(Oefening oef) {
