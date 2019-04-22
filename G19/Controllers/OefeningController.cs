@@ -1,5 +1,6 @@
 ﻿using G19.Models;
 using G19.Models.Repositories;
+using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,10 @@ namespace G19.Controllers {
             return View(oefeningen);
         }
 
-        public IActionResult geefCommentaar(int id, string commentaar) {
+        public IActionResult geefCommentaar(_CommentsViewModel commentViewModel,int id) {
 
-            _oefeningRepository.AddComment(id, commentaar);
+            _oefeningRepository.AddComment(id, commentViewModel.Comments);
+            _oefeningRepository.SaveChanges();
             IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
             return View("Index", oefeningen);
 

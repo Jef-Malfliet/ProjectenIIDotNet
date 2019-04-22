@@ -16,11 +16,6 @@
   </ItemGroup>
 
 
-  <ItemGroup>
-    <Folder Include="Models\ViewModels\" />
-  </ItemGroup>
-
-
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="~/css/oefeningPartials.css" />
 </head>
 
-@foreach (var image in @Model.Images) {
+
 <div class="container">
-    <div class="card">@image.Images</div>
-    <div class="card">@image.Images</div>
-    <div class="card">@image.Images</div>
-    <div class="card">@image.Images</div>
-    <div class="card">@image.Images</div>
-    
+    @foreach (var image in @Model.Images) {
+        <div class="card">@image.Images</div>
+
+    }
 </div>
-}
+
 

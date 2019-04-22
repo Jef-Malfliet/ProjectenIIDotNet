@@ -38,7 +38,6 @@ iframe{
     flex-wrap: wrap;
     box-sizing: border-box;
     background-color: var(--primary);
-    position: fixed;
 }
 .container div {
         justify-content: space-around;
