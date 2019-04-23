@@ -19,7 +19,8 @@ namespace G19.Controllers {
             return View(oefeningen);
         }
 
-        public IActionResult geefCommentaar(_CommentsViewModel commentViewModel,int id) {
+        [HttpPost]
+        public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel,int id) {
 
             _oefeningRepository.AddComment(id, commentViewModel.Comments);
             _oefeningRepository.SaveChanges();
@@ -39,16 +40,16 @@ namespace G19.Controllers {
             return View("_Oefening", oef);
         }
 
-        public ActionResult geefTextView(Oefening oef) {
+        public ActionResult GeefTextView(Oefening oef) {
             return PartialView("~/Views/Oefening/_Text.cshtml", oef);
         }
-        public ActionResult geefVideoView(Oefening oef) {
+        public ActionResult GeefVideoView(Oefening oef) {
             return PartialView("~/Views/Oefening/_Video.cshtml", oef);
         }
-        public ActionResult geefFotoView(Oefening oef) {
+        public ActionResult GeefFotoView(Oefening oef) {
             return PartialView("~/Views/Oefening/_Fotos.cshtml", oef);
         }
-        public ActionResult geefCommentView(Oefening oef) {
+        public ActionResult GeefCommentView(Oefening oef) {
             return PartialView("~/Views/Oefening/_Comments.cshtml", oef);
         }
     }
