@@ -59,7 +59,7 @@ img {
     margin-left: 10px;
 }
 
-a {
+.navA {
     color: var(--white);
     text-decoration: none;
     margin: 0;

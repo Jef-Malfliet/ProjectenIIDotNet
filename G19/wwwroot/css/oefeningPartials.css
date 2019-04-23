@@ -1,35 +1,29 @@
-﻿
-h2,h3{
+﻿h2, h3 {
     display: block;
-
 }
 
-h2{
-    font-size:2em;
-    margin:2vw;
-    margin-bottom:4vw;
+h2 {
+    font-size: 2em;
+    margin: 2vw;
+    margin-left: 0;
 }
+
 p {
     margin: 2vw;
 }
-iframe{
-    width: 80vw;
-    height: 90vh;
+
+iframe {
+    width: 70vw;
+    height: 80vh;
 }
 
 .card {
-    width: 25%;
-    height: 300px;
-    margin: 10px;
+    width: 60vw;
+    height: 5vw;
+    background: none;
+    border: none;
 }
 
-.container div .cardcomment {
-    width: 100vw;
-    height: 100px;
-    margin: 50px;
-    vertical-align: middle;
-    align-items: center;
-}
 .container {
     width: 100vw;
     font-family: var(--headerFont);
@@ -38,11 +32,40 @@ iframe{
     flex-wrap: wrap;
     box-sizing: border-box;
     background-color: var(--primary);
+    vertical-align: middle;
+    align-items: center;
 }
+
 .container div {
-        justify-content: space-around;
-        align-content: flex-start;
-        align-items: flex-start;
-        overflow: hidden;
-        overflow-wrap: break-word;
-    }
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.nieuweCommentaar {
+    width: 70vw;
+    align-items: unset;
+}
+
+.submitButton {
+    border: solid;
+    width: auto;
+    float: right;
+}
+
+.commentaren{
+    margin-top: 2em;
+    align-items: unset;
+}
+
+.comment{
+    font-size: 1.5em;
+}
+
+.textDiv {
+    background-color: var(--counter);
+    color: var(--white);
+    width: 70vw;
+}

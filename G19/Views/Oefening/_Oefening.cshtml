@@ -1,21 +1,39 @@
 ﻿@model G19.Models.Oefening
 @{
-    ViewData["Title"] = "_Oefening";
+    ViewData["Title"] = Model.Naam;
 
 }
 
 <head>
     <link rel="stylesheet" href="~/css/Oefeningen.css" />
-
+    <link rel="stylesheet" href="~/css/sidenav.css" />
 </head>
 <body>
+    <div id="sidenavOefeningen" class="sidenav">
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+    </div>
     <div class="containerOefeningen">
-        <nav class="nav">
-            <a class="nav-link" id="tekst">Tekst</a>
-            <a class="nav-link" id="fotos">Foto's</a>
-            <a class="nav-link" id="videos">Video's</a>
-            <a class="nav-link" id="comments">Commentaar</a>
-        </nav>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link oefeningNavItem" id="tekst">Tekst</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link oefeningNavItem" id="fotos">Foto's</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link oefeningNavItem" id="videos">Video's</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link oefeningNavItem" id="comments">Commentaar</a>
+            </li>
+        </ul>
         @* <div id="inhoud"></div>*@
         <div id="inhoudtekst"><partial name="_Text" model="@Model" /></div>
         <div class="hidden" id="inhoudfotos"><partial name="_Fotos" model="@Model" /></div>
@@ -23,9 +41,8 @@
         <div class="hidden" id="inhoudcomments"><partial name="_Comments" model="@Model" /></div>
 
     </div>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js">
 
-    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     <script>
         show("tekst", "inhoudtekst");
         show("fotos", "inhoudfotos");
@@ -38,7 +55,6 @@
                     $("#" + Previousiddiv).addClass("hidden");
                 $("#" + iddiv).removeClass("hidden");
                 Previousiddiv = iddiv;
-
             });
         }
          @*$("#tekst").click(function () {
