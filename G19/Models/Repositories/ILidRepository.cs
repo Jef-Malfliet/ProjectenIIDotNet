@@ -7,5 +7,6 @@ namespace G19.Models.Repositories {
         void Add(Lid lid);
         void Remove(Lid lid);
         void SaveChanges();
+        IEnumerable<Lid> GetByGraad(string graad);
     }
 }

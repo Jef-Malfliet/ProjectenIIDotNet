@@ -19,7 +19,11 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Lid> GetAll() {
-            return _context.Leden.Include(l=>l.Aanwezigheden).OrderBy(l => l.Voornaam).ThenBy(l => l.Familienaam).ToList();
+            return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Voornaam).ThenBy(l => l.Familienaam).ToList();
+        }
+
+        public IEnumerable<Lid> GetByGraad(string graad) {
+            return _context.Leden.Where(l => (l.Graad.ToString().IndexOf("dan", StringComparison.OrdinalIgnoreCase) >= 0 ? "zwart" : l.Graad.ToString().ToLower()) == graad).ToList();
         }
 
         public Lid GetById(int id) {
