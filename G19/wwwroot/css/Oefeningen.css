@@ -60,8 +60,15 @@ ul li {
     margin: 0.5em 0;
 }
 
-.oefeningA{
-    font-size: 2em;
+.oefeningButton {
+    font-size: 1.17em;
+    margin-top: 0.5em;
+    color: var(--white);
+    height: 3em;
+    width: 6.5em;
+    text-align: center;
+    background: none;
+    border: none;
 }
 
 .graadBox {
@@ -102,7 +109,7 @@ ul li {
 
 .card {
     background-color: var(--counter);
-    width: 20vw;
+    width: 20%;
     height: 100px;
     margin: 10px;
     align-items: center;
