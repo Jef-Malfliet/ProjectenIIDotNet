@@ -23,7 +23,9 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Lid> GetByGraad(string graad) {
-            return _context.Leden.Where(l => (l.Graad.ToString().IndexOf("dan", StringComparison.OrdinalIgnoreCase) >= 0 ? "zwart" : l.Graad.ToString().ToLower()) == graad).ToList();
+            if (true) { }
+            return _context.Leden.Where(l => l.Graad.Equals(graad)).ToList();
+            //return _context.Leden.Where(l => (l.Graad.ToString().StartsWith("dan", StringComparison.OrdinalIgnoreCase) ? "zwart" : l.Graad.ToString().ToLower()) == graad.ToLower()).ToList();
         }
 
         public Lid GetById(int id) {
