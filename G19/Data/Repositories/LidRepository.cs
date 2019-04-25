@@ -33,11 +33,17 @@ namespace G19.Data.Repositories {
         }
 
         public void RegisteerAanwezigheid(Lid lid) {
-           var registreerLid = _context.Leden.FirstOrDefault(l => l.Id == lid.Id);
-            registreerLid.Aanwezigheden.Add(new Lid_Aanwezigheden {
-                Aanwezigheid = DateTime.Now,
-                LidId = registreerLid.Id
-            });
+            var registreerLid = _context.Leden.FirstOrDefault(l => l.Id == lid.Id);
+            if (lid.benIkAanwezigVandaag()) {
+                var aanwezigheid = registreerLid.Aanwezigheden.FirstOrDefault(a => a.Aanwezigheid.Date == DateTime.Today);
+                registreerLid.Aanwezigheden.Remove(aanwezigheid);
+
+            } else {
+                registreerLid.Aanwezigheden.Add(new Lid_Aanwezigheden {
+                    Aanwezigheid = DateTime.Now,
+                    LidId = registreerLid.Id
+                });
+            }
         }
 
         public void Remove(Lid lid) {
