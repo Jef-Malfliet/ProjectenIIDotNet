@@ -51,8 +51,8 @@
     font-family: var(--headerFont);
     box-sizing: border-box;
     background-color:var(--primary);
-    margin-left:150px;
-    margin-top:10vh;
+    margin-left:20vw;
+    margin-top:7vh;
 }
 .containerAanwezighedenCards {
     display: flex;
@@ -98,10 +98,6 @@ h1{
     margin-left:15px;
 }
 @media only screen and (min-width:768px) {
-    .containerAanwezigheden {
-        width: 75vw;
-        margin-left: 25vw;
-    }
     .card{
         width:20%;
     }

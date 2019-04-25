@@ -21,8 +21,8 @@
 .sidenav {
     display: block;
     background-color: var(--counter);
-    width: 150px;
     height: 96vh;
+    max-width: 250px;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     position: fixed;
