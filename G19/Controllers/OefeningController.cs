@@ -29,11 +29,16 @@ namespace G19.Controllers {
 
         }
         [Route("Oefening/{graad}")]
-        public IActionResult GeefOefeningenPerGraad(GraadEnum graad) {
-            
-            IEnumerable<Oefening> oefeningenPerGraad = _oefeningRepository.GetOefeningenPerGraad(graad);
-            return View("Index", oefeningenPerGraad);
+        public IActionResult GeefOefeningenPerGraad(string graad) {
+            if (graad != "ZWART" && graad != "ALLES") {
+                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad));
+            } else if (graad == "ZWART") {
+                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString().StartsWith("DAN")));
+            } else {
+                return View(nameof(Index), _oefeningRepository.GetAll());
+            }
         }
+
         [Route("Oefening/{graad}/{id}")]
         public IActionResult GeefOefeningById(int id) {
             Oefening oef = _oefeningRepository.GetById(id);
