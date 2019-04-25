@@ -27,6 +27,13 @@ namespace G19.Controllers {
 
         }
 
+        public IActionResult RegistreerAanwezigheid(int id) {
+            var lid = _lidRepository.GetById(id);
+            _lidRepository.RegisteerAanwezigheid(lid);
+            _lidRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
         //public IActionResult Privacy() {
         //    return View();
         //}

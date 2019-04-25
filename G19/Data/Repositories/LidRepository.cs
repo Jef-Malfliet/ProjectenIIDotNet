@@ -26,6 +26,14 @@ namespace G19.Data.Repositories {
             return _context.Leden.Include(l => l.Aanwezigheden).FirstOrDefault(l => l.Id == id);
         }
 
+        public void RegisteerAanwezigheid(Lid lid) {
+           var registreerLid = _context.Leden.FirstOrDefault(l => l.Id == lid.Id);
+            registreerLid.Aanwezigheden.Add(new Lid_Aanwezigheden {
+                Aanwezigheid = DateTime.Now,
+                LidId = registreerLid.Id
+            });
+        }
+
         public void Remove(Lid lid) {
             _context.Leden.Remove(lid);
         }
