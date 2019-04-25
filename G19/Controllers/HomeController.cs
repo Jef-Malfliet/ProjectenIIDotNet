@@ -4,6 +4,7 @@ using G19.Models.Repositories;
 using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using System;
+using System.Collections;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
@@ -22,11 +23,16 @@ namespace G19.Controllers {
             //} else if (graad == "ZWART") {
             //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
             }else{
-                return View(nameof(Index), _lidRepository.GetAll());
+                return View( _lidRepository.GetAll());
             }
 
         }
+        
+        public IActionResult GeefAanwezigenVandaag() {
+            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
+            return View(nameof(Index), aanwezigeLedenVandaag);
 
+        }
         public IActionResult RegistreerAanwezigheid(int id) {
             var lid = _lidRepository.GetById(id);
             _lidRepository.RegisteerAanwezigheid(lid);
