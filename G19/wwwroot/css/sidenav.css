@@ -22,7 +22,7 @@
     display: flex;
     background-color: var(--counter);
     height: 96vh;
-    max-width: 250px;
+    max-width: 14vw;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     position: fixed;

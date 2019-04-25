@@ -91,13 +91,12 @@
     position:absolute;
     bottom:5px;
     right:5px;
-
 }
 h1{
     color:var(--white);
     font-weight:bold;
     font-family:var(--headerFont);
-    width:100%;
+    width:50%;
     font-size:36px;
     margin-left:15px;
 }

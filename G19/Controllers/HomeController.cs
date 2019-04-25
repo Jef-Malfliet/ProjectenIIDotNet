@@ -31,7 +31,7 @@ namespace G19.Controllers {
         
         public IActionResult GeefAanwezigenVandaag() {
             var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
-            return View(nameof(Index), aanwezigeLedenVandaag);
+            return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag.OrderBy(l => l.Graad));
 
         }
         public IActionResult RegistreerAanwezigheid(int id) {

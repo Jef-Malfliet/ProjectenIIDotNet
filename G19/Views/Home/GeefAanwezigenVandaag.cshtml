@@ -11,14 +11,12 @@
         <h1>Meld je aan!</h1>
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
-                <a asp-controller="Oefening" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id">
-                    <div class="card" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"red")">
-                        <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
-                        <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
-                        <p>@lid.benIkAanwezigVandaag()</p>
-                        <div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </a>
+                <div class="card" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"red")">
+                    <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="@(lid.Graad)" class="lidButton">@lid.Voornaam @lid.Familienaam</a>
+                    <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
+                    <div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>
+                </div>
+
             }
         </div>
     </div>
