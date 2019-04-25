@@ -24,7 +24,7 @@ namespace G19.Controllers {
             } else if (graad == "ZWART") {
                 return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
             }else{
-                return View( _lidRepository.GetAll());
+                return View(nameof(Index), _lidRepository.GetAll());
             }
 
         }
