@@ -8,5 +8,6 @@ namespace G19.Models.Repositories {
         void Remove(Lid lid);
         void SaveChanges();
         void RegisteerAanwezigheid(Lid lid);
+        IEnumerable<Lid> GetByGraad(string graad);
     }
 }

@@ -11,6 +11,10 @@ namespace G19Test.Data {
         public Lid Lid1 { get; }
         public Lid Lid2 { get; }
         public Lid Lid3 { get; }
+        public Lid Lid4 { get; }
+        public Lid Lid5 { get; }
+        public Lid Lid6 { get; }
+        public Lid Lid7 { get; }
 
         public DummyDbContext() {
             Oefening1 = new Oefening() {
@@ -203,6 +207,187 @@ namespace G19Test.Data {
                 StraatNaam = "Kuitenbergweg",
                 Telefoon = "031401234567",
                 Voornaam = "Pickle",
+                Wachtwoord = "P@ssword789"
+            };
+
+            Lid4 = new Lid() {
+                Aanwezigheden = new List<Lid_Aanwezigheden>() {
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 17) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 10) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 3) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 27) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 20) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 13) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 6) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 27) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 20) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 13) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 6) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 1, 30) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 1, 23) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 20) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 13) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 4, 6) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 30) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 23) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 16) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 9) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 3, 2) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 23) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 16) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 9) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 2, 2) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 1, 26) },
+                    new Lid_Aanwezigheden() { LidId = 4, Aanwezigheid = new DateTime(2019, 1, 19) }
+                },
+                Busnummer = "/",
+                Email = "test.lid4@student.hogent.be",
+                EmailOuders = "ouders.lid4@telenet.be",
+                Familienaam = "Vermeulen",
+                GeboorteDatum = new DateTime(1998, 10, 19),
+                Geslacht = "Man",
+                Graad = GraadEnum.WIT,
+                GSM = "0564789456",
+                Huisnummer = "33",
+                Id = 4,
+                Land = LandEnum.België,
+                Lessen = FormuleEnum.Woensdag_Zaterdag,
+                PostCode = "9850",
+                Rijksregisternummer = "98.10.19-055.48",
+                Roltype = RolTypeEnum.Lid,
+                Stad = "Landegem",
+                StraatNaam = "Kuitenbergweg",
+                Telefoon = "053584560",
+                Voornaam = "Nante",
+                Wachtwoord = "P@ssword159"
+            };
+
+            Lid5 = new Lid() {
+                Aanwezigheden = new List<Lid_Aanwezigheden>() {
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 4, 20) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 4, 13) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 4, 6) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 3, 30) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 3, 23) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 3, 16) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 3, 9) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 3, 2) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 2, 23) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 2, 16) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 2, 9) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 2, 2) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 1, 26) },
+                    new Lid_Aanwezigheden() { LidId = 5, Aanwezigheid = new DateTime(2019, 1, 19) }
+                },
+                Busnummer = "/",
+                Email = "test.lid5@student.hogent.be",
+                EmailOuders = "ouders.lid5@telenet.be",
+                Familienaam = "Malfliet",
+                GeboorteDatum = new DateTime(1999, 10, 24),
+                Geslacht = "Man",
+                Graad = GraadEnum.WIT,
+                GSM = "0458741258",
+                Huisnummer = "169",
+                Id = 5,
+                Land = LandEnum.België,
+                Lessen = FormuleEnum.Zaterdag,
+                PostCode = "6200",
+                Rijksregisternummer = "99.10.24-155.13",
+                Roltype = RolTypeEnum.Lid,
+                Stad = "Hamme",
+                StraatNaam = "Kuitenbergweg",
+                Telefoon = "053548205",
+                Voornaam = "Jef",
+                Wachtwoord = "P@ssword258"
+            };
+
+            Lid6 = new Lid() {
+                Aanwezigheden = new List<Lid_Aanwezigheden>() {
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 16) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 9) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 2) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 26) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 19) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 12) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 5) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 26) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 19) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 12) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 5) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 1, 29) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 1, 22) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 18) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 11) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 4, 4) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 28) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2069, 3, 26) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2069, 3, 14) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 3, 7) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 28) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 21) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 14) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 2, 7) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 1, 31) },
+                    new Lid_Aanwezigheden() { LidId = 6, Aanwezigheid = new DateTime(2019, 1, 24) }
+                },
+                Busnummer = "",
+                Email = "test.lid6@student.hogent.be",
+                EmailOuders = "ouders.lid6@telenet.be",
+                Familienaam = "Pessemier",
+                GeboorteDatum = new DateTime(1999, 6, 14),
+                Geslacht = "Man",
+                Graad = GraadEnum.BLAUW,
+                GSM = "0645198705",
+                Huisnummer = "14",
+                Id = 3,
+                Land = LandEnum.België,
+                Lessen = FormuleEnum.Dinsdag_Donderdag,
+                PostCode = "9320",
+                Rijksregisternummer = "99.06.14-255.88",
+                Roltype = RolTypeEnum.Lid,
+                Stad = "Erembodegem",
+                StraatNaam = "Bertha De Dekenlaan",
+                Telefoon = "053689958",
+                Voornaam = "Mout",
+                Wachtwoord = "P@ssword753"
+            };
+
+            Lid7 = new Lid() {
+                Aanwezigheden = new List<Lid_Aanwezigheden>() {
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 4, 20) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 4, 13) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 4, 6) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 3, 30) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 3, 23) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 3, 16) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 3, 9) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 3, 2) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 2, 23) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 2, 16) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 2, 9) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 2, 2) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 1, 26) },
+                    new Lid_Aanwezigheden() { LidId = 7, Aanwezigheid = new DateTime(2019, 1, 19) }
+                },
+                Busnummer = "9B",
+                Email = "test.lid7@student.hogent.be",
+                EmailOuders = "ouders.lid7@telenet.be",
+                Familienaam = "Van Canegem",
+                GeboorteDatum = new DateTime(1998, 8, 16),
+                Geslacht = "Man",
+                Graad = GraadEnum.GROEN,
+                GSM = "0598114459",
+                Huisnummer = "55",
+                Id = 7,
+                Land = LandEnum.België,
+                Lessen = FormuleEnum.Zaterdag,
+                PostCode = "9420",
+                Rijksregisternummer = "98.08.16-173.06",
+                Roltype = RolTypeEnum.Lid,
+                Stad = "Zele",
+                StraatNaam = "Kuitenbergweg",
+                Telefoon = "031401234567",
+                Voornaam = "Indy",
                 Wachtwoord = "P@ssword789"
             };
         }
