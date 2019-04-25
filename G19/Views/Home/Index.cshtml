@@ -22,19 +22,19 @@
         <h1>Registreer aanwezigheid</h1>
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
-                <div class="card" onclick="registreerAanwezigheid(this)">
+                <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id">
+                <div class="card" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"red")">
                     <h3 class="lidNaam">@lid.Voornaam @lid.Familienaam</h3>
                     <div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>
+                    <p>@lid.benIkAanwezigVandaag()</p>
                     <div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>
                 </div>
+               </a>
             }
         </div>
     </div>
     <script>
-        function registreerAanwezigheid(divObj) {
-            divObj.style.background = "#00909a";
-
-        }
+        
     </script>
 </body>
 

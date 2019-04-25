@@ -30,19 +30,17 @@
     height:10vh;
     align-content:center;
     color:var(--white);
-
-    
 }
     .navbar ul {
         width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: flex-start;
         padding: 0;
         text-align: center;
     }
         .navbar ul li {
-            margin: 2px;
+            margin-right: 10vw;
         }
         .navbar ul li a {
             color: var(--white);
@@ -59,7 +57,7 @@ img {
     margin-left: 10px;
 }
 
-a {
+.navA {
     color: var(--white);
     text-decoration: none;
     margin: 0;

@@ -3,15 +3,10 @@
 @{
     ViewData["Title"] = "_Fotos";
 }
-<head>
-    <link rel="stylesheet" href="~/css/oefeningPartials.css" />
-</head>
-
 
 <div class="container">
     @foreach (var image in @Model.Images) {
         <div class="card">@image.Images</div>
-
     }
 </div>
 

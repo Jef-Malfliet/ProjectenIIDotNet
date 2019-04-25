@@ -22,9 +22,16 @@
 .containerOefeningen {
     width: 70vw;
     font-family: var(--headerFont);
+    box-sizing: border-box;
+    background-color: var(--primary);
     margin-left: 150px;
-    margin-top: 15vh;
-    height: 100%;
+    margin-top: 10vh;
+}
+
+.containerOefeningenCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 h1{
@@ -43,14 +50,70 @@ h1{
     display: inline;
 }
 
-ul li a {
+.oefeningNavItem {
     color: black;
-    margin: 2vw;
-    font-size:24px;
+    margin: 0.5em;
+    font-size: 24px;
 }
 
 ul li {
-    margin: 2vw 0;
+    margin: 0.5em 0;
+}
+
+.oefeningButton {
+    font-size: 1.17em;
+    margin-top: 0.5em;
+    color: var(--white);
+    height: 3em;
+    width: 6.5em;
+    text-align: center;
+    background: none;
+    border: none;
+}
+
+.graadBox {
+    display: block;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+}
+
+.wit {
+    background-color: var(--white);
+}
+
+.geel {
+    background-color: var(--yellow);
+}
+
+.oranje {
+    background-color: var(--orange);
+}
+
+.groen {
+    background-color: var(--green);
+}
+
+.blauw {
+    background-color: var(--blue);
+}
+
+.bruin {
+    background-color: var(--brown);
+}
+
+.zwart {
+    background-color: var(--black);
+}
+
+.card {
+    background-color: var(--counter);
+    width: 20%;
+    height: 100px;
+    margin: 10px;
+    align-items: center;
+    position: relative;
 }
 
 @media only screen and (min-width:768px) {

@@ -6,7 +6,6 @@
 <head>
     <link rel="stylesheet" href="~/css/Oefeningen.css" />
     <link rel="stylesheet" href="~/css/sidenav.css" />
-
 </head>
 <div>
     <div id="sidenavOefeningen" class="sidenav">
@@ -20,34 +19,16 @@
         <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
     </div>
     <div class="containerOefeningen">
-        @*vertical nav with colapse
-            <ul class="nav flex-column graadnav">
-                @foreach (var graad in ViewData["graden"] as IList<GraadEnum>) {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" asp-controller="oefening" asp-action="SetOefeningenPerGraad" asp-route-graad="@graad">@graad</a>
-                        <div class="dropdown-menu">
-                            @foreach (var oef in ViewData["Oefeningen"] as IList<Oefening>) {
-                                <a class="dropdown-item" href="#">@oef.Naam</a>
-                            }
-                        </div>
-                    </li>
-                }
-            </ul>*@
         <h1>Oefeningen</h1>
-        <ul>
+        <div class="containerOefeningenCards">
             @foreach (var oefening in Model) {
-                <li>
-                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id>
+                <div class="card">
+                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id class="oefeningButton">
                         @oefening.Naam
-
                     </a>
-                </li>
-
-
+                    <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())"></div>
+                </div>
             }
-        </ul>
-        @*<partial name="_Oefening" model="@Model.First()" />*@
-
+        </div>
     </div>
-
 </div>

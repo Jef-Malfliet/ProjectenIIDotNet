@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace G19.Models {
     public class Lid {
@@ -194,7 +195,9 @@ namespace G19.Models {
         #endregion
 
         #region Methods
-
+        public Boolean benIkAanwezigVandaag() {
+            return Aanwezigheden.FirstOrDefault(aanwezigheid => aanwezigheid.Aanwezigheid.Date == DateTime.Today) != null;
+        }
         #endregion
     }
 }
