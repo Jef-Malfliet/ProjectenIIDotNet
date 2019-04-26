@@ -4,6 +4,7 @@ using G19.Models.Repositories;
 using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using System;
+using System.Collections;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
@@ -13,7 +14,7 @@ namespace G19.Controllers {
             _lidRepository = lidRepository;
         }
         public IActionResult Index() {
-            return View(_lidRepository.GetAll());
+            return View(_lidRepository.GetAll().OrderBy(l=>l.Graad));
         }
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
@@ -27,7 +28,12 @@ namespace G19.Controllers {
             }
 
         }
+        
+        public IActionResult GeefAanwezigenVandaag() {
+            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
+            return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag.OrderBy(l => l.Graad));
 
+        }
         public IActionResult RegistreerAanwezigheid(int id) {
             var lid = _lidRepository.GetById(id);
             _lidRepository.RegisteerAanwezigheid(lid);

@@ -31,11 +31,11 @@ namespace G19.Controllers {
         [Route("Oefening/{graad}")]
         public IActionResult GeefOefeningenPerGraad(string graad) {
             if (graad != "ZWART" && graad != "ALLES") {
-                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad));
+                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
             } else if (graad == "ZWART") {
-                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString().StartsWith("DAN")));
+                return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString().StartsWith("DAN")).OrderBy(oef => oef.Graad));
             } else {
-                return View(nameof(Index), _oefeningRepository.GetAll());
+                return View(nameof(Index), _oefeningRepository.GetAll().OrderBy(oef => oef.Graad));
             }
         }
 

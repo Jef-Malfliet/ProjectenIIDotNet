@@ -23,7 +23,7 @@
         <div class="containerOefeningenCards">
             @foreach (var oefening in Model) {
                 <div class="card">
-                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad asp-route-id=@oefening.Id class="oefeningButton">
+                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
                         @oefening.Naam
                     </a>
                     <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())"></div>

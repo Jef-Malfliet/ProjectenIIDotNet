@@ -18,9 +18,9 @@
 </div>
 
 <div class="commentaren">
-    @foreach (var comments in @Model.Comments) {
+    @foreach (var comment in @Model.Comments) {
         <div class="card cardcomment">
-            <span class="comment">@comments.Comments</span>
+            <span class="comment">@comment.Comments</span>
         </div>
     }
 </div>
