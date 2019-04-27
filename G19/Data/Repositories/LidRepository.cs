@@ -19,7 +19,7 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Lid> GetAll() {
-            return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Graad).ThenBy(l => l.Voornaam).ThenBy(l => l.Familienaam).ToList();
+            return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
         }
 
         public Lid GetById(int id) {
@@ -50,11 +50,11 @@ namespace G19.Data.Repositories {
 
         public IEnumerable<Lid> GetByGraad(string graad) {
             if (graad.ToLower().Equals("alles")) {
-                return _context.Leden.Include(l => l.Aanwezigheden).ToList();
+                return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l=>l.Familienaam).ThenBy(l=>l.Voornaam).ToList();
             } else if (graad.ToLower().Equals("zwart")) {
-                return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Graad.ToString("").ToLower().StartsWith("dan")).ToList();
+                return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Familienaam).ThenBy(l => l.Voornaam).Where(l => l.Graad.ToString("").ToLower().StartsWith("dan")).ToList();
             } else {
-                return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Graad.ToString("").ToLower() == graad.ToLower()).ToList();
+                return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Familienaam).ThenBy(l => l.Voornaam).Where(l => l.Graad.ToString("").ToLower() == graad.ToLower()).ToList();
             }
 
         }

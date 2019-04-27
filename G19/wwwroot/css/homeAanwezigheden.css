@@ -18,31 +18,31 @@
 }
 /*END Variables*/
 .wit {
-    background-color: var(--white);
+    border: 5px var(--white) solid;
 }
 
 .geel {
-    background-color: var(--yellow);
+    border: 5px var(--yellow) solid;
 }
 
 .oranje {
-    background-color: var(--orange);
+    border: 5px var(--orange) solid;
 }
 
 .groen {
-    background-color: var(--green);
+    border: 5px var(--green) solid;
 }
 
 .blauw {
-    background-color: var(--blue);
+    border: 5px var(--blue) solid;
 }
 
 .bruin {
-    background-color: var(--brown);
+    border: 5px var(--brown) solid;
 }
 
 .zwart {
-    background-color: var(--black);
+    border: 5px var(--black) solid;
 }
 
 /*START opmaak cards*/
@@ -52,7 +52,7 @@
     box-sizing: border-box;
     background-color:var(--primary);
     margin-left:20vw;
-    margin-top:7vh;
+    margin-top:10vh;
 }
 .containerAanwezighedenCards {
     display: flex;

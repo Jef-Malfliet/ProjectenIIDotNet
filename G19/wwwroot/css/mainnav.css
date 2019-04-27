@@ -43,6 +43,7 @@
 
         .navbar ul li {
             margin-right: 10vw;
+            padding:5px;
         }
 
             .navbar ul li a {
@@ -53,8 +54,7 @@
 
 
 img {
-    display: inline-block;
-    margin: 0;
+    display: none;
 }
 
 .pf {
@@ -87,12 +87,15 @@ img {
 
         .navbar ul {
             flex-direction: row;
+            align-items:center;
         }
 }
 
 @media only screen and (min-width:1100px) {
     img {
         display: inline-block;
-        margin: 0;
+        width:30px;
+        height:30px;
+        margin-left:15px;
     }
 }

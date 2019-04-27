@@ -11,11 +11,11 @@
         <h1>Meld je aan!</h1>
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
-                <div class="card" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"var(--counter)"); border: 2px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan")? "var(--black)": "var(--)")">
-                    <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="@lid.Graad" class="lidButton nameAnchor">@lid.Voornaam @lid.Familienaam</a>
-                    @*<div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>*@
-                    @*<div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>*@
-                </div>
+            <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"var(--counter)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
+                <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="@lid.Graad" class="lidButton nameAnchor">@lid.Voornaam @lid.Familienaam</a>                
+                @*<div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>*@
+                @*<div asp-route="oefening" class="arrow"> <i class="fas fa-arrow-right"></i></div>*@
+            </div>
 
             }
         </div>
