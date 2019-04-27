@@ -170,3 +170,18 @@ button:active {
     background-color: var(--black);
     width: 20%;
 }
+
+.nameAnchor{
+    display:inline-block;
+    width: 40%;
+}
+
+.nameAnchor:hover,
+.nameAnchor:active{
+    text-decoration: none;
+    color: var(--white);
+}
+
+.imagediv{
+    display: inline-block;
+}

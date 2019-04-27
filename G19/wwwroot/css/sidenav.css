@@ -40,14 +40,14 @@
         text-align: center;
     }
 
-        .sidenav a:hover {
-            background-color: var(--white);
-        }
+    .sidenav a:hover {
+        background-color: var(--white);
+    }
 
 @media only screen and (min-width:768px) {
     .sidenav {
         width: 20vw;
         height: 94vh;
-        top:6vh;
+        top: 6vh;
     }
 }
