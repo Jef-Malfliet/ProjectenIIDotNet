@@ -84,11 +84,16 @@ ul li {
 }
 
 .graadBox a{
-    color: var(--primary);
     padding-top:5px;
 }
 .graadBox a:hover{
     color:var(--primary);
+}
+.has{
+    color:var(--primary);
+}
+.hasnt{
+    color:var(--counter);
 }
 .wit {
     background-color: var(--white);

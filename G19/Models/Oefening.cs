@@ -81,6 +81,19 @@ namespace G19.Models {
 
             return "https://" + uri.Host + "/embed/" + videoId;
         }
+
+        public Boolean hasUitleg() {
+            return this.Uitleg != null;
+        }
+        public Boolean hasImages() {
+            return this.Images != null;
+        }
+        public Boolean hasVideo() {
+            return this.Video != null;
+        }
+        public Boolean hasComments() {
+            return this.Comments != null;
+        }
         #endregion
     }
 }
