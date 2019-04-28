@@ -77,8 +77,19 @@ ul li {
     height: 30px;
     position: absolute;
     bottom: 0;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-content:center;
 }
 
+.graadBox a{
+    color: var(--primary);
+    padding-top:5px;
+}
+.graadBox a:hover{
+    color:var(--primary);
+}
 .wit {
     background-color: var(--white);
 }

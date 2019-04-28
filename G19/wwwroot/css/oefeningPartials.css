@@ -69,3 +69,13 @@ iframe {
     color: var(--white);
     width: 70vw;
 }
+
+.containerOefening {
+    margin-top: 10vh;
+    margin-left:2em;
+}
+@media only screen and (min-width:768px){
+    .containerOefening {
+        margin-top: 6vh;
+    }
+}

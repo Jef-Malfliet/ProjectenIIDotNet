@@ -26,7 +26,12 @@
                     <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
                         @oefening.Naam
                     </a>
-                    <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())"></div>
+                    <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
+                        <a asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="fas fa-comment"></i></a>
+                        <a asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
+                        <a asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
+                        <a asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
+                    </div>
                 </div>
             }
         </div>

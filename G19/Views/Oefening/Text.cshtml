@@ -1,11 +1,10 @@
 ﻿@model G19.Models.Oefening
 
 <head>
-    <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/oefeningPartials.css" />
 </head>
-<div>
-    <h2>@Model.Naam</h2>
+<div class="containerOefening">
+    <h2>@Model.Naam.ToUpper()</h2>
     <div class="textDiv">
         <p>@Model.Uitleg</p>
     </div>

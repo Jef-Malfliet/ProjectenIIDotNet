@@ -1,4 +1,14 @@
-﻿@model G19.Models.Oefening
+﻿
+
+
+
+
+
+
+
+@*WORDT NIET MEER GEBRUIKT!*@
+
+@*@model G19.Models.Oefening
 @{
     ViewData["Title"] = Model.Naam;
 
@@ -34,7 +44,7 @@
                 <a class="nav-link oefeningNavItem" id="comments">Commentaar</a>
             </li>
         </ul>
-        @* <div id="inhoud"></div>*@
+        @* <div id="inhoud"></div>
         <div id="inhoudtekst"><partial name="_Text" model="@Model" /></div>
         <div class="hidden" id="inhoudfotos"><partial name="_Fotos" model="@Model" /></div>
         <div class="hidden" id="inhoudvideos"><partial name="_Video" model="@Model" /></div>
@@ -77,7 +87,7 @@
     $.get('@Url.Action("geefCommentView", "Oefening",@Model)', {}, function (response) {
         $("#inhoud").html(response);
     });
-});*@
+});
 
 
         //document.getElementById("tekst").onclick = function () { myFunction() };
@@ -85,7 +95,7 @@
         @*function myFunction(){
 
             $("#contentDiv").load("@Html.ActionLink("Oefening", "geefTextView", Model)");
-        }*@
+        }
 
     </script>
 </body>

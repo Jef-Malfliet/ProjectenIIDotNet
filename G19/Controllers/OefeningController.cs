@@ -45,17 +45,17 @@ namespace G19.Controllers {
             return View("_Oefening", oef);
         }
 
-        public ActionResult GeefTextView(Oefening oef) {
-            return PartialView("~/Views/Oefening/_Text.cshtml", oef);
+        public ActionResult GeefTextView(int Id) {
+            return View("~/Views/Oefening/Text.cshtml", _oefeningRepository.GetById(Id));
         }
-        public ActionResult GeefVideoView(Oefening oef) {
-            return PartialView("~/Views/Oefening/_Video.cshtml", oef);
+        public ActionResult GeefVideoView(int Id) {
+            return View("~/Views/Oefening/Video.cshtml", _oefeningRepository.GetById(Id));
         }
-        public ActionResult GeefFotoView(Oefening oef) {
-            return PartialView("~/Views/Oefening/_Fotos.cshtml", oef);
+        public ActionResult GeefFotoView(int Id) {
+            return View("~/Views/Oefening/Fotos.cshtml", _oefeningRepository.GetById(Id));
         }
-        public ActionResult GeefCommentView(Oefening oef) {
-            return PartialView("~/Views/Oefening/_Comments.cshtml", oef);
+        public ActionResult GeefCommentView(int Id) {
+            return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(Id));
         }
     }
 }

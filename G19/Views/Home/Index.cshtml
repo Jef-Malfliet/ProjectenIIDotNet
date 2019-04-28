@@ -23,7 +23,7 @@
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
                 
-            <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"green":"var(--counter)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
+            <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"#00909a":"var(--counter)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
                 <img src="~/img/stock.jpg" class="float-left pf" />
                 <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id" class="lidButton nameAnchor">@lid.Familienaam @lid.Voornaam</a>
                 @*<div class="graadBox @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())"></div>*@

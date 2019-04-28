@@ -1,0 +1,18 @@
+﻿@model G19.Models.Oefening
+<head>
+    <link rel="stylesheet" href="~/css/oefeningPartials.css" />
+</head>
+@{
+    ViewData["Title"] = "_Video";
+}
+<div class="containerOefening">
+
+    <div class="embeded-response embed-responsive-16by9">
+        <iframe class="embed-responsive-item"
+                src="@Model.Video"
+                frameborder="0"
+                allowfullscreen></iframe>
+    </div>
+</div>
+
+
