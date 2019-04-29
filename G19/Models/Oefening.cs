@@ -83,16 +83,22 @@ namespace G19.Models {
         }
 
         public Boolean hasUitleg() {
-            return this.Uitleg != null;
+            return Uitleg?.DefaultIfEmpty() != null;
         }
         public Boolean hasImages() {
-            return this.Images != null;
+            if (Images != null) {
+                return Images.Count > 0;
+            }
+            return false;
         }
         public Boolean hasVideo() {
-            return this.Video != null;
+            return Video?.DefaultIfEmpty() != null ;
         }
         public Boolean hasComments() {
-            return this.Comments != null;
+            if (Comments != null) {
+                return Comments.Count > 0;
+            }
+            return false;
         }
         #endregion
     }

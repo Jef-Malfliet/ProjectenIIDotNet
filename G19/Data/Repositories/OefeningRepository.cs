@@ -24,7 +24,7 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Oefening> GetAll() {
-            return _context.Oefeningen.ToList();
+            return _context.Oefeningen.Include(oef=>oef.Comments).Include(oef=>oef.Images).ToList();
         }
 
 
@@ -34,8 +34,8 @@ namespace G19.Data.Repositories {
 
         public IEnumerable<Oefening> GetOefeningenPerGraad(GraadEnum graad) {
             if (graad == GraadEnum.ALLES)
-                return _context.Oefeningen;
-            return _context.Oefeningen.Where(oef => oef.Graad.Equals(graad));
+                return _context.Oefeningen.Include(oef => oef.Comments).Include(oef => oef.Images);
+            return _context.Oefeningen.Include(oef => oef.Comments).Include(oef => oef.Images).Where(oef => oef.Graad.Equals(graad));
         }
 
         public void Remove(Oefening oefening) {
