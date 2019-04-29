@@ -103,6 +103,21 @@ h1{
     font-size:36px;
     margin-left:15px;
 }
+.form{
+    color:var(--white);
+    font-family:var(--bodyFont);
+    font-size:1em;
+    position:fixed;
+    top:75vh;
+    right:0;
+    background-color:var(--primary);
+    padding:15px;
+    border: 5px var(--black) solid;
+}
+.form button{
+    background-color:var(--counter);
+    color:var(--white);
+}
 @media only screen and (max-width:768px) {
     .card{
         width: 29%;

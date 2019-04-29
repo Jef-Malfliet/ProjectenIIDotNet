@@ -42,6 +42,13 @@ namespace G19.Controllers {
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult RegistreerExtraLid(string voornaam, string familienaam) {
+            var lid = _lidRepository.GetByNames(voornaam,familienaam);
+            _lidRepository.RegisteerAanwezigheid(lid);
+            _lidRepository.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
         //public IActionResult Privacy() {
         //    return View();
         //}

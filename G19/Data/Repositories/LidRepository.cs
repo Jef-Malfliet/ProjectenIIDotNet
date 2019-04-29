@@ -26,6 +26,10 @@ namespace G19.Data.Repositories {
             return _context.Leden.Include(l => l.Aanwezigheden).FirstOrDefault(l => l.Id == id);
         }
 
+        public Lid GetByNames(string voornaam,string familienaam) {
+            return _context.Leden.Include(l => l.Aanwezigheden).FirstOrDefault(l => l.Voornaam.Equals(voornaam, StringComparison.OrdinalIgnoreCase) && l.Familienaam.Equals(familienaam, StringComparison.OrdinalIgnoreCase));
+        }
+
         public void RegisteerAanwezigheid(Lid lid) {
             var registreerLid = _context.Leden.FirstOrDefault(l => l.Id == lid.Id);
             if (lid.benIkAanwezigVandaag()) {
