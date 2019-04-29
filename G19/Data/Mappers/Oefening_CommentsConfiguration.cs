@@ -12,8 +12,10 @@ namespace G19.Data.Mappers {
         public void Configure(EntityTypeBuilder<Oefening_Comments> builder) {
             builder.ToTable("Oefening_COMMENTS");
 
-            builder.Property(oi => oi.OefeningId).HasColumnName("Oefening_ID");
+            builder.Property(t => t.OefeningId).HasColumnName("Oefening_ID");
+            builder.Property(t => t.TimeCreated).HasColumnName("TimeCreated");
             builder.HasKey(table => new { table.OefeningId, table.Comments });
+
         }
     }
 }

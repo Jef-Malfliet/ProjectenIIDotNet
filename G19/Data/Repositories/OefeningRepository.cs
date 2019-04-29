@@ -19,7 +19,7 @@ namespace G19.Data.Repositories {
 
         public void AddComment(int id, string commentaar) {
             Oefening oef = GetById(id);
-            Oefening_Comments comment = new Oefening_Comments(){OefeningId= oef.Id,Comments = commentaar};
+            Oefening_Comments comment = new Oefening_Comments(){OefeningId= oef.Id,Comments = commentaar, TimeCreated = DateTime.Now};
             oef.Comments.Add(comment);
         }
 

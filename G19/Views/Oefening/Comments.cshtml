@@ -20,7 +20,7 @@
     </div>
 
     <div class="commentaren">
-        @foreach (var comment in @Model.Comments) {
+        @foreach (var comment in @Model.Comments.OrderByDescending(c=>c.TimeCreated)) {
         <div class="card cardcomment">
             <span class="comment">@comment.Comments</span>
         </div>
