@@ -7,33 +7,47 @@
     <link rel="stylesheet" href="~/css/Oefeningen.css" />
     <link rel="stylesheet" href="~/css/sidenav.css" />
 </head>
-<div>
-    <div id="sidenavOefeningen" class="sidenav">
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
-        <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
-    </div>
-    <div class="containerOefeningen">
-        <h1>Oefeningen</h1>
-        <div class="containerOefeningenCards">
-            @foreach (var oefening in Model) {
-                <div class="card">
-                    <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
-                        @oefening.Naam
-                    </a>
-                    <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
-                        <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="fas fa-comment"></i></a>
-                        <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
-                        <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
-                        <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
+<body>
+    <div>
+        <div id="sidenavOefeningen" class="sidenav">
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+        </div>
+        <div class="containerOefeningen">
+            <h1>Oefeningen</h1>
+            <div class="containerOefeningenCards">
+                @foreach (var oefening in Model) {
+                    <div class="card">
+                        <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
+                            @oefening.Naam
+                        </a>
+                        <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
+                            <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="fas fa-comment"></i></a>
+                            <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
+                            <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
+                            <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-</div>
+
+    <script>
+
+        window.onload = function () {
+            $(function () {
+                $('.hasnt').on("click", function (e) {
+                    e.preventDefault();
+                });
+            });
+        }
+
+    </script>
+</body>
