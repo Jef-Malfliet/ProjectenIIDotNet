@@ -56,6 +56,7 @@ namespace G19 {
 
             services.AddScoped<ILidRepository, LidRepository>();
             services.AddScoped<IOefeningRepository, OefeningRepository>();
+            services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<DataInitializer>();
         }
 
@@ -79,7 +80,7 @@ namespace G19 {
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Session}/{action=Index}/{id?}");
             });
 
             initializer.InitializeData().Wait();

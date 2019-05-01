@@ -5,10 +5,12 @@ namespace G19.Models.Repositories {
         IEnumerable<Lid> GetAll();
         Lid GetById(int id);
         Lid GetByNames(string voornaam, string familienaam);
+       
         void Add(Lid lid);
         void Remove(Lid lid);
         void SaveChanges();
         void RegisteerAanwezigheid(Lid lid);
         IEnumerable<Lid> GetByGraad(string graad);
+        IEnumerable<Lid> GetByFormule(FormuleEnum formule);
     }
 }

@@ -16,9 +16,9 @@ namespace G19.Controllers {
             _lidRepository = lidRepository;
         }
 
-        [Authorize]
         public IActionResult Index() {
-            return View(_lidRepository.GetAll());
+
+            return View();
         }
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
