@@ -11,7 +11,7 @@
     --blue: #2962df;
     --brown: #853f13;
     --black: #151515;
-    --aanwezigheidGemeld:#00909a;
+    --aanwezigheidGemeld: #00909a;
     /*Fonts*/
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
@@ -46,14 +46,21 @@
 }
 
 /*START opmaak cards*/
-.containerAanwezigheden{
-    width: 80vw;
+.containerAanwezigheden {
+    /*width: 80vw;*/
     font-family: var(--headerFont);
     box-sizing: border-box;
-    background-color:var(--primary);
-    margin-left:20vw;
-    margin-top:10vh;
+    background-color: var(--primary);
+    /*margin-left:20vw;*/
+    margin-top: 5vw;
+    overflow-x: hidden;
 }
+
+.containerMissAanwezigheden {
+    margin-left: 15vw;
+    margin-top: 5vw;
+}
+
 .containerAanwezighedenCards {
     display: flex;
     flex-direction: row;
@@ -64,10 +71,10 @@
     background-color: var(--counter);
     height: 24%;
     margin: 1%;
-    position:relative;
+    position: relative;
     width: 30%;
     display: flex;
-    flex-direction:unset;
+    flex-direction: unset;
     align-items: center;
 }
 
@@ -82,6 +89,7 @@
     width: 100%;
     padding: 15% 0;
 }
+
 .graadBox {
     display: block;
     width: 100%;
@@ -89,37 +97,42 @@
     position: absolute;
     bottom: 0;
 }
-.arrow{
-    color:var(--counter);
-    position:absolute;
-    bottom:5px;
-    right:5px;
+
+.arrow {
+    color: var(--counter);
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
 }
-h1{
-    color:var(--white);
-    font-weight:bold;
-    font-family:var(--headerFont);
-    width:50%;
-    font-size:36px;
-    margin-left:15px;
+
+h1 {
+    color: var(--white);
+    font-weight: bold;
+    font-family: var(--headerFont);
+    width: 50%;
+    font-size: 36px;
+    margin-left: 15px;
 }
-.form{
-    color:var(--white);
-    font-family:var(--bodyFont);
-    font-size:1em;
-    position:fixed;
-    top:75vh;
-    right:0;
-    background-color:var(--primary);
-    padding:15px;
+
+.form {
+    color: var(--white);
+    font-family: var(--bodyFont);
+    font-size: 1em;
+    position: fixed;
+    top: 75vh;
+    right: 0;
+    background-color: var(--primary);
+    padding: 15px;
     border: 5px var(--black) solid;
 }
-.form button{
-    background-color:var(--counter);
-    color:var(--white);
-}
+
+    .form button {
+        background-color: var(--counter);
+        color: var(--white);
+    }
+
 @media only screen and (max-width:768px) {
-    .card{
+    .card {
         width: 29%;
     }
 }

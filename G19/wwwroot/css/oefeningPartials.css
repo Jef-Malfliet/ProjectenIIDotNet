@@ -36,13 +36,13 @@ iframe {
     align-items: center;
 }
 
-.container div {
-    justify-content: space-around;
-    align-content: flex-start;
-    align-items: flex-start;
-    overflow: hidden;
-    overflow-wrap: break-word;
-}
+    .container div {
+        justify-content: space-around;
+        align-content: flex-start;
+        align-items: flex-start;
+        overflow: hidden;
+        overflow-wrap: break-word;
+    }
 
 .nieuweCommentaar {
     width: 70vw;
@@ -55,27 +55,24 @@ iframe {
     float: right;
 }
 
-.commentaren{
+.commentaren {
     margin-top: 2em;
     align-items: unset;
 }
 
-.comment{
+.comment {
     font-size: 1.5em;
 }
 
 .textDiv {
     background-color: var(--counter);
     color: var(--white);
-    width: 70vw;
 }
 
 .containerOefening {
-    margin-top: 10vh;
-    margin-left:2em;
+    margin: 7% 0 0 3%;
 }
-@media only screen and (min-width:768px){
-    .containerOefening {
-        margin-top: 6vh;
-    }
+
+.textContainer {
+    margin: 3% 0 0 3%;
 }

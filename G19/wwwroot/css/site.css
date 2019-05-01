@@ -33,12 +33,6 @@ h6 {
     vertical-align: unset;
 }
 
-:root {
-    /*Fonts*/
-    --headerFont: 'Montserrat', sans-serif;
-    --bodyFont: 'Sanchez', serif;
-}
-
 
 body {
     /* Margin bottom by footer height */
@@ -174,6 +168,7 @@ button:active {
 .nameAnchor{
     display:inline-block;
     width: 40%;
+    font-family: var(--headerFont);
 }
 
 .nameAnchor:hover,

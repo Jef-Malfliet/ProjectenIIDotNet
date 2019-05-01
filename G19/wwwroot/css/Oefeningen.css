@@ -19,19 +19,18 @@
 /*END Variables*/
 
 
-.containerOefeningen {
-    width: 70vw;
+/*.containerOefeningen {
     font-family: var(--headerFont);
     box-sizing: border-box;
     background-color: var(--primary);
-    margin-left: 150px;
-    margin-top: 8vh;
-}
+}*/
 
 .containerOefeningenCards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 3%;
+    margin-left: 16%;
 }
 
 h1{
@@ -69,6 +68,11 @@ ul li {
     text-align: center;
     background: none;
     border: none;
+    font-family: var(--bodyFont);
+}
+
+.oefeningButton:hover{
+    color:var(--primary);
 }
 
 .graadBox {
@@ -137,9 +141,8 @@ ul li {
 }
 
 @media only screen and (min-width:768px) {
-    .containerOefeningen {
+    /*.containerOefeningen {
         margin-left: 25vw;
         width: 75vw;
-    }
+    }*/
 }
-
