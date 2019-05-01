@@ -16,6 +16,7 @@ namespace G19.Controllers {
             _lidRepository = lidRepository;
         }
 
+        [Authorize]
         public IActionResult Index() {
             return View(_lidRepository.GetAll());
         }
