@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 
 namespace G19.Controllers {
     public class HomeController : Controller {
@@ -13,6 +14,8 @@ namespace G19.Controllers {
         public HomeController(ILidRepository lidRepository) {
             _lidRepository = lidRepository;
         }
+
+        [Authorize]
         public IActionResult Index() {
             return View(_lidRepository.GetAll());
         }
