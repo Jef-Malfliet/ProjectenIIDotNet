@@ -1,7 +1,8 @@
 ﻿/*--------------------MOBILE FIRST!---------------------*/
 /*START Variables*/
-:root {
+/*:root {*/
     /*Color Palette*/
+/*
     --primary: #00b4ab;
     --counter: #454553;
     --white: #dfdfdf;
@@ -12,10 +13,12 @@
     --brown: #853f13;
     --black: #151515;
     --aanwezigheidGemeld: #00909a;
+        */
     /*Fonts*/
+    /*
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
-}
+}*/
 /*END Variables*/
 .wit {
     border: 5px var(--white) solid;

@@ -2,7 +2,7 @@
 /*START Variables*/
 :root {
     /*Color Palette*/
-    --primary: #00b4ab;
+    /*--primary: #00b4ab;
     --counter: #454553;
     --white: #dfdfdf;
     --yellow: #fbba0a;
@@ -11,10 +11,10 @@
     --blue: #2962df;
     --brown: #853f13;
     --black: #151515;
-    --aanwezigheidGemeld: #00909a;
+    --aanwezigheidGemeld: #00909a;*/
     /*Fonts*/
-    --headerFont: 'Montserrat', sans-serif;
-    --bodyFont: 'Sanchez', serif;
+    /*--headerFont: 'Montserrat', sans-serif;
+    --bodyFont: 'Sanchez', serif;*/
 }
 
 .navbar {

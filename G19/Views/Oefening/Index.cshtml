@@ -20,7 +20,7 @@
             <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
         </div>
         <div class="containerOefeningen">
-            <h1>Oefeningen</h1>
+            <h1 class="header oefHeader">Oefeningen</h1>
             <div class="containerOefeningenCards">
                 @foreach (var oefening in Model) {
                     <div class="card">

@@ -4,16 +4,20 @@ for details on configuring this project to bundle and minify static web assets. 
 
 :root {
     /*Color Palette*/
-    --primary: #00b4ab;
-    --counter: #454553;
-    --white: #dfdfdf;
+    --primary: #E4E8EB;
+    --counter: #3E3D3F;
+    --white: #CCCCCC;
+    --accent1: #157A6E; /*greenish*/
+    --accent2: #D5A021; /*yellowish*/
+    --accent3: #725752; /*brownish*/
+    --accent4: #A32F4A; /*wine red*/
     --yellow: #fbba0a;
     --orange: #f08d0c;
     --green: #269433;
     --blue: #2962df;
-    --brown: #853f13;
+    --brown: #955937;
     --black: #151515;
-    --aanwezigheidGemeld: #00909a;
+    --aanwezigheidGemeld: #45B268;
     /*Fonts*/
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
@@ -135,14 +139,14 @@ button {
     display: block;
 }
 
-button,
-button:focus,
-button:active {
-    border: none;
-    background: none;
-    outline: none;
-    padding: 0;
-}
+    button,
+    button:focus,
+    button:active {
+        border: none;
+        background: none;
+        outline: none;
+        padding: 0;
+    }
 
 .oefening {
     width: 12vw;
@@ -165,22 +169,27 @@ button:active {
     width: 20%;
 }
 
-.nameAnchor{
-    display:inline-block;
+.nameAnchor {
+    display: inline-block;
     width: 40%;
     font-family: var(--headerFont);
 }
 
-.nameAnchor:hover,
-.nameAnchor:active{
-    text-decoration: none;
-    color: var(--white);
-}
+    .nameAnchor:hover,
+    .nameAnchor:active {
+        text-decoration: none;
+        color: var(--primary);
+    }
 
-.imagediv{
+.imagediv {
     display: inline-block;
 }
 
-#account{
-    align-items:center;
+#account {
+    align-items: center;
+}
+
+.header {
+    font-family: var(--headerFont);
+    color: var(--accent3);
 }

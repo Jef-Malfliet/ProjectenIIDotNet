@@ -2,7 +2,7 @@
 /*START Variables*/
 :root {
     /*Color Palette*/
-    --primary: #00b4ab;
+    /*--primary: #00b4ab;
     --counter: #454553;
     --white: #dfdfdf;
     --yellow: #fbba0a;
@@ -11,10 +11,10 @@
     --blue: #2962df;
     --brown: #853f13;
     --black: #151515;
-    --aanwezigheidGemeld: #00909a;
+    --aanwezigheidGemeld: #00909a;*/
     /*Fonts*/
-    --headerFont: 'Montserrat', sans-serif;
-    --bodyFont: 'Sanchez', serif;
+    /*--headerFont: 'Montserrat', sans-serif;
+    --bodyFont: 'Sanchez', serif;*/
 }
 /*END Variables*/
 
@@ -34,15 +34,15 @@
 
     .sidenav a, .sidenav a:active {
         text-decoration: none;
-        color: var(--primary);
+        color: var(--accent2);
         width: 100%;
         padding: 30px;
         text-align: center;
     }
 
-    .sidenav a:hover {
-        background-color: var(--white);
-    }
+        .sidenav a:hover {
+            background-color: var(--primary);
+        }
 
 @media only screen and (min-width:768px) {
     .sidenav {
@@ -50,4 +50,12 @@
         height: 94vh;
         top: 6vh;
     }
+}
+
+.label {
+    color: var(--accent4);
+}
+
+.submitBtn:hover {
+    color: var(--primary);
 }

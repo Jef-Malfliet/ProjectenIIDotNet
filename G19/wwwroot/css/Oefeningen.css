@@ -2,7 +2,7 @@
 /*START Variables*/
 :root {
     /*Color Palette*/
-    --primary: #00b4ab;
+    /*--primary: #00b4ab;
     --counter: #454553;
     --white: #dfdfdf;
     --yellow: #fbba0a;
@@ -11,10 +11,10 @@
     --blue: #2962df;
     --brown: #853f13;
     --black: #151515;
-    --aanwezigheidGemeld: #00909a;
+    --aanwezigheidGemeld: #00909a;*/
     /*Fonts*/
-    --headerFont: 'Montserrat', sans-serif;
-    --bodyFont: 'Sanchez', serif;
+    /*--headerFont: 'Montserrat', sans-serif;
+    --bodyFont: 'Sanchez', serif;*/
 }
 /*END Variables*/
 
@@ -33,12 +33,12 @@
     margin-left: 16%;
 }
 
-h1{
-    font-family:var(--headerFont);
-    color:var(--white);
-    font-size:36px;
-    font-weight:bold;
-    margin-left:10px;
+h1 {
+    font-family: var(--headerFont);
+    color: var(--white);
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 .hidden {
@@ -71,9 +71,9 @@ ul li {
     font-family: var(--bodyFont);
 }
 
-.oefeningButton:hover{
-    color:var(--primary);
-}
+    .oefeningButton:hover {
+        color: var(--accent2);
+    }
 
 .graadBox {
     display: block;
@@ -81,28 +81,32 @@ ul li {
     height: 30px;
     position: absolute;
     bottom: 0;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-around;
-    align-content:center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
 }
 
-.graadBox a{
-    padding-top:5px;
+    .graadBox a {
+        padding-top: 5px;
+    }
+
+.has {
+    color: var(--accent4);
 }
 
-.has{
-    color:var(--primary);
-}
 .graadBox .has:hover {
     color: var(--primary);
 }
-.hasnt{
-    color:var(--counter);
+
+.hasnt {
+    color: var(--counter);
 }
-.graadBox .hasnt:hover{
-    color:var(--counter);
+
+.graadBox .hasnt:hover {
+    color: var(--counter);
 }
+
 .wit {
     background-color: var(--white);
 }
@@ -145,4 +149,9 @@ ul li {
         margin-left: 25vw;
         width: 75vw;
     }*/
+}
+
+.oefHeader {
+    margin-left: 17%;
+    margin-top: 5%;
 }
