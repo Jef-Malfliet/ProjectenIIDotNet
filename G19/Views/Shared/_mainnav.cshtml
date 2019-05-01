@@ -8,10 +8,14 @@
         <ul>
             @*<li></li> *@
             <li><a href="http://jiu-jitsu-gent.be/" target="_blank"><img src="~/img/TaijitanLogo.png" id="logo" /></a><a target="_blank" href="http://jiu-jitsu-gent.be/" class="navA">Taijitan Yoshin Ryu VZW</a></li>
-            <li><a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
-            <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
-            <li><a href="#" class="navA">Login</a></li>
-        </ul>
+            @if (User.Identity.IsAuthenticated) {
+                <li><a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
+                <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
+            }
+            @if (!User.Identity.IsAuthenticated) {
+                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+            }
+            </ul>
 
     </div>
 

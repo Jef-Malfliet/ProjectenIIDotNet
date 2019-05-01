@@ -1,12 +1,14 @@
 ﻿using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace G19.Controllers {
+    [Authorize]
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
 

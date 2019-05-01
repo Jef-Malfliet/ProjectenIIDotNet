@@ -180,3 +180,7 @@ button:active {
 .imagediv{
     display: inline-block;
 }
+
+#account{
+    align-items:center;
+}

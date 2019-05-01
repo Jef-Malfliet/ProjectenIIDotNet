@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace G19.Data {
@@ -54,8 +55,9 @@ namespace G19.Data {
             //};
 
             //_context.Leden.Add(INDY);
-            IdentityUser user = new IdentityUser("Indy@hotmail.com");
-            await _usermanager.CreateAsync(user, "P@ssword1111");
+            //IdentityUser user = new IdentityUser("admin2@hotmail.com");
+            //await _usermanager.CreateAsync(user, "P@ssword1111");
+            //await _usermanager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "lesgever"));
             _context.SaveChanges();
 
         }

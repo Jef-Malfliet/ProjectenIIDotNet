@@ -5,14 +5,17 @@ using System.Linq;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 
 namespace G19.Controllers {
+    [Authorize(Policy = "Lesgever")]
     public class HomeController : Controller {
         private readonly ILidRepository _lidRepository;
 
         public HomeController(ILidRepository lidRepository) {
             _lidRepository = lidRepository;
         }
+
         public IActionResult Index() {
             return View(_lidRepository.GetAll());
         }
