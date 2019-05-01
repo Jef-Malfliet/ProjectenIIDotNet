@@ -12,7 +12,7 @@
                 <li><a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
                 <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
                 <li>
-                    <form  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <form  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
                         <button type="submit" class="navA" >Logout</button>
                     </form>
                 </li>

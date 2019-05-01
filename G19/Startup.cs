@@ -43,7 +43,7 @@ namespace G19 {
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddSession();
             services.AddAuthorization(options => {
                 options.AddPolicy("Lid", policy => policy.RequireClaim(ClaimTypes.Role, "lid"));
             });
@@ -76,7 +76,7 @@ namespace G19 {
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            app.UseSession();
             app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",

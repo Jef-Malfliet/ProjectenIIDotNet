@@ -14,7 +14,7 @@ namespace G19.Models.ViewModels {
         public FormuleEnum Formule { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Date{ get; set; }
     }
 }

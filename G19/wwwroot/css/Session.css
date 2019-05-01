@@ -11,6 +11,10 @@
     margin-bottom:1vh;
     width:20vw;
 }
+.sessionoverzicht h3 {
+        margin-bottom: 1em;
+        font-family: var(--bodyFont);
+    }
 .addsession{
     margin-top:20vh;
 }

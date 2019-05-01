@@ -6,19 +6,29 @@ using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
     public class HomeController : Controller {
         private readonly ILidRepository _lidRepository;
-
-        public HomeController(ILidRepository lidRepository) {
+        private readonly ISessionRepository _sessionRepository;
+        public HomeController(ILidRepository lidRepository, ISessionRepository sessionRepository) {
             _lidRepository = lidRepository;
+            _sessionRepository = sessionRepository;
         }
 
         public IActionResult Index() {
-
-            return View();
+            Session session = GeefHuidgeSessie();
+            return View(_lidRepository.GetByFormule(session.Formule));
+        }
+        private Session GeefHuidgeSessie() {
+            //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
+            var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
+            
+            Session ses =  _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
+            return ses;
         }
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
@@ -30,12 +40,16 @@ namespace G19.Controllers {
             //}else{
             //    return View(nameof(Index), _lidRepository.GetAll());
             //}
-            var leden = _lidRepository.GetByGraad(graad);
-            return View(nameof(Index), _lidRepository.GetByGraad(graad));
+            Session session = GeefHuidgeSessie();
+            //var leden = _lidRepository.GetByGraad(graad,session.Formule);
+            var leden = _lidRepository.GetByGraadEnFormule(graad,session.Formule);
+
+            return View(nameof(Index),leden);
         }
         
         public IActionResult GeefAanwezigenVandaag() {
-            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
+            Session session = GeefHuidgeSessie();
+            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag() && l.Lessen.Equals(session.Formule));
             return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
 
         }

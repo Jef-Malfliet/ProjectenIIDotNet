@@ -6,8 +6,10 @@ using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,11 +36,14 @@ namespace G19.Controllers {
         public IActionResult MaakNieuweSessie(SessionViewModel model) {
             Session session = new Session { Formule = model.Formule, Date = model.Date };
             _sessionRepository.Add(session);
+            _sessionRepository.SaveChanges();
+           // HttpContext.Session.SetString("Sessie", JsonConvert.SerializeObject(session));
             return View("../Home/Index",_lidRepository.GetByFormule(session.Formule));
         }
         [HttpGet]
         public IActionResult StartBestaandeSessie() {
-            return View("BestaandeSessie");
+            Session dichtsteSessie = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
+            return View("BestaandeSessie", dichtsteSessie);
         }
     }
 }

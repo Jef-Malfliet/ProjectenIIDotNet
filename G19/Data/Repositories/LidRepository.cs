@@ -64,7 +64,11 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Lid> GetByFormule(FormuleEnum formule) {
-            return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Lessen.Equals(formule)).OrderBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
+            return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Lessen.Equals(formule)).ToList();
+        }
+
+        public IEnumerable<Lid> GetByGraadEnFormule(string graad, FormuleEnum formule) {
+          return GetByGraad(graad).Where(l => l.Lessen.Equals(formule)).ToList();
         }
     }
 }
