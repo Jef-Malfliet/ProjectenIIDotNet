@@ -149,17 +149,17 @@ namespace G19.Models {
             set {
                 if (value == "/" || value == null)
                     _emailOuders = "/";
-                else {        
-                        Regex regex = new Regex(@"^([a-zA-Z0-9éèà]+[a-zA-Z0-9.\-éèàïëöüäîôûêâù]*)@([a-zA-Z]+)[.]([a-z]+)([.][a-z]+)*$");
-                        Match match = regex.Match(value);
+                else {
+                    Regex regex = new Regex(@"^([a-zA-Z0-9éèà]+[a-zA-Z0-9.\-éèàïëöüäîôûêâù]*)@([a-zA-Z]+)[.]([a-z]+)([.][a-z]+)*$");
+                    Match match = regex.Match(value);
 
-                        if (!match.Success) {
-                            throw new ArgumentException("Email voldoet niet aan de voorwaarden.");
-                        }
+                    if (!match.Success) {
+                        throw new ArgumentException("Email voldoet niet aan de voorwaarden.");
+                    }
                     _emailOuders = value;
                 }
-                
-                
+
+
             }
         }
         public DateTime GeboorteDatum { get; set; }
@@ -198,6 +198,17 @@ namespace G19.Models {
         public Boolean benIkAanwezigVandaag() {
             return Aanwezigheden.FirstOrDefault(aanwezigheid => aanwezigheid.Aanwezigheid.Date == DateTime.Today) != null;
         }
-        #endregion
+        public int geefGraadinGetal() {
+            switch (Graad) {
+                case GraadEnum.WIT: return 0;
+                case GraadEnum.GEEL: return 1;
+                case GraadEnum.ORANJE: return 2;
+                case GraadEnum.GROEN: return 3;
+                case GraadEnum.BLAUW: return 4;
+                case GraadEnum.BRUIN: return 5;
+                default: return 6;
+                    #endregion
+            }
+        }
     }
 }

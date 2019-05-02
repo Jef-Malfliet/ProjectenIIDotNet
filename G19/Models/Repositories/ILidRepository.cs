@@ -12,8 +12,8 @@ namespace G19.Models.Repositories {
         void SaveChanges();
         void RegisteerAanwezigheid(Lid lid);
         IEnumerable<Lid> GetByGraad(string graad);
-        IEnumerable<Lid> GetByGraadEnFormule(string graad, FormuleEnum formule);
+        IEnumerable<Lid> GetByGraadEnFormuleOfDay(string graad, DayOfWeek dag);
         IEnumerable<Lid> GetLedenInFormuleOfDay(DayOfWeek dag);
-        IEnumerable<Lid> GetByFormule(FormuleEnum formule);
+      //  IEnumerable<Lid> GetByFormule(FormuleEnum formule);
     }
 }

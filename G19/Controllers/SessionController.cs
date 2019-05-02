@@ -31,8 +31,13 @@ namespace G19.Controllers {
         [HttpGet]
         public IActionResult StartNieuweSessie() {
             SessionState.ToState(SessionEnum.RegistreerState);
-            
-            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek));
+            SessionState.vandaag = DateTime.Today.DayOfWeek;
+            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+        }
+        [HttpGet]
+        public IActionResult FakeToday(DayOfWeek dag) {
+            SessionState.FakeVandaag(dag);
+            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
         //[HttpGet]
         //public IActionResult MaakNieuweSessie() {

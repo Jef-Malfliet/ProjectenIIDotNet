@@ -95,6 +95,7 @@ ul li {
     color: var(--accent4);
 }
 
+
 .graadBox .has:hover {
     color: var(--primary);
 }

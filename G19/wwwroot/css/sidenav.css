@@ -32,6 +32,10 @@
     z-index: 100;
 }
 
+.not {
+    opacity: 0.3;
+    cursor: default;
+}
     .sidenav a, .sidenav a:active {
         text-decoration: none;
         color: var(--accent2);

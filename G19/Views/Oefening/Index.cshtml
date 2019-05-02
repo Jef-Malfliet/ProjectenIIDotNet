@@ -10,15 +10,16 @@
 <body>
     <div>
         <div id="sidenavOefeningen" class="sidenav">
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
-            <a asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
-        </div>
+
+                <a class="@((int)@TempData["Graad"] >= 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>           
+                <a class="@((int)@TempData["Graad"] > 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+                <a class="@((int)@TempData["Graad"] > 1?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+                <a class="@((int)@TempData["Graad"] > 2?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>           
+                <a class="@((int)@TempData["Graad"] > 3?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>            
+                <a class="@((int)@TempData["Graad"] > 4?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+                <a class="@((int)@TempData["Graad"] > 5?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+                <a class="@((int)@TempData["Graad"] > 6?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+            </div>
         <div class="containerOefeningen">
             <h1 class="header oefHeader">Oefeningen</h1>
             <div class="containerOefeningenCards">
@@ -44,6 +45,11 @@
         window.onload = function () {
             $(function () {
                 $('.hasnt').on("click", function (e) {
+                    e.preventDefault();
+                });
+            });
+            $(function () {
+                $('.not').on("click", function (e) {
                     e.preventDefault();
                 });
             });
