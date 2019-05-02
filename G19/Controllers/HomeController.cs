@@ -18,34 +18,56 @@ namespace G19.Controllers {
         }
 
         public IActionResult Index() {
-            Session session = GeefHuidgeSessie();
-            return View(_lidRepository.GetByFormule(session.Formule));
+            if (SessionState.AanwezigheidRegistrerenState()) {
+                //Session session = GeefHuidgeSessie();
+                //return View(_lidRepository.GetByFormule(session.Formule));
+
+               
+                return View(_lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek));
+            } else {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+
+            }
         }
 
         public IActionResult GeefAlleLeden() {
-            return View(nameof(Index), _lidRepository.GetAll());
+            if (SessionState.AanwezigheidRegistrerenState()) {
+                return View(nameof(Index), _lidRepository.GetAll());
+            } else {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+
+            }
         }
         
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
-            //if (graad != "ZWART" && graad != "ALLES") {
-            //    // return View(nameof(Index), _lidRepository.GetByGraad(graad));
-            //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString() == graad));
-            //} else if (graad == "ZWART") {
-            //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
-            //}else{
-            //    return View(nameof(Index), _lidRepository.GetAll());
-            //}
-            Session session = GeefHuidgeSessie();
-            //var leden = _lidRepository.GetByGraad(graad,session.Formule);
-            var leden = _lidRepository.GetByGraadEnFormule(graad, session.Formule);
+            if (SessionState.AanwezigheidRegistrerenState()) {
+                //if (graad != "ZWART" && graad != "ALLES") {
+                //    // return View(nameof(Index), _lidRepository.GetByGraad(graad));
+                //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString() == graad));
+                //} else if (graad == "ZWART") {
+                //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
+                //}else{
+                //    return View(nameof(Index), _lidRepository.GetAll());
+                //}
+                //  Session session = GeefHuidgeSessie();
+                //var leden = _lidRepository.GetByGraad(graad,session.Formule);
+                //var leden = _lidRepository.GetByGraadEnFormule(graad, session.Formule);
+                var leden = _lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek);
 
-            return View(nameof(Index), leden);
+                return View(nameof(Index), leden);
+            } else {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+
+            }
         }
 
         public IActionResult GeefAanwezigenVandaag() {
             if (SessionState.OefeningenBekijkenState()) {
-                Session session = GeefHuidgeSessie();
+             //   Session session = GeefHuidgeSessie();
                 var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
                 return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
             }
@@ -86,13 +108,13 @@ namespace G19.Controllers {
             SessionState.ToState(SessionEnum.OefeningState);
             return RedirectToAction(nameof(GeefAanwezigenVandaag));
         }
-        private Session GeefHuidgeSessie() {
-            //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
-            var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
+        //private Session GeefHuidgeSessie() {
+        //    //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
+        //    var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
 
-            Session ses = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
-            return ses;
-        }
+        //    Session ses = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
+        //    return ses;
+        //}
 
         //public IActionResult Privacy() {
         //    return View();
