@@ -28,7 +28,7 @@
                             @oefening.Naam
                         </a>
                         <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
-                            <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="fas fa-comment"></i></a>
+                            <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
                             <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
                             <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
                             <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>

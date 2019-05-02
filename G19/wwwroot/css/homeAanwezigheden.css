@@ -50,11 +50,10 @@
 
 /*START opmaak cards*/
 .containerAanwezigheden {
-    /*width: 80vw;*/
+    width: 100%;
     font-family: var(--headerFont);
     box-sizing: border-box;
     background-color: var(--primary);
-    /*margin-left:20vw;*/
     margin-top: 5vw;
     overflow-x: hidden;
     position: relative;
@@ -72,11 +71,11 @@
 }
 
 .card {
-    background-color: var(--counter);
-    height: 24%;
+    background-color: var(--accent5);
+    min-height: 24%;
     margin: 1%;
     position: relative;
-    width: 30%;
+    width: 23%;
     display: flex;
     flex-direction: unset;
     align-items: center;
@@ -84,9 +83,8 @@
 
 .lidButton {
     font-size: 1.17em;
-    margin-top: 0.5em;
     color: var(--white);
-    height: 24%;
+    /*height: 24%;*/
     text-align: center;
     background: none;
     border: none;
@@ -137,8 +135,8 @@ h1 {
 
 
 
-@media only screen and (min-width:768px) {
+/*@media only screen and (min-width:768px) {
     .card {
         width: 29%;
     }
-}
+}*/

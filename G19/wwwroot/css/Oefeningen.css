@@ -101,6 +101,7 @@ ul li {
 
 .hasnt {
     color: var(--counter);
+    cursor: default;
 }
 
 .graadBox .hasnt:hover {
