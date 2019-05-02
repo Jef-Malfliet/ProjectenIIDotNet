@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using G19.Models.State_Pattern;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,6 @@ namespace G19.Models {
         public FormuleEnum Formule { get; set; }
         [JsonProperty]
         public DateTime Date { get; set; }
-
-       
 
         //public IEnumerable<Lid> Leden { get; set; }
     }

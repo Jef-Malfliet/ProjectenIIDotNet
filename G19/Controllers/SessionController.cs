@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using G19.Models;
 using G19.Models.Repositories;
+using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -37,13 +38,19 @@ namespace G19.Controllers {
             Session session = new Session { Formule = model.Formule, Date = model.Date };
             _sessionRepository.Add(session);
             _sessionRepository.SaveChanges();
-           // HttpContext.Session.SetString("Sessie", JsonConvert.SerializeObject(session));
+            SessionState.ToState(SessionEnum.RegistreerState);
+            // HttpContext.Session.SetString("Sessie", JsonConvert.SerializeObject(session));
             return View("../Home/Index",_lidRepository.GetAll().Where(l=>l.Lessen.ToString().Contains(session.Date.Day.ToString())));
         }
         [HttpGet]
         public IActionResult StartBestaandeSessie() {
             Session dichtsteSessie = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
+            SessionState.ToState(SessionEnum.RegistreerState);
             return View("BestaandeSessie", dichtsteSessie);
+        }
+
+        public void EndSessionState() {
+            SessionState.ToState(SessionEnum.EindState);
         }
     }
 }

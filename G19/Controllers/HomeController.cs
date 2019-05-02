@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using G19.Models;
+﻿using G19.Models;
 using G19.Models.Repositories;
-using System.Linq;
+using G19.Models.State_Pattern;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
-using System.Collections;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
+using System.Linq;
 
 namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
@@ -25,15 +23,9 @@ namespace G19.Controllers {
         }
 
         public IActionResult GeefAlleLeden() {
-            return View(nameof(Index),_lidRepository.GetAll());
+            return View(nameof(Index), _lidRepository.GetAll());
         }
-        private Session GeefHuidgeSessie() {
-            //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
-            var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
-            
-            Session ses =  _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
-            return ses;
-        }
+        
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
             //if (graad != "ZWART" && graad != "ALLES") {
@@ -46,29 +38,60 @@ namespace G19.Controllers {
             //}
             Session session = GeefHuidgeSessie();
             //var leden = _lidRepository.GetByGraad(graad,session.Formule);
-            var leden = _lidRepository.GetByGraadEnFormule(graad,session.Formule);
+            var leden = _lidRepository.GetByGraadEnFormule(graad, session.Formule);
 
-            return View(nameof(Index),leden);
+            return View(nameof(Index), leden);
         }
-        
+
         public IActionResult GeefAanwezigenVandaag() {
-            Session session = GeefHuidgeSessie();
-            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
-            return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
+            if (SessionState.OefeningenBekijkenState()) {
+                Session session = GeefHuidgeSessie();
+                var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
+                return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
+            }
+            else {
+                TempData["SessionStateMessage"] = "Je moet alle aanwezigen doorgeven door op de knop 'Aanwezigheden zijn geregistreerd' te drukken.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+            }
 
         }
         public IActionResult RegistreerAanwezigheid(int id) {
-            var lid = _lidRepository.GetById(id);
-            _lidRepository.RegisteerAanwezigheid(lid);
-            _lidRepository.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            if (SessionState.AanwezigheidRegistrerenState()) {
+                var lid = _lidRepository.GetById(id);
+                _lidRepository.RegisteerAanwezigheid(lid);
+                _lidRepository.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+            }
+
         }
 
         public IActionResult RegistreerExtraLid(string voornaam, string familienaam) {
-            var lid = _lidRepository.GetByNames(voornaam,familienaam);
-            _lidRepository.RegisteerAanwezigheid(lid);
-            _lidRepository.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            if (SessionState.AanwezigheidRegistrerenState()) {
+                var lid = _lidRepository.GetByNames(voornaam, familienaam);
+                _lidRepository.RegisteerAanwezigheid(lid);
+                _lidRepository.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            else {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return View("~/Views/Session/SessionStateMessage.cshtml");
+            }
+        }
+
+        public IActionResult ToOefeningState() {
+            SessionState.ToState(SessionEnum.OefeningState);
+            return RedirectToAction(nameof(GeefAanwezigenVandaag));
+        }
+        private Session GeefHuidgeSessie() {
+            //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
+            var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
+
+            Session ses = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
+            return ses;
         }
 
         //public IActionResult Privacy() {
