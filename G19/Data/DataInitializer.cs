@@ -67,7 +67,7 @@ namespace G19.Data {
                 Formule = FormuleEnum.Dinsdag
             }
 
-       
+
             );
             _context.SaveChanges();
 
