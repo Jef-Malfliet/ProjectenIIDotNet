@@ -1,7 +1,7 @@
 ﻿/*--------------------MOBILE FIRST!---------------------*/
 /*START Variables*/
 /*:root {*/
-    /*Color Palette*/
+/*Color Palette*/
 /*
     --primary: #00b4ab;
     --counter: #454553;
@@ -14,8 +14,8 @@
     --black: #151515;
     --aanwezigheidGemeld: #00909a;
         */
-    /*Fonts*/
-    /*
+/*Fonts*/
+/*
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
 }*/
@@ -57,11 +57,12 @@
     /*margin-left:20vw;*/
     margin-top: 5vw;
     overflow-x: hidden;
+    position: relative;
 }
 
 .containerMissAanwezigheden {
     margin-left: 15vw;
-    margin-top: 5vw;
+    margin-top: 10vh;
 }
 
 .containerAanwezighedenCards {
@@ -118,23 +119,25 @@ h1 {
 }
 
 .form {
-    color: var(--white);
-    font-family: var(--bodyFont);
-    font-size: 1em;
-    position: fixed;
-    top: 75vh;
-    right: 0;
-    background-color: var(--primary);
-    padding: 15px;
-    border: 5px var(--black) solid;
+    margin-top: 20px;
+    margin-left: 15px;
 }
 
-    .form button {
-        background-color: var(--counter);
-        color: var(--white);
+.buttons, #irritant {
+    background-color: #454553;
+    padding: 10px;
+    border-radius: 5px;
+    color: #f08d0c;
+    font-family: 'Montserrat', sans-serif;
+}
+    .buttons:hover, #irritant:hover {
+        background-color: #f08d0c;
+        color: #f6f5f6;
     }
 
-@media only screen and (max-width:768px) {
+
+
+@media only screen and (min-width:768px) {
     .card {
         width: 29%;
     }

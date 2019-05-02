@@ -23,6 +23,10 @@ namespace G19.Controllers {
             Session session = GeefHuidgeSessie();
             return View(_lidRepository.GetByFormule(session.Formule));
         }
+
+        public IActionResult GeefAlleLeden() {
+            return View(nameof(Index),_lidRepository.GetAll());
+        }
         private Session GeefHuidgeSessie() {
             //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
             var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));
@@ -49,7 +53,7 @@ namespace G19.Controllers {
         
         public IActionResult GeefAanwezigenVandaag() {
             Session session = GeefHuidgeSessie();
-            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag() && l.Lessen.Equals(session.Formule));
+            var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
             return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
 
         }

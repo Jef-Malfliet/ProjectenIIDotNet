@@ -38,7 +38,7 @@ namespace G19.Controllers {
             _sessionRepository.Add(session);
             _sessionRepository.SaveChanges();
            // HttpContext.Session.SetString("Sessie", JsonConvert.SerializeObject(session));
-            return View("../Home/Index",_lidRepository.GetByFormule(session.Formule));
+            return View("../Home/Index",_lidRepository.GetAll().Where(l=>l.Lessen.ToString().Contains(session.Date.Day.ToString())));
         }
         [HttpGet]
         public IActionResult StartBestaandeSessie() {
