@@ -1,20 +1,40 @@
-﻿body {
+﻿
+
+body {
 }
-.sessionoverzicht{
-    margin-top:40vh;
-    margin-left:40vw;
-    display:flex;
-    flex-direction:column;
-    
+
+.sessionoverzicht {
+    margin-top: 40vh;
+    margin-left: 40vw;
+    display: flex;
+    flex-direction: column;
 }
-.sessionoverzicht a{
-    margin-bottom:1vh;
-    width:20vw;
-}
-.sessionoverzicht h3 {
+
+    .sessionoverzicht a {
+        margin-bottom: 1vh;
+        width: 20vw;
+    }
+
+    .sessionoverzicht h3 {
         margin-bottom: 1em;
         font-family: var(--bodyFont);
     }
-.addsession{
-    margin-top:20vh;
+
+.addsession {
+    margin-top: 20vh;
 }
+
+.SessionStateMessage {
+    margin-top: 15vh;
+    margin-left: 5vw;
+    color: var(--counter);
+    font-family: var(--bodyFont);
+}
+
+    .SessionStateMessage h1 {
+        color: var(--orange);
+        font-weight: bold;
+        font-family: var(--headerFont);
+        margin-bottom:1vh;
+    }
+

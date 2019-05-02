@@ -10,7 +10,7 @@
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <button  type="submit" class="nav-link btn btn-link text-dark" onclick="eindeSessie">Logout</button>
         </form>
     </li>
 }
@@ -24,3 +24,19 @@ else
     </li>
 }
 </ul>
+<script>
+    window.onload = function () {
+        function eindeSessie() {
+            $.ajax({
+                // edit to add steve's suggestion.
+                //url: "/ControllerName/ActionName",
+                url: 'Session/EndSessionState/',
+                success: function () {
+                    // your data could be a View or Json or what ever you returned in your action method 
+                    // parse your data here
+                    alert("Einde sessie.");
+                }
+            });
+        }
+    }
+</script>

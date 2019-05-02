@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="sidenavAanwezigheden" class="sidenav">
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ALLES">ALLES</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="WIT">WIT</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GEEL">GEEL</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
@@ -16,10 +17,14 @@
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ZWART">ZWART</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ALLES">ALLES</a>
     </div>
     <div class="containerMissAanwezigheden">
         <h1 class="header">Registreer aanwezigheid</h1>
+        <div class="form-group form">
+            <a class="buttons" asp-controller="Home" asp-action="GeefAlleLeden">Toon alle leden</a>
+            <a class="buttons" id="irritant">Registreer niet-ingeschreven lid</a>
+            <a class="buttons" asp-controller="Home" asp-action="ToOefeningState">Aanwezigheden zijn geregistreerd</a>
+        </div>
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
 
@@ -29,20 +34,6 @@
                 </div>
             }
         </div>
-    </div>
-    <div class="form">
-        <form method="post" asp-controller="Home" asp-action="RegistreerExtraLid">
-            <div class="form-group">
-                <label class="label">Voornaam extra lid</label>
-                <input type="text" name="voornaam" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label class="label">Familienaam extra lid</label>
-                <input type="text" name="familienaam" class="form-control">
-            </div>
-            <button type="submit" class="btn submitBtn">Registreer Aanwezigheid</button>
-        </form>
     </div>
 </body>
 
