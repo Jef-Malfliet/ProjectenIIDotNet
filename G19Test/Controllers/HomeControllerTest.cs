@@ -2,6 +2,7 @@
 using G19.Models;
 using G19.Models.Repositories;
 using G19Test.Data;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
 using Xunit;
@@ -15,15 +16,15 @@ namespace G19Test.Controllers {
         public HomeControllerTest() {
             _context = new DummyDbContext();
             _lidRepository = new Mock<ILidRepository>();
-            _controller = new HomeController(_lidRepository.Object);
+            //_controller = new HomeController(_lidRepository.Object);
         }
 
         #region HttpGet
-        [Fact(Skip ="strange error")]
+        [Fact]
         public void GetGeefAanwezighedenPerGraad_GeeftDeJuisteLedenDoor() {
             _lidRepository.Setup(l => l.GetByGraad("wit")).Returns(new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 });
-            //var result = _controller.GeefAanwezighedenPerGraad("wit");
-            //Assert.Equal();
+            var result = _controller.GeefAanwezighedenPerGraad("wit") as ViewResult;
+            Assert.Equal(3, result?.Model);
         }
         #endregion
     }

@@ -21,6 +21,28 @@ namespace G19.Data.Repositories {
         public IEnumerable<Lid> GetAll() {
             return _context.Leden.Include(l => l.Aanwezigheden).OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
         }
+        public IEnumerable<Lid> GetLedenInFormuleOfDay(DayOfWeek dag) {
+            
+            if(dag == DayOfWeek.Tuesday)
+                return _context.Leden.Include(l => l.Aanwezigheden)
+                    .Where(l => l.Lessen.Equals(FormuleEnum.Dinsdag) || l.Lessen.Equals(FormuleEnum.Dinsdag_Donderdag) 
+                    || l.Lessen.Equals(FormuleEnum.Dinsdag_Zaterdag))
+                    .OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
+            if (dag == DayOfWeek.Wednesday)
+                return _context.Leden.Include(l => l.Aanwezigheden)
+                    .Where(l => l.Lessen.Equals(FormuleEnum.Woensdag) || l.Lessen.Equals(FormuleEnum.Woensdag_Zaterdag))
+                    .OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
+            if (dag == DayOfWeek.Thursday)
+                return _context.Leden.Include(l => l.Aanwezigheden)
+                    .Where(l => l.Lessen.Equals(FormuleEnum.Dinsdag_Donderdag))
+                    .OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
+            if (dag == DayOfWeek.Saturday)
+                return _context.Leden.Include(l => l.Aanwezigheden)
+                    .Where(l => l.Lessen.Equals(FormuleEnum.Dinsdag_Zaterdag) || l.Lessen.Equals(FormuleEnum.Woensdag_Zaterdag) || l.Lessen.Equals(FormuleEnum.Zaterdag))
+                    .OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
+
+            return null;
+        }
 
         public Lid GetById(int id) {
             return _context.Leden.Include(l => l.Aanwezigheden).FirstOrDefault(l => l.Id == id);
@@ -64,11 +86,11 @@ namespace G19.Data.Repositories {
         }
 
         public IEnumerable<Lid> GetByFormule(FormuleEnum formule) {
-            return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Lessen.Equals(formule)).ToList();
+            return _context.Leden.Include(l => l.Aanwezigheden).Where(l => l.Lessen.Equals(formule)).OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
         }
 
         public IEnumerable<Lid> GetByGraadEnFormule(string graad, FormuleEnum formule) {
-          return GetByGraad(graad).Where(l => l.Lessen.Equals(formule)).ToList();
+          return GetByGraad(graad).Where(l => l.Lessen.Equals(formule)).OrderBy(l => l.Graad).ThenBy(l => l.Familienaam).ThenBy(l => l.Voornaam).ToList();
         }
     }
 }

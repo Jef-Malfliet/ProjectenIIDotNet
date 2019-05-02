@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace G19.Models.Repositories {
     public interface ILidRepository {
@@ -12,6 +13,7 @@ namespace G19.Models.Repositories {
         void RegisteerAanwezigheid(Lid lid);
         IEnumerable<Lid> GetByGraad(string graad);
         IEnumerable<Lid> GetByGraadEnFormule(string graad, FormuleEnum formule);
+        IEnumerable<Lid> GetLedenInFormuleOfDay(DayOfWeek dag);
         IEnumerable<Lid> GetByFormule(FormuleEnum formule);
     }
 }

@@ -62,13 +62,13 @@ namespace G19.Data {
             //await _usermanager.CreateAsync(user, "P@ssword1111");
             //await _usermanager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "lesgever"));
 
-            _context.Sessions.Add(new Models.Session() {
-                Date = DateTime.Now,
-                Formule = FormuleEnum.Dinsdag
-            }
+            //_context.Sessions.Add(new Models.Session() {
+            //    Date = DateTime.Now,
+            //    Formule = FormuleEnum.Dinsdag
+            //}
 
-
-            );
+       
+            //);
             _context.SaveChanges();
 
         }
