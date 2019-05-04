@@ -9,7 +9,8 @@
 
     <div class="container">
         @foreach (var image in @Model.Images) {
-            <div class="card">@image.Images</div>
+            <div class="card">@image.getImageName()</div>
+            <img src="~/img/@image.getImageName()"/>
         }
     </div>
 </div>

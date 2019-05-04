@@ -19,10 +19,11 @@ iframe {
 
 .card {
     width: 60vw;
-    height: 5vw;
+    height: 10vw;
     background: none;
     border: none;
 }
+
 
 .container {
     width: 100vw;
