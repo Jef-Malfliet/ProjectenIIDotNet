@@ -24,11 +24,12 @@
             <h1 class="header oefHeader">Oefeningen</h1>
             <div class="containerOefeningenCards">
                 @foreach (var oefening in Model) {
-                    <div class="card">
-                        <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
+                    <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">
+                        @*<img class="card-img-top" src="~/img/@oefening.Images.First()"/>*@
+                        <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton card-title">
                             @oefening.Naam
                         </a>
-                        <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
+                        <div class="graadBox">
                             <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
                             <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
                             <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
