@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using G19.Models;
+using G19.Models.Repositories;
+using G19.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace G19.Controllers {
+    [Authorize]
+    public class LidController : Controller {
+        // GET: /<controller>/
+        private readonly ILidRepository _lidRepository;
+
+        public LidController(ILidRepository lidRepository) {
+            _lidRepository = lidRepository;
+
+        }
+        public IActionResult Index() {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Edit() {
+            Lid lid = _lidRepository.GetById(10);
+            //MOET nog verandert worden naar dit hieronder/ het huidige lid als de leden gekoppeld zijn aan hun account en die methode hieronder moet ook nog geschreven worden
+            //  Lid lid = _lidRepository.GetByUsername(HttpContext.User.Identity.Name);
+            if (lid == null)
+                return NotFound();
+            
+            return View(new LidViewModel(lid));
+        }
+        [HttpPost]
+        public IActionResult Edit(LidViewModel lidViewModel) {
+            if (ModelState.IsValid) {
+                Lid lid = null;
+                try {
+                    lid = _lidRepository.GetById(10);
+                    //MOET nog verandert worden naar dit hieronder/ het huidige lid als de leden gekoppeld zijn aan hun account en die methode hieronder moet ook nog geschreven worden
+                    //  Lid lid = _lidRepository.GetByUsername(HttpContext.User.Identity.Name);
+                  
+                    MapLidViewModelToLid(lidViewModel, lid);
+                    _lidRepository.SaveChanges();
+                }catch (Exception e) {
+                    ModelState.AddModelError("", e.Message);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+           
+            return View(nameof(Edit), lidViewModel);
+        }
+        private void MapLidViewModelToLid(LidViewModel LidViewModel, Lid lid) {
+            lid.Voornaam = LidViewModel.Voornaam;
+            lid.Familienaam = LidViewModel.Achternaam;
+            lid.Email = LidViewModel.Email;
+            lid.GSM = LidViewModel.GSM;
+            lid.Telefoon = LidViewModel.Telefoon;
+            lid.Rijksregisternummer = LidViewModel.Rijksregisternummer;
+            lid.Busnummer = LidViewModel.Busnummer;
+            lid.Huisnummer = LidViewModel.Huisnummer;
+            lid.EmailOuders = LidViewModel.EmailOuders;
+            lid.GeboorteDatum = LidViewModel.GeboorteDatum;
+            lid.Geslacht = LidViewModel.Geslacht;
+            lid.Graad = LidViewModel.Graad;
+            lid.Land = LidViewModel.Land;
+            lid.Lessen = LidViewModel.Lessen;
+            lid.PostCode = LidViewModel.Postcode;
+            lid.Stad = LidViewModel.Stad;
+            lid.StraatNaam = LidViewModel.StraatNaam;
+            lid.Roltype = LidViewModel.Roltype;
+            lid.Wachtwoord = LidViewModel.Wachtwoord;
+
+            
+        }
+    }
+}

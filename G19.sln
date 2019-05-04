@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G19", "G19\G19.csproj", "{8323061B-DE32-47BE-8ED3-5E541CCD9C77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G19Test", "G19Test\G19Test.csproj", "{9009DA44-1651-430C-B6A7-AB0657FDDDBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "G19Test", "G19Test\G19Test.csproj", "{9009DA44-1651-430C-B6A7-AB0657FDDDBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

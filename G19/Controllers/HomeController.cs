@@ -11,10 +11,10 @@ namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
     public class HomeController : Controller {
         private readonly ILidRepository _lidRepository;
-        private readonly ISessionRepository _sessionRepository;
-        public HomeController(ILidRepository lidRepository, ISessionRepository sessionRepository) {
+        //private readonly ISessionRepository _sessionRepository;
+        public HomeController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
-            _sessionRepository = sessionRepository;
+           // _sessionRepository = sessionRepository;
         }
 
         public IActionResult Index() {

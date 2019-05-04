@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace G19.Controllers {
-    [Authorize]
+    [Authorize(Policy = "Lesgever")]
+
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;

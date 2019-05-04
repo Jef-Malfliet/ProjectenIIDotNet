@@ -19,10 +19,10 @@ namespace G19.Controllers {
     public class SessionController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
-        private readonly ISessionRepository _sessionRepository;
-        public SessionController(ILidRepository lidRepository, ISessionRepository sessionRepository) {
+       // private readonly ISessionRepository _sessionRepository;
+        public SessionController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
-            _sessionRepository = sessionRepository;
+            //_sessionRepository = sessionRepository;
         }
         [HttpGet]
         public IActionResult Index() {
