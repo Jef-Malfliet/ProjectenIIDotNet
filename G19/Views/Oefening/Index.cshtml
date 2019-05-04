@@ -28,7 +28,8 @@
                         <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton">
                             @oefening.Naam
                         </a>
-                        <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
+                        <img src="~/img/@oefening.GetFirstImage()" />
+                  <div class="graadBox @(oefening.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : oefening.Graad.ToString().ToLower())">
                             <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
                             <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
                             <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>

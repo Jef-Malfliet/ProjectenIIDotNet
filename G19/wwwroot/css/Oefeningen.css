@@ -140,10 +140,15 @@ ul li {
 .card {
     background-color: var(--counter);
     width: 20%;
-    height: 100px;
+    height:20vh;
     margin: 10px;
     align-items: center;
     position: relative;
+}
+.card img{
+    width:100%;
+    height:15vh;
+    margin:0;
 }
 
 @media only screen and (min-width:768px) {

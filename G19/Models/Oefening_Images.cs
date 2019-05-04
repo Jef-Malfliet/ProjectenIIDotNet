@@ -8,5 +8,9 @@ namespace G19.Models {
         //public int Id { get; set; }
         public int OefeningId { get; set; }
         public string Images { get; set; }
+        public string getImageName() {
+            string[] pieces = Images.Split('/');
+            return pieces[pieces.Length - 1];
+        }
     }
 }
