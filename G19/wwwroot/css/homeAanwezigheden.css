@@ -71,7 +71,7 @@
 }
 
 .card {
-    background-color: var(--accent5);
+    background-color: var(--primary);
     min-height: 24%;
     margin: 1%;
     position: relative;
@@ -83,7 +83,7 @@
 
 .lidButton {
     font-size: 1.17em;
-    color: var(--white);
+    color: var(--counter);
     /*height: 24%;*/
     text-align: center;
     background: none;
@@ -132,11 +132,3 @@ h1 {
         background-color: #f08d0c;
         color: #f6f5f6;
     }
-
-
-
-/*@media only screen and (min-width:768px) {
-    .card {
-        width: 29%;
-    }
-}*/

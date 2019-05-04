@@ -59,15 +59,10 @@
     font-size: 15px;
 }
 
-
-
-img {
-    display: none;
-}
-
 .pf {
     width: 24%;
     border-radius: 5%;
+    margin-left: 5%;
 }
 
 .navA {
@@ -81,9 +76,6 @@ img {
 }
 
 @media only screen and (min-width:768px) {
-    img {
-        display: none;
-    }
 
     .navbar {
         height: 6vh;
@@ -98,6 +90,5 @@ img {
 @media only screen and (min-width:1100px) {
     img {
         display: inline-block;
-        margin-left:15px;
     }
 }

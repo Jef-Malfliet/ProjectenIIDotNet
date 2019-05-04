@@ -7,10 +7,17 @@
 }
 <div class="containerOefening">
 
-    <div class="container">
+    <h1 class="header">Foto's</h1>
+
+    <div class="fotoOefCont">
         @foreach (var image in @Model.Images) {
-            <div class="card">@image.getImageName()</div>
-            <img src="~/img/@image.getImageName()"/>
+        <div class="card fotoOefCard">
+            <img src="~/img/@image.getImageName()" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@image.getImageName()</h5>
+            </div>
+        </div>
+
         }
     </div>
 </div>

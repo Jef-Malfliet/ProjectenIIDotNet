@@ -11,31 +11,33 @@
     <div>
         <div id="sidenavOefeningen" class="sidenav">
 
-                <a class="@((int)@TempData["Graad"] >= 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>           
-                <a class="@((int)@TempData["Graad"] > 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
-                <a class="@((int)@TempData["Graad"] > 1?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
-                <a class="@((int)@TempData["Graad"] > 2?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>           
-                <a class="@((int)@TempData["Graad"] > 3?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>            
-                <a class="@((int)@TempData["Graad"] > 4?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
-                <a class="@((int)@TempData["Graad"] > 5?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
-                <a class="@((int)@TempData["Graad"] > 6?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
-            </div>
+            <a class="@((int)@TempData["Graad"] >= 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
+            <a class="@((int)@TempData["Graad"] > 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+            <a class="@((int)@TempData["Graad"] > 1?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+            <a class="@((int)@TempData["Graad"] > 2?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
+            <a class="@((int)@TempData["Graad"] > 3?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+            <a class="@((int)@TempData["Graad"] > 4?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+            <a class="@((int)@TempData["Graad"] > 5?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+            <a class="@((int)@TempData["Graad"] > 6?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+        </div>
         <div class="containerOefeningen">
             <h1 class="header oefHeader">Oefeningen</h1>
             <div class="containerOefeningenCards">
                 @foreach (var oefening in Model) {
-                    <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">
-                        @*<img class="card-img-top" src="~/img/@oefening.Images.First()"/>*@
+                <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">
+                    <div class="card-body">
                         <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton card-title">
                             @oefening.Naam
                         </a>
-                        <div class="graadBox">
+                        <div class="graadBox card-text">
                             <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
                             <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
                             <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
                             <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
                         </div>
                     </div>
+                    <img src="~/img/@oefening.GetFirstImage()" class="card-img-bottom" />
+                </div>
                 }
             </div>
         </div>
