@@ -3,106 +3,97 @@
 @{
     ViewData["Title"] = "Lid aanpassen";
 }
+<link href="~/css/WijzigenGegevens.css" rel="stylesheet" />
 
-<form method="post">
-    <div asp-validation-summary="All"></div>
-    <div class="form-group">
-        <label asp-for="Voornaam"></label>
-        <input asp-for="Voornaam" class="form-control" />
-        <span asp-validation-for="Voornaam" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Achternaam"></label>
-        <input asp-for="Achternaam" class="form-control" />
-        <span asp-validation-for="Achternaam" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="EmailOuders"></label>
-        <input asp-for="EmailOuders" class="form-control" />
-        <span asp-validation-for="EmailOuders" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="GSM"></label>
-        <input asp-for="GSM" class="form-control" />
-        <span asp-validation-for="GSM" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Telefoon"></label>
-        <input asp-for="Telefoon" class="form-control" />
-        <span asp-validation-for="Telefoon" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Rijksregisternummer"></label>
-        <input asp-for="Rijksregisternummer" class="form-control" />
-        <span asp-validation-for="Rijksregisternummer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Busnummer"></label>
-        <input asp-for="Busnummer" class="form-control" />
-        <span asp-validation-for="Busnummer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Huisnummer"></label>
-        <input asp-for="Huisnummer" class="form-control" />
-        <span asp-validation-for="Huisnummer" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="GeboorteDatum"></label>
-        <input asp-for="GeboorteDatum" class="form-control" />
-        <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Geslacht"></label>
-        <input asp-for="Geslacht" class="form-control" />
-        <span asp-validation-for="Geslacht" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Graad"></label>
-        <input asp-for="Graad" class="form-control" />
-        <span asp-validation-for="Graad" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Land"></label>
-        <input asp-for="Land" class="form-control" />
-        <span asp-validation-for="Land" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Lessen"></label>
-        <input asp-for="Lessen" class="form-control" />
-        <span asp-validation-for="Lessen" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Postcode"></label>
-        <input asp-for="Postcode" class="form-control" />
-        <span asp-validation-for="Postcode" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Stad"></label>
-        <input asp-for="Stad" class="form-control" />
-        <span asp-validation-for="Stad" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="StraatNaam"></label>
-        <input asp-for="StraatNaam" class="form-control" />
-        <span asp-validation-for="StraatNaam" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Roltype"></label>
-        <input asp-for="Roltype" class="form-control" />
-        <span asp-validation-for="Roltype" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Wachtwoord"></label>
-        <input asp-for="Wachtwoord" class="form-control" />
-        <span asp-validation-for="Wachtwoord" class="text-danger"></span>
-    </div>
-    <div>
-        <button class="btn btn-primary" type="submit">Save</button>
-        <a asp-action="Index" class="btn btn-default">Cancel</a>
-    </div>
-</form>
+<div class="col-md-4 wijziglidform">
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <div class="form-group">
+            <label asp-for="Voornaam"></label>
+            <input asp-for="Voornaam" class="form-control" />
+            <span asp-validation-for="Voornaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Achternaam"></label>
+            <input asp-for="Achternaam" class="form-control" />
+            <span asp-validation-for="Achternaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Emailadres</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmailOuders">Emailadres ouders</label>
+            <input asp-for="EmailOuders" class="form-control" />
+            <span asp-validation-for="EmailOuders" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GSM">Gsmnummer</label>
+            <input asp-for="GSM" class="form-control" />
+            <span asp-validation-for="GSM" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefoon"></label>
+            <input asp-for="Telefoon" class="form-control" />
+            <span asp-validation-for="Telefoon" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GeboorteDatum">Geboortedatum</label>
+            <input asp-for="GeboorteDatum" class="form-control" />
+            <span asp-validation-for="GeboorteDatum" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Geslacht"></label>
+            <input asp-for="Geslacht" class="form-control" />
+            <span asp-validation-for="Geslacht" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rijksregisternummer"></label>
+            <input asp-for="Rijksregisternummer" class="form-control" />
+            <span asp-validation-for="Rijksregisternummer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="StraatNaam">Straatnaam</label>
+            <input asp-for="StraatNaam" class="form-control" />
+            <span asp-validation-for="StraatNaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Huisnummer"></label>
+            <input asp-for="Huisnummer" class="form-control" />
+            <span asp-validation-for="Huisnummer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Busnummer"></label>
+            <input asp-for="Busnummer" class="form-control" />
+            <span asp-validation-for="Busnummer" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Stad"></label>
+            <input asp-for="Stad" class="form-control" />
+            <span asp-validation-for="Stad" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Postcode"></label>
+            <input asp-for="Postcode" class="form-control" />
+            <span asp-validation-for="Postcode" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Land"></label>
+            <select asp-for="Land" asp-items="Html.GetEnumSelectList<LandEnum>()" class="form-control">
+                <option value="">-- selecteer Formule --</option>
+            </select>
+            <span asp-validation-for="Land" class="text-danger"></span>
+        </div>
+
+
+
+
+        <div>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a asp-action="Index" class="btn btn-default">Cancel</a>
+        </div>
+    </form>
+</div>
