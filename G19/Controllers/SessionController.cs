@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace G19.Controllers {
-    [Authorize(Policy = "Lesgever")]
+    [Authorize]
     public class SessionController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
@@ -29,12 +29,14 @@ namespace G19.Controllers {
             return View();
         }
         [HttpGet]
+        [Authorize(Policy = "Lesgever")]
         public IActionResult StartNieuweSessie() {
             SessionState.ToState(SessionEnum.RegistreerState);
             SessionState.vandaag = DateTime.Today.DayOfWeek;
             return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
         [HttpGet]
+        [Authorize(Policy = "Lesgever")]
         public IActionResult FakeToday(DayOfWeek dag) {
             SessionState.FakeVandaag(dag);
             return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
@@ -60,7 +62,7 @@ namespace G19.Controllers {
         //    return View("BestaandeSessie", dichtsteSessie);
         //}
 
-
+        [Authorize(Policy = "Lesgever")]
         public void EndSessionState() {
             SessionState.ToState(SessionEnum.EindState);
         }

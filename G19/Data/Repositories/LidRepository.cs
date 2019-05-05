@@ -100,5 +100,9 @@ namespace G19.Data.Repositories {
 
             
         }
+
+        public Lid GetByEmail(string email) {
+            return _context.Leden.Include(l => l.Aanwezigheden).FirstOrDefault(l => l.Email == email);
+        }
     }
 }

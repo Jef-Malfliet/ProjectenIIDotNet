@@ -25,9 +25,8 @@ namespace G19.Controllers {
         }
         [HttpGet]
         public IActionResult Edit() {
-            Lid lid = _lidRepository.GetById(10);
-            //MOET nog verandert worden naar dit hieronder/ het huidige lid als de leden gekoppeld zijn aan hun account en die methode hieronder moet ook nog geschreven worden
-            //  Lid lid = _lidRepository.GetByUsername(HttpContext.User.Identity.Name);
+           
+            Lid lid = _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
             if (lid == null)
                 return NotFound();
             
@@ -38,10 +37,8 @@ namespace G19.Controllers {
             if (ModelState.IsValid) {
                 Lid lid = null;
                 try {
-                    lid = _lidRepository.GetById(10);
-                    //MOET nog verandert worden naar dit hieronder/ het huidige lid als de leden gekoppeld zijn aan hun account en die methode hieronder moet ook nog geschreven worden
-                    //  Lid lid = _lidRepository.GetByUsername(HttpContext.User.Identity.Name);
-                  
+                    lid = _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
+
                     MapLidViewModelToLid(lidViewModel, lid);
                     _lidRepository.SaveChanges();
                 }catch (Exception e) {
