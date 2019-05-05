@@ -1,9 +1,4 @@
-﻿
-
-body {
-}
-
-.sessionoverzicht {
+﻿.sessionoverzicht {
     margin-top: 40vh;
     margin-left: 40vw;
     display: flex;
@@ -35,6 +30,27 @@ body {
         color: var(--orange);
         font-weight: bold;
         font-family: var(--headerFont);
-        margin-bottom:1vh;
+        margin-bottom: 1vh;
     }
 
+.loginCont {
+    margin: 10% auto;
+    opacity: 1 !important;
+}
+
+.formLabel {
+    font-family: var(--headerFont);
+}
+
+.formInput, .formValidation{
+    font-family: var(--bodyFont);
+}
+
+.bg-img {
+    position: absolute;
+    top: 15%;
+    left: 55%;
+    opacity:0.5;
+    /*width: 25%;*/
+    display: inline-block;
+}

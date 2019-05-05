@@ -6,7 +6,7 @@
     ViewData["Title"] = "Comments";
 }
 <div class="containerOefening">
-    <h2>Plaats Commentaar:</h2>
+    <h2 class="header">Plaats Commentaar:</h2>
 
     <div class="nieuweCommentaar">
         <form asp-controller="Oefening" asp-action="geefCommentaar" asp-route-id="@Model.Id" method="post">
@@ -18,13 +18,11 @@
             <button type="submit" class="btn btn-default submitButton">Submit</button>
         </form>
     </div>
-    <hr />
     <div class="commentaren">
         @foreach (var comment in @Model.Comments.OrderByDescending(c=>c.TimeCreated)) {
-        <div class="card cardcomment">
+        <div class="card cardcomment col-lg-4">
             <span class="card-body comment">@comment.Comments</span>
         </div>
     }
     </div>
 </div>
-

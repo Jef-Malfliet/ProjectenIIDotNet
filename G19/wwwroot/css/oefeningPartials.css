@@ -45,19 +45,23 @@ iframe {
     }
 
 .nieuweCommentaar {
-    width: 70vw;
+    margin: 3% 5% 3% 0;
     align-items: unset;
 }
 
 .submitButton {
-    border: solid;
-    width: auto;
-    float: right;
+    border: solid 2px var(--accent2);
+    margin: 0 auto;
+    background-color: var(--accent2);
+    color: var(--zwart);
+    display: inline-block;
 }
 
 .commentaren {
-    margin-top: 2em;
-    align-items: unset;
+    margin: 3% 5% 3% 0;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
 }
 
 .comment {
@@ -83,7 +87,7 @@ iframe {
     margin-left: 13%;
 }
 
-.fotoOefCont{
+.fotoOefCont {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
