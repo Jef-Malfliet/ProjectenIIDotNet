@@ -20,9 +20,11 @@ namespace G19.Controllers {
             _lidRepository = lidRepository;
 
         }
+
         public IActionResult Index() {
             return View();
         }
+
         [HttpGet]
         public IActionResult Edit() {
            

@@ -12,13 +12,15 @@ namespace G19Test.Controllers {
 
         private readonly OefeningController _controller;
         private readonly Mock<IOefeningRepository> _oefeningRepository;
+        private readonly Mock<ILidRepository> _lidRepository;
         private readonly DummyDbContext _context;
         private readonly _CommentsViewModel _model;
 
         public OefeningControllerTest() {
             _context = new DummyDbContext();
             _oefeningRepository = new Mock<IOefeningRepository>();
-            _controller = new OefeningController(_oefeningRepository.Object);
+            _lidRepository = new Mock<ILidRepository>();
+            _controller = new OefeningController(_oefeningRepository.Object, _lidRepository.Object);
             _model = new _CommentsViewModel() {
                 Comments = "Dit is de model comment" 
             };

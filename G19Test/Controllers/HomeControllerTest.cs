@@ -16,7 +16,7 @@ namespace G19Test.Controllers {
         public HomeControllerTest() {
             _context = new DummyDbContext();
             _lidRepository = new Mock<ILidRepository>();
-            //_controller = new HomeController(_lidRepository.Object);
+            _controller = new HomeController(_lidRepository.Object);
         }
 
         #region HttpGet
