@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,12 +20,16 @@ namespace G19.Models.ViewModels {
         public string EmailOuders { get; set; }
         public DateTime GeboorteDatum { get; set; }
         public string Geslacht { get; set; }
+        [EnumDataType(typeof(GraadEnum))]
         public GraadEnum Graad { get; set; }
+        [EnumDataType(typeof(LandEnum))]
         public LandEnum Land { get; set; }
+        [EnumDataType(typeof(FormuleEnum))]
         public FormuleEnum Lessen { get; set; }
         public string Postcode { get; set; }
         public string Stad { get; set; }
         public string StraatNaam { get; set; }
+        [EnumDataType(typeof(RolTypeEnum))]
         public RolTypeEnum Roltype { get; set; }
         public string Wachtwoord { get; set; }
         public LidViewModel() {

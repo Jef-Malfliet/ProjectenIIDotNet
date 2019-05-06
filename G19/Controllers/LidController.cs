@@ -61,16 +61,17 @@ namespace G19.Controllers {
             lid.EmailOuders = LidViewModel.EmailOuders;
             lid.GeboorteDatum = LidViewModel.GeboorteDatum;
             lid.Geslacht = LidViewModel.Geslacht;
-            lid.Graad = LidViewModel.Graad;
             lid.Land = LidViewModel.Land;
-            lid.Lessen = LidViewModel.Lessen;
             lid.PostCode = LidViewModel.Postcode;
             lid.Stad = LidViewModel.Stad;
             lid.StraatNaam = LidViewModel.StraatNaam;
-            lid.Roltype = LidViewModel.Roltype;
-            lid.Wachtwoord = LidViewModel.Wachtwoord;
+            // lid.Lessen = LidViewModel.Lessen;
+            // lid.Graad = LidViewModel.Graad;
+            // lid.Roltype = LidViewModel.Roltype;
+            // lid.Wachtwoord = LidViewModel.Wachtwoord;
+            //lid.Id = LidViewModel.Id;
 
-            
+
         }
     }
 }
