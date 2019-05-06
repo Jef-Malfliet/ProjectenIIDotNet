@@ -55,7 +55,7 @@ namespace G19.Controllers {
                 //  Session session = GeefHuidgeSessie();
                 //var leden = _lidRepository.GetByGraad(graad,session.Formule);
                 var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad,SessionState.vandaag);
-
+                TempData["active"] = graad;
                 return View(nameof(Index), leden);
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
