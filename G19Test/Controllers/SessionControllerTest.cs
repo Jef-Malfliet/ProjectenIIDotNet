@@ -1,10 +1,13 @@
 ﻿using G19.Controllers;
+using G19.Models;
 using G19.Models.Repositories;
+using G19.Models.State_Pattern;
 using G19Test.Data;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Xunit;
 
 namespace G19Test.Controllers {
     public class SessionControllerTest {
@@ -20,11 +23,43 @@ namespace G19Test.Controllers {
         }
 
         #region Index
-
+        [Fact]
+        public void TestIndex_GeeftIndexViewTerug() {
+            var result = _controller.Index() as ViewResult;
+            Assert.Equal("Index", result?.ViewName);
+        }
         #endregion
 
         #region Start Session
-
+        [Fact]
+        public void TestStartNieuweSessie_GeeftHomeIndexViewMetLedenVandaag() {
+            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(SessionState.vandaag)).Returns(new List<Lid>() { _context.Lid1});
+            var result = _controller.StartNieuweSessie() as ViewResult;
+            Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);
+            Assert.Equal("../Home/Index", result?.ViewName);
+            Assert.Equal(SessionEnum.RegistreerState, SessionState.state);
+            Assert.Equal(DateTime.Today.DayOfWeek, SessionState.vandaag);
+        }
         #endregion
+
+        #region Fake Today
+        [Fact]
+        public void TestFakeToday_Vandaag_GeeftHomeIndexViewMetLedenMeegegevenDag() {
+            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(SessionState.vandaag)).Returns(new List<Lid>() { _context.Lid1});
+            var result = _controller.FakeToday(DayOfWeek.Monday) as ViewResult;
+            Assert.Equal(DayOfWeek.Monday, SessionState.vandaag);
+            Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);
+            Assert.Equal("../Home/Index", result?.ViewName);
+        }
+        #endregion
+
+        #region End Session State
+        [Fact]
+        public void TestEndSessionState_ZetSessionStateOpEindState() {
+            _controller.EndSessionState();
+            Assert.Equal(SessionEnum.EindState, SessionState.state);
+        }
+        #endregion
+
     }
 }

@@ -12,7 +12,6 @@ namespace G19.Models.State_Pattern {
             vandaag = fakevandaag;
         }
        
-
         public static bool AanwezigheidRegistrerenState() {
             return state == SessionEnum.RegistreerState;
         }

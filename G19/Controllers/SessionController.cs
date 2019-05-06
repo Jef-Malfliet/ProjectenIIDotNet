@@ -26,7 +26,7 @@ namespace G19.Controllers {
         }
         [HttpGet]
         public IActionResult Index() {
-            return View();
+            return View("Index");
         }
 
         [HttpGet]
