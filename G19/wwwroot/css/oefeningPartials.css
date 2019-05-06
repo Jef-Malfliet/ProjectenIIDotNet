@@ -92,3 +92,16 @@ iframe {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.videoContainer {
+    margin-top: 7%;
+    margin-left: 3%;
+}
+
+.fotoHeader {
+    margin-left: 5%;
+}
+
+.fotoOefCard {
+    margin-bottom: 2%;
+}

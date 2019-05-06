@@ -8,8 +8,8 @@
 <body>
     <div class="navbar">
         <ul>
-            @*<li></li> *@
-            <li><a href="http://jiu-jitsu-gent.be/" target="_blank"><img src="~/img/TaijitanLogo.png" id="logo" /></a><a target="_blank" href="http://jiu-jitsu-gent.be/" class="navA">Taijitan Yoshin Ryu VZW</a></li>
+            <a class="imgCont" href="http://jiu-jitsu-gent.be/" target="_blank"><img src="~/img/TaijitanLogo.png" id="logo" /></a>
+            <li><a target="_blank" href="http://jiu-jitsu-gent.be/" class="navA">Taijitan Yoshin Ryu VZW</a></li>
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
                 <li> <a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
                 <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
@@ -19,12 +19,12 @@
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
                 <li><a asp-controller="Lid" asp-action="Edit" class="navA">Gegevens lid wijzigen</a></li>
             }
-            @if(User.Identity.IsAuthenticated){
-            <li>
-                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
-                    <button type="submit" class="navA">Logout</button>
-                </form>
-            </li>
+            @if (User.Identity.IsAuthenticated) {
+                <li>
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
+                        <button type="submit" class="navA">Logout</button>
+                    </form>
+                </li>
             }
         </ul>
 
@@ -36,7 +36,7 @@
 
 </body>
 
-        @*<nav class="navbar navbar-expand-lg">
+@*<nav class="navbar navbar-expand-lg">
         <a class="navbar-brand align-self-center" href="#"><img src="~/img/TaijitanLogo.png" id="logo" /></a><span class="align-content-center" id="mainText">Taijitan Roshin Ryu VZW</span>
         <div>
             <ul class="navbar-nav mr-auto">
