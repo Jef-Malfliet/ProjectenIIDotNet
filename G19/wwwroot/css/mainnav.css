@@ -40,9 +40,9 @@
     width:80%;
 }
 
-.imgCont{
+/*.imgCont{
     margin-top: 1%;
-}
+}*/
 
 #mainText {
     margin-right: 1%;
@@ -57,7 +57,6 @@
 
 .navbar ul li {
    margin-right: 10vw;
-   padding:5px;
 }
 
 .navbar ul li a {
@@ -84,7 +83,7 @@
 @media only screen and (min-width:768px) {
 
     .navbar {
-        height: 6vh;
+        height: 7vh;
     }
 
     .navbar ul {
