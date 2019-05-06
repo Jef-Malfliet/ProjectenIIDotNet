@@ -44,18 +44,7 @@ namespace G19.Controllers {
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
             if (SessionState.AanwezigheidRegistrerenState()) {
-                //if (graad != "ZWART" && graad != "ALLES") {
-                //    // return View(nameof(Index), _lidRepository.GetByGraad(graad));
-                //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString() == graad));
-                //} else if (graad == "ZWART") {
-                //    return View(nameof(Index), _lidRepository.GetAll().Where(lid => lid.Graad.ToString().StartsWith("DAN")));
-                //}else{
-                //    return View(nameof(Index), _lidRepository.GetAll());
-                //}
-                //  Session session = GeefHuidgeSessie();
-                //var leden = _lidRepository.GetByGraad(graad,session.Formule);
                 var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad,SessionState.vandaag);
-                TempData["active"] = graad;
                 return View(nameof(Index), leden);
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
