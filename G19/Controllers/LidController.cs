@@ -22,7 +22,7 @@ namespace G19.Controllers {
         }
 
         public IActionResult Index() {
-            return View();
+            return View("Index");
         }
 
         [HttpGet]
@@ -34,6 +34,7 @@ namespace G19.Controllers {
             
             return View(new LidViewModel(lid));
         }
+
         [HttpPost]
         public IActionResult Edit(LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
@@ -51,6 +52,7 @@ namespace G19.Controllers {
            
             return View(nameof(Edit), lidViewModel);
         }
+
         private void MapLidViewModelToLid(LidViewModel LidViewModel, Lid lid) {
             lid.Voornaam = LidViewModel.Voornaam;
             lid.Familienaam = LidViewModel.Achternaam;

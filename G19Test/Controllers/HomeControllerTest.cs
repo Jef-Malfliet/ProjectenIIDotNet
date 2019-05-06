@@ -19,12 +19,20 @@ namespace G19Test.Controllers {
             _controller = new HomeController(_lidRepository.Object);
         }
 
-        #region HttpGet
+        #region GeefAanwezighedenPerGraad
         [Fact]
-        public void GetGeefAanwezighedenPerGraad_GeeftDeJuisteLedenDoor() {
+        public void HttpGetGeefAanwezighedenPerGraad_GeeftIndexTerug() {
             _lidRepository.Setup(l => l.GetByGraad("wit")).Returns(new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 });
             var result = _controller.GeefAanwezighedenPerGraad("wit") as ViewResult;
-            Assert.Equal(3, result?.Model);
+            Assert.Equal("Index",result?.ViewName);
+        }
+
+        [Fact]
+        public void HttpGetGeefAanwezighedenPerGraad_GeeftHetJuisteModelDoor() {
+            _lidRepository.Setup(l => l.GetByGraad("wit")).Returns(new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 });
+            var result = _controller.GeefAanwezighedenPerGraad("wit") as ViewResult;
+            var model = new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 };
+            Assert.Equal(model, result?.Model);
         }
         #endregion
     }
