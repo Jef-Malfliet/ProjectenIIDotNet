@@ -51,6 +51,10 @@
     top: 15%;
     left: 55%;
     opacity:0.5;
-    /*width: 25%;*/
     display: inline-block;
+}
+
+.makeBtn{
+    text-align: center;
+    font-family: var(--headerFont);
 }
