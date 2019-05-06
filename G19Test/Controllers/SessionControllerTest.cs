@@ -1,5 +1,6 @@
 ﻿using G19.Controllers;
 using G19.Models.Repositories;
+using G19Test.Data;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,22 @@ using System.Text;
 namespace G19Test.Controllers {
     public class SessionControllerTest {
 
-        private readonly Mock<ILidRepository> _lidRepository;
-        private readonly LidControllerTest _controller;
+        private readonly SessionController _controller;
+        private readonly Mock<ILidRepository> _lidRepostiory;
+        private readonly DummyDbContext _context;
 
         public SessionControllerTest() {
-            _lidRepository = new Mock<ILidRepository>();
-            _controller = new LidController(_lidRepository.Object);
+            _lidRepostiory = new Mock<ILidRepository>();
+            _context = new DummyDbContext();
+            _controller = new SessionController(_lidRepostiory.Object);
         }
+
+        #region Index
+
+        #endregion
+
+        #region Start Session
+
+        #endregion
     }
 }

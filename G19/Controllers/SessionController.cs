@@ -28,6 +28,7 @@ namespace G19.Controllers {
         public IActionResult Index() {
             return View();
         }
+
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
         public IActionResult StartNieuweSessie() {
@@ -35,6 +36,7 @@ namespace G19.Controllers {
             SessionState.vandaag = DateTime.Today.DayOfWeek;
             return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
+
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
         public IActionResult FakeToday(DayOfWeek dag) {

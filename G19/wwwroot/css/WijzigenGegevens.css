@@ -9,3 +9,30 @@
 .formControl {
     font-family: var(--bodyFont);
 }
+
+.cancelBtn {
+    width: 100%;
+    margin-top: 1%;
+}
+
+.makeBtn {
+    text-align: center;
+    font-family: var(--headerFont);
+    width: 50vw;
+}
+
+.btnCont {
+    margin: 25% 0 0 25%;
+}
+
+@media screen and (max-width: 1150px){
+    .wijziglidform{
+        margin: 10% auto;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .wijziglidform{
+        margin: 12% auto;
+    }
+}
