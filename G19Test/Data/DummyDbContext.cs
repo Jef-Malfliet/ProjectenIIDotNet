@@ -7,6 +7,7 @@ namespace G19Test.Data {
         public Oefening Oefening1 { get; }
         public Oefening Oefening2 { get; }
         public Oefening Oefening3 { get; }
+        public Oefening Oefening1ExtraCommentaar { get; }
 
         public Lid Lid1 { get; }
         public Lid Lid2 { get; }
@@ -67,6 +68,9 @@ namespace G19Test.Data {
                 Uitleg = "TestUitleg3",
                 Video = "https://www.youtube.com/watch?v=Yeq9vAr037U"
             };
+
+            Oefening1ExtraCommentaar = Oefening1;
+            Oefening1ExtraCommentaar.Comments.Add(new Oefening_Comments() { OefeningId = 3, Comments = "Dit is de model comment" });
 
             Lid1 = new Lid() {
                 Aanwezigheden = new List<Lid_Aanwezigheden>() {
