@@ -51,6 +51,12 @@ namespace G19.Models {
         #endregion
 
         #region Methods
+        public string GetFirstImage() {
+            if (Images.Count > 0)
+                return Images[0].getImageName();
+            else
+                return "stock.jpg";
+        }
         public string ConvertVideoUrlToEmbed(string url) {
             Uri uri;
             try {

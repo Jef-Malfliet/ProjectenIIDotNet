@@ -1,0 +1,11 @@
+﻿.wijziglidform {
+    margin: 7% auto;
+}
+
+.formLabel {
+    font-family: var(--headerFont);
+}
+
+.formControl {
+    font-family: var(--bodyFont);
+}

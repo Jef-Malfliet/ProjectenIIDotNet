@@ -3,13 +3,21 @@
     <link rel="stylesheet" href="~/css/oefeningPartials.css" />
 </head>
 @{
-    ViewData["Title"] = "_Fotos";
+    ViewData["Title"] = "Fotos";
 }
 <div class="containerOefening">
 
-    <div class="container">
+    <h2 class="header fotoHeader">Foto's</h2>
+
+    <div class="fotoOefCont">
         @foreach (var image in @Model.Images) {
-            <div class="card">@image.Images</div>
+        <div class="card fotoOefCard">
+            <img src="~/img/@image.getImageName()" class="card-img-top" />
+            <div class="card-body">
+                <h5 class="card-title">@image.getImageName()</h5>
+            </div>
+        </div>
+
         }
     </div>
 </div>

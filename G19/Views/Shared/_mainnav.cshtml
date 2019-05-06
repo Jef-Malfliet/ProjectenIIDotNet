@@ -1,4 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 
 <head>
     <link rel="stylesheet" href="~/css/mainnav.css" />
@@ -6,20 +8,29 @@
 <body>
     <div class="navbar">
         <ul>
-            @*<li></li> *@
-            <li><a href="http://jiu-jitsu-gent.be/" target="_blank"><img src="~/img/TaijitanLogo.png" id="logo" /></a><a target="_blank" href="http://jiu-jitsu-gent.be/" class="navA">Taijitan Yoshin Ryu VZW</a></li>
-            @if (User.Identity.IsAuthenticated) {
-                <li><a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
+            <a class="imgCont" href="http://jiu-jitsu-gent.be/" target="_blank"><img src="~/img/TaijitanLogo.png" id="logo" /></a>
+            <li><a target="_blank" href="http://jiu-jitsu-gent.be/" class="navA">Taijitan Yoshin Ryu VZW</a></li>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
+                <li> <a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
                 <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="navA">Hello @User.Identity.Name!</a></li>
+
+            }
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
+                <li><a asp-controller="Lid" asp-action="Edit" class="navA">Gegevens lid wijzigen</a></li>
+            }
+            @if (User.Identity.IsAuthenticated) {
                 <li>
-                    <form  asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
-                        <button type="submit" class="navA" >Logout</button>
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
+                        <button type="submit" class="navA">Logout</button>
                     </form>
                 </li>
-                <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="navA">Hello @User.Identity.Name!</a></li>
             }
-            
-            </ul>
+        </ul>
+
+        <a asp-controller="Session" asp-action="FakeToday" asp-route-dag="@DayOfWeek.Tuesday" class="navA">Din</a>
+        <a asp-controller="Session" asp-action="FakeToday" asp-route-dag="@DayOfWeek.Wednesday" class="navA">Woe</a>
+        <a asp-controller="Session" asp-action="FakeToday" asp-route-dag="@DayOfWeek.Sunday" class="navA">Zon</a>
 
     </div>
 
@@ -37,4 +48,4 @@
                 </li>
             </ul>
         </div>
-    </nav>*@    
+    </nav>*@

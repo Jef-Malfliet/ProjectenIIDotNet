@@ -6,6 +6,13 @@ namespace G19.Models.State_Pattern {
         public static SessionEnum state;
         public static Lid huidigLid;
 
+        public static DayOfWeek vandaag = DateTime.Today.DayOfWeek;
+
+        public static void FakeVandaag(DayOfWeek fakevandaag) {
+            vandaag = fakevandaag;
+        }
+       
+
         public static bool AanwezigheidRegistrerenState() {
             return state == SessionEnum.RegistreerState;
         }

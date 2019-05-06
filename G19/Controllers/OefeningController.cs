@@ -9,7 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace G19.Controllers {
-    [Authorize]
+    [Authorize(Policy = "Lesgever")]
+
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;
@@ -46,6 +47,7 @@ namespace G19.Controllers {
         }
         [Route("Oefening/{graad}")]
         public IActionResult GeefOefeningenPerGraad(string graad) {
+            TempData["Graad"] = SessionState.huidigLid.geefGraadinGetal();
             if (SessionState.OefeningenBekijkenState()) {
                 if (SessionState.ToegestaandOefeningenBekijken(graad)) {
                     if (graad != "ZWART" && graad != "ALLES") {
@@ -71,10 +73,12 @@ namespace G19.Controllers {
 
         public IActionResult GeefOefeningenLid(int lidId) {
             var lid = _lidRepository.GetById(lidId);
+            TempData["Graad"] = lid.geefGraadinGetal();
             SessionState.VeranderHuidigLid(lid);
             if (SessionState.OefeningenBekijkenState()) {
                 string graad = lid.Graad.ToString();
                 if (graad != "ZWART" && graad != "ALLES") {
+                   
                     return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
                 }
                 else if (graad == "ZWART") {
@@ -86,9 +90,13 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
+              
                 return View("~/Views/Session/SessionStateMessage.cshtml");
+
             }
         }
+
+        
 
         public ActionResult GeefTextView(int Id) {
             if (SessionState.OefeningenBekijkenState()) {

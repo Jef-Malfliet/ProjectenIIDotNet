@@ -15,24 +15,31 @@ using Newtonsoft.Json;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace G19.Controllers {
-    [Authorize(Policy = "Lesgever")]
+    [Authorize]
     public class SessionController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
-        private readonly ISessionRepository _sessionRepository;
-        public SessionController(ILidRepository lidRepository, ISessionRepository sessionRepository) {
+       // private readonly ISessionRepository _sessionRepository;
+        public SessionController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
-            _sessionRepository = sessionRepository;
+            //_sessionRepository = sessionRepository;
         }
         [HttpGet]
         public IActionResult Index() {
             return View();
         }
         [HttpGet]
+        [Authorize(Policy = "Lesgever")]
         public IActionResult StartNieuweSessie() {
             SessionState.ToState(SessionEnum.RegistreerState);
-            
-            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek));
+            SessionState.vandaag = DateTime.Today.DayOfWeek;
+            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+        }
+        [HttpGet]
+        [Authorize(Policy = "Lesgever")]
+        public IActionResult FakeToday(DayOfWeek dag) {
+            SessionState.FakeVandaag(dag);
+            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
         //[HttpGet]
         //public IActionResult MaakNieuweSessie() {
@@ -55,7 +62,7 @@ namespace G19.Controllers {
         //    return View("BestaandeSessie", dichtsteSessie);
         //}
 
-
+        [Authorize(Policy = "Lesgever")]
         public void EndSessionState() {
             SessionState.ToState(SessionEnum.EindState);
         }

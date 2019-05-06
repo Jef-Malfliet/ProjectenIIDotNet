@@ -26,12 +26,16 @@
             <a class="buttons" asp-controller="Home" asp-action="ToOefeningState">Aanwezigheden zijn geregistreerd</a>
         </div>
         <div class="containerAanwezighedenCards">
-            @foreach (var lid in Model) {
+            @if (Model.LongCount() == 0) {
+                <p>Er zijn geen leden ingeschreven op deze vandaag</p>
+            } else {
+                @foreach (var lid in Model) {
 
-                <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
-                    <img src="~/img/stock.jpg" class="float-left pf" />
-                    <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id" class="lidButton nameAnchor">@lid.Familienaam<br /> @lid.Voornaam</a>
-                </div>
+                    <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
+                        <img src="~/img/stock.jpg" class="float-left pf" />
+                        <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id" class="lidButton nameAnchor">@lid.Familienaam<br /> @lid.Voornaam</a>
+                    </div>
+                }
             }
         </div>
     </div>

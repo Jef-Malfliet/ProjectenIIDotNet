@@ -18,11 +18,11 @@ iframe {
 }
 
 .card {
-    width: 60vw;
-    height: 5vw;
-    background: none;
-    border: none;
+    text-align: center;
+    width: 33%;
+    margin: 0 5%;
 }
+
 
 .container {
     width: 100vw;
@@ -45,19 +45,23 @@ iframe {
     }
 
 .nieuweCommentaar {
-    width: 70vw;
+    margin: 3% 5% 3% 0;
     align-items: unset;
 }
 
 .submitButton {
-    border: solid;
-    width: auto;
-    float: right;
+    border: solid 2px var(--accent2);
+    margin: 0 auto;
+    background-color: var(--accent2);
+    color: var(--zwart);
+    display: inline-block;
 }
 
 .commentaren {
-    margin-top: 2em;
-    align-items: unset;
+    margin: 3% 5% 3% 0;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
 }
 
 .comment {
@@ -72,7 +76,7 @@ iframe {
 }
 
 .containerOefening {
-    margin: 7% 0 0 3%;
+    margin: 14% 0 0 3%;
 }
 
 .textContainer {
@@ -80,7 +84,24 @@ iframe {
 }
 
 .video {
-    /*width: 80vw;
-    height: 80vw;*/
     margin-left: 13%;
+}
+
+.fotoOefCont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.videoContainer {
+    margin-top: 7%;
+    margin-left: 3%;
+}
+
+.fotoHeader {
+    margin-left: 5%;
+}
+
+.fotoOefCard {
+    margin-bottom: 2%;
 }

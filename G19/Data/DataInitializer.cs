@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -67,10 +68,38 @@ namespace G19.Data {
             //    Formule = FormuleEnum.Dinsdag
             //}
 
-       
-            //);
-            _context.SaveChanges();
+            foreach (Lid li in _context.Leden.ToList()) {
 
+                //int number = (li.Email).GetHashCode() % 97;
+                //try {
+                //    string va = (li.Voornaam + li.Familienaam);
+                //    va = va.Replace(" ", String.Empty);
+                //    string ww = va[5].ToString() +va [4].ToString() + va[7].ToString() + Math.Abs(number) + li.Email[2].ToString() + li.Familienaam[1].ToString() + va[1].ToString();
+                //    li.Wachtwoord = ww;
+                //li.Wachtwoord += "!";
+                //} catch {
+                //    li.Wachtwoord = "Probleem123";
+                //}
+
+              //  try {
+                //    if (_context.Users.Count(u => u.UserName == li.Email) == 0 && li.Id != 88 && li.Id != 176) {
+
+                //    IdentityUser user = new IdentityUser(li.Email);
+
+                //    await _usermanager.CreateAsync(user, li.Wachtwoord);
+                //    await _usermanager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "lid"));
+                //    _context.SaveChanges();
+
+                //}
+                    //} catch {
+                    //    li.Wachtwoord = "Probleem1234";
+                    //}
+
+
+                    //);
+                    _context.SaveChanges();
+
+            }
         }
     }
 }

@@ -1,31 +1,4 @@
-﻿/*--------------------MOBILE FIRST!---------------------*/
-/*START Variables*/
-:root {
-    /*Color Palette*/
-    /*--primary: #00b4ab;
-    --counter: #454553;
-    --white: #dfdfdf;
-    --yellow: #fbba0a;
-    --orange: #f08d0c;
-    --green: #269433;
-    --blue: #2962df;
-    --brown: #853f13;
-    --black: #151515;
-    --aanwezigheidGemeld: #00909a;*/
-    /*Fonts*/
-    /*--headerFont: 'Montserrat', sans-serif;
-    --bodyFont: 'Sanchez', serif;*/
-}
-/*END Variables*/
-
-
-/*.containerOefeningen {
-    font-family: var(--headerFont);
-    box-sizing: border-box;
-    background-color: var(--primary);
-}*/
-
-.containerOefeningenCards {
+﻿.containerOefeningenCards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -76,83 +49,90 @@ ul li {
     }
 
 .graadBox {
-    display: block;
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
+    justify-content: space-between;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 
-    .graadBox a {
-        padding-top: 5px;
-    }
+
 
 .has {
     color: var(--accent4);
 }
+
 
 .graadBox .has:hover {
     color: var(--primary);
 }
 
 .hasnt {
-    color: var(--counter);
+    color: var(--accent5);
     cursor: default;
+    opacity: 0.5;
 }
 
-.graadBox .hasnt:hover {
-    color: var(--counter);
-}
-
-.wit {
-    background-color: var(--white);
-}
+    .hasnt:hover {
+        color: var(--accent5);
+        opacity: 0.5;
+    }
 
 .geel {
-    background-color: var(--yellow);
+    border: 5px var(--yellow) solid;
 }
 
 .oranje {
-    background-color: var(--orange);
+    border: 5px var(--orange) solid;
 }
 
 .groen {
-    background-color: var(--green);
+    border: 5px var(--green) solid;
 }
 
 .blauw {
-    background-color: var(--blue);
+    border: 5px var(--blue) solid;
 }
 
 .bruin {
-    background-color: var(--brown);
+    border: 5px var(--brown) solid;
 }
 
 .zwart {
-    background-color: var(--black);
+    border: 5px var(--black) solid;
 }
 
 .card {
     background-color: var(--counter);
-    width: 20%;
-    height: 100px;
+    height: 90%;
     margin: 10px;
     align-items: center;
     position: relative;
 }
 
-@media only screen and (min-width:768px) {
-    /*.containerOefeningen {
-        margin-left: 25vw;
-        width: 75vw;
-    }*/
-}
+    .card img {
+        width: 100%;
+        height: 15vh;
+        margin: 0;
+    }
 
 .oefHeader {
     margin-left: 17%;
     margin-top: 5%;
 }
+
+.card-body {
+    width: 100%;
+    text-align: center;
+    height: 5vw;
+}
+
+.containerOefeningen {
+    margin-top: 6%;
+}
+
+@media screen and (max-width :1000px) {
+    .containerOefeningen {
+        margin-top: 7%;
+    }
+}
+

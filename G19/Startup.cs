@@ -56,7 +56,7 @@ namespace G19 {
 
             services.AddScoped<ILidRepository, LidRepository>();
             services.AddScoped<IOefeningRepository, OefeningRepository>();
-            services.AddScoped<ISessionRepository, SessionRepository>();
+          //  services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<DataInitializer>();
         }
 

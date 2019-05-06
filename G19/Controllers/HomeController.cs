@@ -11,10 +11,10 @@ namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
     public class HomeController : Controller {
         private readonly ILidRepository _lidRepository;
-        private readonly ISessionRepository _sessionRepository;
-        public HomeController(ILidRepository lidRepository, ISessionRepository sessionRepository) {
+        //private readonly ISessionRepository _sessionRepository;
+        public HomeController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
-            _sessionRepository = sessionRepository;
+           // _sessionRepository = sessionRepository;
         }
 
         public IActionResult Index() {
@@ -23,7 +23,7 @@ namespace G19.Controllers {
                 //return View(_lidRepository.GetByFormule(session.Formule));
 
                
-                return View(_lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek));
+                return View(_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
@@ -54,8 +54,7 @@ namespace G19.Controllers {
                 //}
                 //  Session session = GeefHuidgeSessie();
                 //var leden = _lidRepository.GetByGraad(graad,session.Formule);
-                //var leden = _lidRepository.GetByGraadEnFormule(graad, session.Formule);
-                var leden = _lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek);
+                var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad,SessionState.vandaag);
 
                 return View(nameof(Index), leden);
             } else {
