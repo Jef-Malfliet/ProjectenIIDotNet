@@ -48,6 +48,7 @@ namespace G19.Controllers {
         [Route("Oefening/{graad}")]
         public IActionResult GeefOefeningenPerGraad(string graad) {
             TempData["Graad"] = SessionState.huidigLid.geefGraadinGetal();
+            TempData["active"] = graad;
             if (SessionState.OefeningenBekijkenState()) {
                 if (SessionState.ToegestaandOefeningenBekijken(graad)) {
                     if (graad != "ZWART" && graad != "ALLES") {

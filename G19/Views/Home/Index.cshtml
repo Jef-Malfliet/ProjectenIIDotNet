@@ -9,14 +9,14 @@
 </head>
 <body>
     <div id="sidenavAanwezigheden" class="sidenav">
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ALLES">ALLES</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="WIT">WIT</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GEEL">GEEL</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GROEN">GROEN</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ZWART">ZWART</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ALLES" class="@((string)TempData["active"] == "ALLES" ? "active" : "")">ALLES</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="WIT" class="@((string)TempData["active"] == "WIT" ? "active" : "")">WIT</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GEEL" class="@((string)TempData["active"] == "GEEL" ? "active" : "")">GEEL</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ORANJE" class="@((string)TempData["active"] == "ORANJE" ? "active" : "")">ORANJE</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GROEN"class="@((string)TempData["active"] == "GROEN" ? "active" : "")">GROEN</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BLAUW" class="@((string)TempData["active"] == "BLAUW" ? "active" : "")">BLAUW</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BRUIN" class="@((string)TempData["active"] == "BRUIN" ? "active" : "")">BRUIN</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ZWART" class="@((string)TempData["active"] == "ZWART" ? "active" : "")">ZWART</a>
     </div>
     <div class="containerMissAanwezigheden">
         <h1 class="header">Registreer aanwezigheid</h1>
@@ -28,7 +28,8 @@
         <div class="containerAanwezighedenCards">
             @if (Model.LongCount() == 0) {
                 <p>Er zijn geen leden ingeschreven op deze vandaag</p>
-            } else {
+            }
+            else {
                 @foreach (var lid in Model) {
 
                     <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
@@ -40,4 +41,5 @@
         </div>
     </div>
 </body>
+
 

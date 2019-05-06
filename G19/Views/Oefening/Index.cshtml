@@ -11,14 +11,14 @@
     <div>
         <div id="sidenavOefeningen" class="sidenav">
 
-            <a class="@((int)@TempData["Graad"] >= 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
-            <a class="@((int)@TempData["Graad"] > 0?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
-            <a class="@((int)@TempData["Graad"] > 1?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
-            <a class="@((int)@TempData["Graad"] > 2?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
-            <a class="@((int)@TempData["Graad"] > 3?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
-            <a class="@((int)@TempData["Graad"] > 4?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
-            <a class="@((int)@TempData["Graad"] > 5?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
-            <a class="@((int)@TempData["Graad"] > 6?"":"not")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+            <a class="@((int)@TempData["Graad"] >= 0?"":"not") @((string)TempData["active"] == "WIT" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="WIT">WIT</a>
+            <a class="@((int)@TempData["Graad"] > 0?"":"not") @((string)TempData["active"] == "GEEL" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GEEL">GEEL</a>
+            <a class="@((int)@TempData["Graad"] > 1?"":"not") @((string)TempData["active"] == "ORANJE" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ORANJE">ORANJE</a>
+            <a class="@((int)@TempData["Graad"] > 2?"":"not") @((string)TempData["active"] == "GROEN" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="GROEN">GROEN</a>
+            <a class="@((int)@TempData["Graad"] > 3?"":"not") @((string)TempData["active"] == "BLAUW" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
+            <a class="@((int)@TempData["Graad"] > 4?"":"not") @((string)TempData["active"] == "BRUIN" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
+            <a class="@((int)@TempData["Graad"] > 5?"":"not") @((string)TempData["active"] == "ZWART" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
+            <a class="@((int)@TempData["Graad"] > 6?"":"not") @((string)TempData["active"] == "ALLES" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
         </div>
         <div class="containerOefeningen">
             <h1 class="header oefHeader">Oefeningen</h1>

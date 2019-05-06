@@ -31,7 +31,10 @@
     top: 10vh;
     z-index: 100;
 }
-
+.active{
+    background-color: #D5A021;
+    color: var(--white) !important;
+}
 .not {
     opacity: 0.3;
     cursor: default;
