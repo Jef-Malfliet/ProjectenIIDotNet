@@ -46,6 +46,7 @@ namespace G19.Controllers {
                     _lidRepository.SaveChanges();
                 }catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
+                    return View(nameof(Edit), lidViewModel);
                 }
                 return RedirectToAction(nameof(Index));
             }

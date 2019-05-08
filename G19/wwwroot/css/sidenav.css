@@ -21,8 +21,7 @@
 .sidenav {
     display: flex;
     background-color: var(--counter);
-    height: 96vh;
-    max-width: 14vw;
+    height: 90vh;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     position: fixed;
@@ -39,21 +38,22 @@
     opacity: 0.3;
     cursor: default;
 }
-    .sidenav a, .sidenav a:active {
-        text-decoration: none;
-        color: var(--accent2);
-        width: 100%;
-        padding: 30px;
-        text-align: center;
-    }
 
-        .sidenav a:hover {
-            background-color: var(--primary);
-        }
+.sidenav a, .sidenav a:active {
+    text-decoration: none;
+    color: var(--accent2);
+    width: 100%;
+    padding: 3%;
+    text-align: center;
+}
+
+.sidenav a:hover {
+    background-color: var(--primary);
+}
 
 @media only screen and (min-width:768px) {
     .sidenav {
-        width: 20vw;
+        width: 14vw;
         height: 94vh;
         top: 6vh;
     }

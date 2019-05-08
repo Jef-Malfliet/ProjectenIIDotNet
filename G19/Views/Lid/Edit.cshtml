@@ -7,7 +7,7 @@
 
 <div class="col-md-4 wijziglidform">
     <form method="post">
-        <div asp-validation-summary="All"></div>
+        <div asp-validation-summary="All" class="allErrors"></div>
         <div class="form-group">
             <label asp-for="Voornaam" class="formLabel"></label>
             <input asp-for="Voornaam" class="form-control formControl" />
@@ -48,34 +48,35 @@
             <input asp-for="Geslacht" class="form-control formControl" />
             <span asp-validation-for="Geslacht" class="text-danger"></span>
         </div>
-        <div class="col-md-2 align-items-center align-content-center">
-            <div class="form-group">
-                <label asp-for="Rijksregisternummer1" class="formLabel">Rijksregisternummer</label>
 
+        <label asp-for="Rijksregisternummer1" class="formLabel">Rijksregisternummer</label>
+
+        <div class="rijksregDiv">
+            <div class="form-group rijksreg">
                 <input asp-for="Rijksregisternummer1" class="form-control formControl" />
-                <span asp-validation-for="Rijksregisternummer1" class="text-danger"></span>
             </div>
             .
-            <div class="form-group">
+            <div class="form-group rijksreg">
                 <input asp-for="Rijksregisternummer2" class="form-control formControl" />
-                <span asp-validation-for="Rijksregisternummer2" class="text-danger"></span>
             </div>
             .
-            <div class="form-group">
+            <div class="form-group rijksreg">
                 <input asp-for="Rijksregisternummer3" class="form-control formControl" />
-                <span asp-validation-for="Rijksregisternummer3" class="text-danger"></span>
             </div>
             -
-            <div class="form-group">
+            <div class="form-group rijksreg">
                 <input asp-for="Rijksregisternummer4" class="form-control formControl" />
-                <span asp-validation-for="Rijksregisternummer4" class="text-danger"></span>
             </div>
             .
-            <div class="form-group">
+            <div class="form-group rijksreg">
                 <input asp-for="Rijksregisternummer5" class="form-control formControl" />
-                <span asp-validation-for="Rijksregisternummer5" class="text-danger"></span>
             </div>
         </div>
+        <span asp-validation-for="Rijksregisternummer1" class="text-danger"></span>
+        <span asp-validation-for="Rijksregisternummer2" class="text-danger"></span>
+        <span asp-validation-for="Rijksregisternummer3" class="text-danger"></span>
+        <span asp-validation-for="Rijksregisternummer4" class="text-danger"></span>
+        <span asp-validation-for="Rijksregisternummer5" class="text-danger"></span>
         <div class="form-group">
             <label asp-for="StraatNaam" class="formLabel">Straatnaam</label>
             <input asp-for="StraatNaam" class="form-control formControl" />
@@ -111,12 +112,14 @@
             <span asp-validation-for="Land" class="text-danger"></span>
         </div>
 
-
-
-
         <div>
             <button class="btn btn-primary" type="submit">Save</button>
             <a asp-action="Index" asp-controller="Session" class="btn btn-warning cancelBtn">Cancel</a>
         </div>
     </form>
 </div>
+
+@section scripts {
+    <script asp-src-include="lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

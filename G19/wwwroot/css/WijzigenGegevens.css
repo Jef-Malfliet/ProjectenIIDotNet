@@ -25,7 +25,24 @@
     margin: 25% 0 0 25%;
 }
 
-@media screen and (max-width: 1150px){
+.rijksreg{
+    width: 2.18em;
+    margin: 0;
+    margin-bottom: 1em;
+    display: inline-block;
+}
+
+.rijksregDiv{
+    font-size: 2em;
+}
+
+.allErrors{
+    font-size:1.2em;
+    color: red;
+    margin: 1em 1em 1em 0;
+}
+
+@media screen and (max-width: 1150px) {
     .wijziglidform{
         margin: 10% auto;
     }

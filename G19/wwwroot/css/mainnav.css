@@ -64,12 +64,6 @@
     font-size: 15px;
 }
 
-.pf {
-    width: 24%;
-    border-radius: 5%;
-    margin-left: 5%;
-}
-
 .navA {
     color: var(--white);
     text-decoration: none;
