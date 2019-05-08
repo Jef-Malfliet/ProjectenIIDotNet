@@ -14,7 +14,22 @@ namespace G19.Models.ViewModels {
         public string Email { get; set; }
         public string GSM { get; set; }
         public string Telefoon { get; set; }
-        public string Rijksregisternummer { get; set; }
+        [StringLength(2, ErrorMessage = "Maximum 2")]
+
+        public string Rijksregisternummer1 { get; set; }
+        [StringLength(2)]
+
+        public string Rijksregisternummer2 { get; set; }
+        [StringLength(2)]
+
+        public string Rijksregisternummer3 { get; set; }
+        [StringLength(3)]
+
+        public string Rijksregisternummer4 { get; set; }
+        [StringLength(2)]
+
+        public string Rijksregisternummer5 { get; set; }
+
         public string Busnummer { get; set; }
         public string Huisnummer { get; set; }
         public string EmailOuders { get; set; }
@@ -42,7 +57,12 @@ namespace G19.Models.ViewModels {
             Email = lid.Email;
             GSM = lid.GSM;
             Telefoon = lid.Telefoon;
-            Rijksregisternummer = lid.Rijksregisternummer;
+            Rijksregisternummer1 = lid.Rijksregisternummer.Substring(0,2);
+            Rijksregisternummer2 = lid.Rijksregisternummer.Substring(3,2);
+            Rijksregisternummer3 = lid.Rijksregisternummer.Substring(6, 2);
+            Rijksregisternummer4 = lid.Rijksregisternummer.Substring(9, 3);
+            Rijksregisternummer5 = lid.Rijksregisternummer.Substring(13, 2);
+
             Busnummer = lid.Busnummer;
             Huisnummer = lid.Huisnummer;
             EmailOuders = lid.EmailOuders;

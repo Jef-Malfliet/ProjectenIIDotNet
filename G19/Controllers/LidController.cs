@@ -59,7 +59,8 @@ namespace G19.Controllers {
             lid.Email = LidViewModel.Email;
             lid.GSM = LidViewModel.GSM;
             lid.Telefoon = LidViewModel.Telefoon;
-            lid.Rijksregisternummer = LidViewModel.Rijksregisternummer;
+            lid.Rijksregisternummer = LidViewModel.Rijksregisternummer1 + "." + LidViewModel.Rijksregisternummer2 + "."
+                                      + LidViewModel.Rijksregisternummer3 + "-" + LidViewModel.Rijksregisternummer4 + "." + LidViewModel.Rijksregisternummer5;
             lid.Busnummer = LidViewModel.Busnummer;
             lid.Huisnummer = LidViewModel.Huisnummer;
             lid.EmailOuders = LidViewModel.EmailOuders;
