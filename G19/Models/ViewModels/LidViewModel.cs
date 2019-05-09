@@ -100,7 +100,7 @@ namespace G19.Models.ViewModels {
             Huisnummer = lid.Huisnummer;
             EmailOuders = lid.EmailOuders;
             GeboorteDatum = lid.GeboorteDatum;
-            Geslacht = lid.Geslacht;
+            Geslacht = lid.Geslacht.ToUpper();
             Graad = lid.Graad;
             Land = lid.Land;
             Lessen = lid.Lessen;

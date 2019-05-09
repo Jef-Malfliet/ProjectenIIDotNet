@@ -101,7 +101,7 @@ namespace G19.Controllers {
 
         public ActionResult GeefTextView(int Id) {
             if (SessionState.OefeningenBekijkenState()) {
-
+                verhoogAantalBekeken(Id);
                 return View("~/Views/Oefening/Text.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -111,7 +111,7 @@ namespace G19.Controllers {
         }
         public ActionResult GeefVideoView(int Id) {
             if (SessionState.OefeningenBekijkenState()) {
-
+                verhoogAantalBekeken(Id);
                 return View("~/Views/Oefening/Video.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -121,7 +121,7 @@ namespace G19.Controllers {
         }
         public ActionResult GeefFotoView(int Id) {
             if (SessionState.OefeningenBekijkenState()) {
-
+                verhoogAantalBekeken(Id);
                 return View("~/Views/Oefening/Fotos.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -131,13 +131,18 @@ namespace G19.Controllers {
         }
         public ActionResult GeefCommentView(int Id) {
             if (SessionState.OefeningenBekijkenState()) {
-
+                verhoogAantalBekeken(Id);
                 return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
+        }
+        private void verhoogAantalBekeken(int Id) {
+            var oef = _oefeningRepository.GetById(Id);
+            oef.AantalKeerBekeken++;
+            _oefeningRepository.SaveChanges();
         }
     }
 }
