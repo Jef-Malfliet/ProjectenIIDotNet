@@ -19,8 +19,9 @@
 }
 
 .SessionStateMessage {
+    display:flex;
+    flex-direction:column;
     margin-top: 15vh;
-    margin-left: 5vw;
     color: var(--counter);
     font-family: var(--bodyFont);
 }
@@ -29,7 +30,19 @@
         color: var(--orange);
         font-weight: bold;
         font-family: var(--headerFont);
-        margin-bottom: 1vh;
+        margin-bottom: 3vh;
+        text-align:center;
+        font-size:48px;
+
+    }
+    .SessionStateMessage i{
+        color:var(--orange);
+        font-size:200px;
+        margin: 0 auto;
+        padding-bottom:3vh;;
+    }
+    .SessionStateMessage p{
+        text-align:center;
     }
 
 .loginCont {
