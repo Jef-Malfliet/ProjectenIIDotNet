@@ -40,11 +40,11 @@ namespace G19.Controllers {
         [HttpPost]
         public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel, int id) {
             if (SessionState.OefeningenBekijkenState()) {
-
-                _oefeningRepository.AddComment(id, commentViewModel.Comments);
+                string comment = commentViewModel.Comments + '~' + SessionState.huidigLid.Voornaam + ' ' + SessionState.huidigLid.Familienaam;
+                _oefeningRepository.AddComment(id, comment);
                 _oefeningRepository.SaveChanges();
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
-                bool succes = SendMailAsync(commentViewModel, id).Result;
+                bool succes = SendMailAsync(comment, id).Result;
                 if (succes) {
                     TempData["Message"] = "Mail succesvol verzonden.";
                 } else {
@@ -152,7 +152,7 @@ namespace G19.Controllers {
             }
         }
 
-        private async Task<bool> SendMailAsync(_CommentsViewModel cvm, int oefId) {
+        private async Task<bool> SendMailAsync(string comment, int oefId) {
 
             var oef = _oefeningRepository.GetById(oefId);
 
@@ -164,7 +164,7 @@ namespace G19.Controllers {
             mail.Body = 
                 "<h2>Er is nieuwe feedback toegevoegd aan oefening " + oef.Naam + " van graad " + oef.Graad.ToString("") + "</h2>"
                 + "<br />"
-                + cvm.Comments;
+                + comment;
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.UseDefaultCredentials = false;
