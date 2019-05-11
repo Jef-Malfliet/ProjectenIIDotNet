@@ -92,9 +92,12 @@ namespace G19.Controllers {
             }
         }
 
-        public IActionResult ToOefeningState() {
-            SessionState.ToState(SessionEnum.OefeningState);
-            return RedirectToAction(nameof(GeefAanwezigenVandaag));
+        public IActionResult ToOefeningState(string code) {
+            if (code == "1234") {
+                SessionState.ToState(SessionEnum.OefeningState);
+                return RedirectToAction(nameof(GeefAanwezigenVandaag));
+            }
+            return View("Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
         //private Session GeefHuidgeSessie() {
         //    //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));

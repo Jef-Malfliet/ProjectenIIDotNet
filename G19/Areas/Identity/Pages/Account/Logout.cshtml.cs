@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -26,18 +27,20 @@ namespace G19.Areas.Identity.Pages.Account
         {
         }
 
-        public async Task<IActionResult> OnPost(string returnUrl = null)
+        public async Task<IActionResult> OnPost(string code, string currentUrl, string returnUrl = null)
         {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
+            if (code == "1234") {
+                await _signInManager.SignOutAsync();
+                _logger.LogInformation("User logged out.");
+                if (returnUrl != null) {
+                    return LocalRedirect(returnUrl);
+                } else {
+                    return Page();
+                }
+            } else {
+                return LocalRedirect(currentUrl);
             }
-            else
-            {
-                return Page();
-            }
+
         }
     }
 }

@@ -13,7 +13,7 @@
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="WIT" class="@((string)TempData["active"] == "WIT" ? "active" : "")">WIT</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GEEL" class="@((string)TempData["active"] == "GEEL" ? "active" : "")">GEEL</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ORANJE" class="@((string)TempData["active"] == "ORANJE" ? "active" : "")">ORANJE</a>
-        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GROEN"class="@((string)TempData["active"] == "GROEN" ? "active" : "")">GROEN</a>
+        <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="GROEN" class="@((string)TempData["active"] == "GROEN" ? "active" : "")">GROEN</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BLAUW" class="@((string)TempData["active"] == "BLAUW" ? "active" : "")">BLAUW</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="BRUIN" class="@((string)TempData["active"] == "BRUIN" ? "active" : "")">BRUIN</a>
         <a asp-controller="Home" asp-action="GeefAanwezighedenPerGraad" asp-route-graad="ZWART" class="@((string)TempData["active"] == "ZWART" ? "active" : "")">ZWART</a>
@@ -23,17 +23,16 @@
         <div class="form-group form">
             <a class="buttons" asp-controller="Home" asp-action="GeefAlleLeden">Toon alle leden</a>
             <a class="buttons" id="irritant">Registreer niet-ingeschreven lid</a>
-            <a class="buttons" asp-controller="Home" asp-action="ToOefeningState">Aanwezigheden zijn geregistreerd</a>
+            <a class="buttons"  id="irritant" data-toggle="modal" data-target="#tostate" data-whatever="" >Aanwezigheden zijn geregistreerd</a>
         </div>
-       
+
         <div class="containerAanwezighedenCards">
             @if (Model.LongCount() == 0) {
                 <p>Er zijn geen leden ingeschreven op deze vandaag</p>
-            }
-            else {
+            } else {
                 @foreach (var lid in Model) {
                     <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id" class="cardButton">
-                        <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
+                        <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag() ? "var(--aanwezigheidGemeld)" : "var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
                             <img src="~/img/stock.jpg" class="float-left pf" />
                             <p>@lid.Familienaam<br /> @lid.Voornaam</p>
 
@@ -42,7 +41,47 @@
                 }
             }
         </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tostate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form method="post" asp-controller="Home" asp-action="ToOefeningState">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Geef code in om door te gaan</label>
+                            <input name="code" type="password" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleer</button>
+                            <button type="submit" class="btn btn-primary" >Alle aanwezigheden zijn geregistreerd </button>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
     </div>
 </body>
+<script>
+
+window.onload = function () {
+        $('#tostate').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget) 
+        //var recipient = button.data('whatever')
+       
+        //var modal = $(this)
+        //modal.find('.modal-title').text('New message to' + recipient)
+        //modal.find('.modal-body input').val(recipient)
+    })
+
+    }
+
+</script>
+
 
 

@@ -18,14 +18,12 @@
             }
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
                 <li><a asp-controller="Lid" asp-action="Edit" class="navA">Gegevens lid wijzigen</a></li>
-                <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Manage" class="navA">Verander Wachtwoord</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Manage" class="navA">Veranderd Wachtwoord</a></li>
 
             }
             @if (User.Identity.IsAuthenticated) {
                 <li>
-                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
-                        <button type="submit" class="navA">Logout</button>
-                    </form>
+                        <button data-toggle="modal" data-target="#logout" data-whatever=""  type="submit" class="navA">Logout</button>
                 </li>
             }
         </ul>
@@ -35,8 +33,34 @@
         <a asp-controller="Session" asp-action="FakeToday" asp-route-dag="@DayOfWeek.Sunday" class="navA">Zon</a>
 
     </div>
+    <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
 
+                <div class="modal-body">
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-currentUrl="@Url.Action("Index", "Home")" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Geef code in om door te gaan</label>
+                            <input name="code" type="password" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleer</button>
+                            <button type="submit" class="btn btn-primary">Alle aanwezigheden zijn geregistreerd</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+
+    window.onload = function () {
+        $('#logout').on('show.bs.modal');
+
+
+</script>
 
 @*<nav class="navbar navbar-expand-lg">
         <a class="navbar-brand align-self-center" href="#"><img src="~/img/TaijitanLogo.png" id="logo" /></a><span class="align-content-center" id="mainText">Taijitan Roshin Ryu VZW</span>
