@@ -4,9 +4,13 @@ using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
@@ -14,10 +18,12 @@ namespace G19.Controllers {
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;
+        public IConfiguration Configuration { get; set; }
 
-        public OefeningController(IOefeningRepository oefeningRepository, ILidRepository lidRepository) {
+        public OefeningController(IOefeningRepository oefeningRepository, ILidRepository lidRepository, IConfiguration configuration) {
             _oefeningRepository = oefeningRepository;
             _lidRepository = lidRepository;
+            Configuration = configuration;
         }
         public IActionResult Index() {
             if (SessionState.OefeningenBekijkenState()) {
@@ -38,6 +44,12 @@ namespace G19.Controllers {
                 _oefeningRepository.AddComment(id, commentViewModel.Comments);
                 _oefeningRepository.SaveChanges();
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
+                bool succes = SendMailAsync(commentViewModel, id).Result;
+                if (succes) {
+                    TempData["Message"] = "Mail succesvol verzonden.";
+                } else {
+                    TempData["Error"] = "Er ging iets mis bij het versturen van de mail, gelieve de lesgever te waarschuwen.";
+                }
                 return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(id));
             }
             else {
@@ -138,6 +150,41 @@ namespace G19.Controllers {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
+        }
+
+        private async Task<bool> SendMailAsync(_CommentsViewModel cvm, int oefId) {
+
+            var oef = _oefeningRepository.GetById(oefId);
+
+            MailAddress from = new MailAddress(Configuration["Mail:From"]);
+            MailAddress to = new MailAddress(Configuration["Mail:To"]);
+            MailMessage mail = new MailMessage(from,to);
+            mail.Subject = "Nieuwe feedback op oefening " + oef.Naam + " - " + oef.Graad.ToString("");
+            mail.IsBodyHtml = true;
+            mail.Body = 
+                "<h2>Er is nieuwe feedback toegevoegd aan oefening " + oef.Naam + " van graad " + oef.Graad.ToString("") + "</h2>"
+                + "<br />"
+                + cvm.Comments;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(Configuration["Mail:From"], Configuration["Mail:FromPass"]);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+
+            smtp.SendCompleted += (s, e) => {
+                smtp.Dispose();
+                mail.Dispose();
+            };
+
+            try {
+                await smtp.SendMailAsync(mail);
+            } catch(Exception e) {
+                ModelState.AddModelError("", e.Message);
+                return false;
+            }
+            return true;
         }
     }
 }
