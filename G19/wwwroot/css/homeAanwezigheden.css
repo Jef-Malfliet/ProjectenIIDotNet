@@ -1,7 +1,7 @@
 ﻿/*--------------------MOBILE FIRST!---------------------*/
 /*START Variables*/
 /*:root {*/
-    /*Color Palette*/
+/*Color Palette*/
 /*
     --primary: #00b4ab;
     --counter: #454553;
@@ -14,8 +14,8 @@
     --black: #151515;
     --aanwezigheidGemeld: #00909a;
         */
-    /*Fonts*/
-    /*
+/*Fonts*/
+/*
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: 'Sanchez', serif;
 }*/
@@ -50,123 +50,114 @@
 
 /*START opmaak cards*/
 .containerAanwezigheden {
-    width: 100%;
-    font-family: var(--headerFont);
-    box-sizing: border-box;
-    background-color: var(--primary);
-    margin-top: 5vw;
-    overflow-x: hidden;
-    position: relative;
+    margin-top: 15vh;
+    margin-left: 100px;
+    font-family: var(--bodyFont);
 }
 
-.containerMissAanwezigheden {
-    margin-left: 15vw;
-    margin-top: 12vh;
+    .containerAanwezigheden h1 {
+        color: #D5A021;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }
+
+    .form a, #irritant {
+        background: var(--counter);
+        color: #D5A021;
+        padding: 15px 5px 15px 5px;
+        border-radius: 10px;
+        margin: 5px;
+        text-align: center;
+    }
+
+        .form a:hover, #irritant:hover {
+            background-color: #D5A021;
+            color: var(--white);
+        }
 
 .containerAanwezighedenCards {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+}
+
+.cardButton {
+    width: 50vw;
+    height: 25vh;
+    display:inline-block;
+    margin:10px;
 }
 
 .card {
-    background-color: var(--primary);
-    min-height: 24%;
-    margin: 1%;
-    position: relative;
-    width: 23%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 50vw;
+    height: 25vh;
+    max-width: 230px;
+    margin:0px !important;
 }
 
-.lidButton {
-    font-size: 1.17em;
-    color: var(--counter);
-    /*height: 24%;*/
-    text-align: center;
-    background: none;
-    border: none;
-    width: 100%;
-    padding: 7% 0;
-}
-
-.graadBox {
-    display: block;
-    width: 100%;
-    height: 30px;
-    position: absolute;
-    bottom: 0;
-}
-
-.arrow {
-    color: var(--counter);
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-}
-
-h1 {
-    color: var(--white);
-    font-weight: bold;
-    font-family: var(--headerFont);
-    width: 50%;
-    font-size: 1.5em;
-    margin-left: 0.5em;
-}
-
-.form {
-    margin-top: 0.5em;
-    margin-left: 0.5em;
-    display:flex;
-    flex-direction:column;
-}
-
-.buttons, #irritant {
-    background-color: #454553;
-    padding: 10px;
-    margin:10px;
-    border-radius: 5px;
-    color: #f08d0c;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.buttons:hover, #irritant:hover {
-    background-color: #f08d0c;
-    color: #f6f5f6;
-}
-
-.pf {
-    width: 60px;
-    height: 60px;
-    border-radius: 5%;
-    margin: 2%;
-}
-
-@media only screen and (min-width:768px){
-    .form{
-        flex-direction:row;
-    }
-}
-
-@media only screen and (max-width: 1100px){
-    .card {
-        width: 31%;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .card {
-        width: 45%;
+    .card img {
+        height: 80%;
+        width:80%;
+        margin: 5px auto;
+        border-radius:50%;
     }
 
-    .containerMissAanwezigheden {
-        margin-left: 20vw;
+    .card p {
+        text-align: center;
+        color: var(--white);
+    }
+
+@media only screen and (min-width:768px) {
+    .containerAanwezigheden {
+        margin-top: 10vh;
+        margin-left: 15vw;
+    }
+
+    .form {
+        flex-direction: row;
     }
 
     .containerAanwezighedenCards {
-        margin-left: 0.5em;
+        display: inline-block;
+        flex-direction: row;
+    }
+    .cardButton{
+        width:30vw;
+    }
+    .card {
+        min-width: 20vw;
+        margin: 0px !important;
+        position: relative;
+    }
+
+        .card img {
+            float: left;
+            width: 60%;
+            height: 100%;
+            border-radius:40%;
+            margin:0px;
+            padding:10px;
+        }
+
+        .card p {
+            width: 40%;
+            text-align: center;
+            position: absolute;
+            right: 5px;
+            top: 40%;
+        }
+}
+@media only screen and (min-width:1000px){
+    .cardButton{
+        width:20vw;
+        margin:5px;
+    }
+    .card {
+        width: 18vw;
     }
 }
