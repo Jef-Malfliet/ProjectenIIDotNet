@@ -43,11 +43,11 @@
     <partial name="_mainnav" class="mainnav" />
     <div class="">
         <main role="main" class="pb-3">
-            @if (TempData["message"] != null) {
-                <div class="alert alert-success">@TempData["message"]</div>
+            @if (TempData["Message"] != null) {
+                <div class="alert alert-success">@TempData["Message"]</div>
             }
-            @if (TempData["error"] != null) {
-                <div class="alert alert-warning">@TempData["error"]</div>
+            @if (TempData["Error"] != null) {
+                <div class="alert alert-warning">@TempData["Error"]</div>
             }
             @RenderBody()
         </main>

@@ -18,6 +18,8 @@
             }
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
                 <li><a asp-controller="Lid" asp-action="Edit" class="navA">Gegevens lid wijzigen</a></li>
+                <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Manage" class="navA">Verander Wachtwoord</a></li>
+
             }
             @if (User.Identity.IsAuthenticated) {
                 <li>

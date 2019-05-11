@@ -2,6 +2,7 @@
     margin: 7% auto;
 }
 
+
 .formLabel {
     font-family: var(--headerFont);
 }
@@ -41,7 +42,11 @@
     color: red;
     margin: 1em 1em 1em 0;
 }
+.passwordchange {
+    margin-left: 10vw;
 
+    margin-top: 7% ;
+}
 @media screen and (max-width: 1150px) {
     .wijziglidform{
         margin: 10% auto;
