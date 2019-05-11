@@ -11,9 +11,13 @@
         <h1 class="header">Bekijk lesmateriaal</h1>
         <div class="containerAanwezighedenCards">
             @foreach (var lid in Model) {
-            <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--counter)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
-                <a asp-controller="Oefening" asp-action="GeefOefeningenLid" asp-route-lidId="@lid.Id" class="lidButton nameAnchor">@lid.Familienaam<br />@lid.Voornaam</a>                
-            </div>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenLid" asp-route-lidId="@lid.Id" class="cardButton">
+                <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
+                    <img src="~/img/stock.jpg" class="float-left pf" />
+                    <p>@lid.Familienaam<br /> @lid.Voornaam</p>
+
+                </div>
+            </a>
 
             }
         </div>
