@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.ViewModels;
@@ -26,6 +27,7 @@ namespace G19.Controllers {
         }
 
         [HttpGet]
+        [ServiceFilter(typeof(LidFilter))]
         public IActionResult Edit() {
            
             Lid lid = _lidRepository.GetByEmail(HttpContext.User.Identity.Name);

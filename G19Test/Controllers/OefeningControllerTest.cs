@@ -6,7 +6,9 @@ using G19Test.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Configuration;
 using Moq;
+using System.Configuration;
 using Xunit;
 
 namespace G19Test.Controllers {
@@ -18,7 +20,7 @@ namespace G19Test.Controllers {
         private readonly DummyDbContext _context;
         private readonly _CommentsViewModel _model;
 
-        public OefeningControllerTest() {
+        public OefeningControllerTest(IConfiguration configuration) {
 
             var httpcontext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpcontext, Mock.Of<ITempDataProvider>());
@@ -26,7 +28,7 @@ namespace G19Test.Controllers {
             _context = new DummyDbContext();
             _oefeningRepository = new Mock<IOefeningRepository>();
             _lidRepository = new Mock<ILidRepository>();
-            _controller = new OefeningController(_oefeningRepository.Object, _lidRepository.Object) {
+            _controller = new OefeningController(_oefeningRepository.Object, _lidRepository.Object, configuration) {
                 TempData = tempData
             };
             _model = new _CommentsViewModel() {
