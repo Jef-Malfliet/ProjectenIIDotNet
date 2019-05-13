@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace G19.Controllers {
     [Authorize]
+    [ServiceFilter(typeof(LidFilter))]
     public class LidController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
@@ -28,9 +29,8 @@ namespace G19.Controllers {
 
         [HttpGet]
         [ServiceFilter(typeof(LidFilter))]
-        public IActionResult Edit() {
+        public IActionResult Edit(Lid lid) {
            
-            Lid lid = _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
             if (lid == null)
                 return NotFound();
             
@@ -38,12 +38,10 @@ namespace G19.Controllers {
         }
 
         [HttpPost]
-        public IActionResult Edit(LidViewModel lidViewModel) {
+        [ServiceFilter(typeof(LidFilter))]
+        public IActionResult Edit(Lid lid,LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
-                Lid lid = null;
                 try {
-                    lid = _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
-
                     MapLidViewModelToLid(lidViewModel, lid);
                     _lidRepository.SaveChanges();
                 }catch (Exception e) {

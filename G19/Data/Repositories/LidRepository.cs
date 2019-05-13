@@ -96,9 +96,7 @@ namespace G19.Data.Repositories {
                 return GetLedenInFormuleOfDay(dag).Where(l => l.Graad.ToString("").ToLower().StartsWith("dan")).ToList();
             } else {
                 return GetLedenInFormuleOfDay(dag).Where(l => l.Graad.ToString("").ToLower() == graad.ToLower()).ToList();
-            }
-
-            
+            } 
         }
 
         public Lid GetByEmail(string email) {

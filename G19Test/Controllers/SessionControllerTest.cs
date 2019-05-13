@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Xunit;
 
 namespace G19Test.Controllers {
@@ -33,7 +34,8 @@ namespace G19Test.Controllers {
         #region Start Session
         [Fact]
         public void TestStartNieuweSessie_GeeftHomeIndexViewMetLedenVandaag() {
-            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(SessionState.vandaag)).Returns(new List<Lid>() { _context.Lid1});
+            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek)).Returns(new List<Lid>() { _context.Lid1});
+            SessionState.ToState(SessionEnum.RegistreerState);
             var result = _controller.StartNieuweSessie() as ViewResult;
             Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);
             Assert.Equal("../Home/Index", result?.ViewName);
@@ -45,7 +47,7 @@ namespace G19Test.Controllers {
         #region Fake Today
         [Fact]
         public void TestFakeToday_Vandaag_GeeftHomeIndexViewMetLedenMeegegevenDag() {
-            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(SessionState.vandaag)).Returns(new List<Lid>() { _context.Lid1});
+            _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(DayOfWeek.Monday)).Returns(new List<Lid>() { _context.Lid1});
             var result = _controller.FakeToday(DayOfWeek.Monday) as ViewResult;
             Assert.Equal(DayOfWeek.Monday, SessionState.vandaag);
             Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);

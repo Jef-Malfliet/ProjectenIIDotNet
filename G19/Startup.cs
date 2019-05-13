@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Security.Claims;
 using G19.Models.Repositories;
 using G19.Data.Repositories;
+using G19.Filters;
 
 namespace G19 {
     public class Startup {
@@ -58,6 +59,8 @@ namespace G19 {
             services.AddScoped<IOefeningRepository, OefeningRepository>();
           //  services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<DataInitializer>();
+
+            services.AddScoped<LidFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,7 +87,6 @@ namespace G19 {
             });
 
             initializer.InitializeData().Wait();
-            
         }
     }
 }

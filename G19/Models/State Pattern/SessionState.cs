@@ -1,6 +1,9 @@
-﻿using System;
+﻿using G19.Filters;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace G19.Models.State_Pattern {
+    [ServiceFilter(typeof(LidFilter))]
     public static class SessionState {
 
         public static SessionEnum state;
@@ -44,6 +47,7 @@ namespace G19.Models.State_Pattern {
             SessionState.state = newState;
         }
 
+        [ServiceFilter(typeof(LidFilter))]
         public static void VeranderHuidigLid(Lid lid) {
             SessionState.huidigLid = lid;
         }

@@ -1,4 +1,5 @@
-﻿using G19.Models;
+﻿using G19.Filters;
+using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
@@ -14,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
-
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;
