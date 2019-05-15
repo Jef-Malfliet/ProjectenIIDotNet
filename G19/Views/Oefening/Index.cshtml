@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<G19.Models.Oefening>
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 @{
     ViewData["Title"] = "Oefeningen";
 }
@@ -21,23 +23,27 @@
             <a class="@((int)@TempData["Graad"] > 6?"":"not") @((string)TempData["active"] == "ALLES" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
         </div>
         <div class="containerOefeningen">
-            <h1 class="header oefHeader">Oefeningen</h1>
+            <h1 class="header oefHeader">Overzicht</h1>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
+
+                <a class="wijzig header oefHeader " asp-controller="Lid" asp-action="EditInSession"><i class="fas fa-user-edit"></i> Wijzig persoonlijke gegevens</a>
+            }
             <div class="containerOefeningenCards">
                 @foreach (var oefening in Model) {
-                <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">
-                    <div class="card-body">
-                        <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton card-title">
-                            @oefening.Naam
-                        </a>
-                        <div class="graadBox card-text">
-                            <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
-                            <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
-                            <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
-                            <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
+                    <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">
+                        <div class="card-body">
+                            <a asp-controller="Oefening" asp-action="GeefOefeningById" asp-route-graad=@oefening.Graad class="oefeningButton card-title">
+                                @oefening.Naam
+                            </a>
+                            <div class="graadBox card-text">
+                                <a class="@(oefening.hasUitleg()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefTextView" asp-route-Id="@oefening.Id"><i class="far fa-list-alt"></i></a>
+                                <a class="@(oefening.hasImages()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefFotoView" asp-route-Id="@oefening.Id"><i class="far fa-images"></i></a>
+                                <a class="@(oefening.hasVideo()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefVideoView" asp-route-Id="@oefening.Id"><i class="fas fa-video"></i></a>
+                                <a class="@(oefening.hasComments()?"has":"hasnt")" asp-controller="Oefening" asp-action="GeefCommentView" asp-route-Id="@oefening.Id"><i class="fas fa-comment-dots"></i></a>
+                            </div>
                         </div>
+                        <img src="~/img/@oefening.GetFirstImage()" class="card-img-bottom" />
                     </div>
-                    <img src="~/img/@oefening.GetFirstImage()" class="card-img-bottom" />
-                </div>
                 }
             </div>
         </div>

@@ -29,7 +29,8 @@ namespace G19.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPost(string code, string currentUrl, string returnUrl = null)
         {
-            if (code == "1234") {
+
+                if (!_signInManager.Context.User.HasClaim((c => c.Value == "lesgever")) || code == "1234") {
                 await _signInManager.SignOutAsync();
                 _logger.LogInformation("User logged out.");
                 if (returnUrl != null) {

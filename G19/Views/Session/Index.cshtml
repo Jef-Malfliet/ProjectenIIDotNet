@@ -12,6 +12,8 @@
     }
     @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
         <a class="btn btn-success makeBtn" asp-controller="Lid" asp-action="Edit">Wijzig gegevens Lid</a>
+        <a class="btn btn-success makeBtn" asp-controller="Oefening" asp-action="GeefOefeningenLid">Raadpleeg Lesmateriaal</a>
+
     }
 
 </div>
