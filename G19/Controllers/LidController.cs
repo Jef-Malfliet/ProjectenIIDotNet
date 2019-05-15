@@ -60,7 +60,7 @@ namespace G19.Controllers {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), lidViewModel);
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"Session");
             }
 
             return View(nameof(Edit), lidViewModel);
