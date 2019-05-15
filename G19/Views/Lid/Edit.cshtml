@@ -111,9 +111,12 @@
             </select>
             <span asp-validation-for="Land" class="text-danger"></span>
         </div>
-
         <div>
-            <button class="btn btn-primary" type="submit">Save</button>
+            @if ((string)TempData["isNietLid"] == "true") {
+                <button class="btn btn-primary" type="submit">Sla op</button>
+            } else {
+                <button class="btn btn-primary" type="submit">Maak</button>
+            }
             <a asp-action="Index" asp-controller="Session" class="btn btn-warning cancelBtn">Cancel</a>
         </div>
     </form>

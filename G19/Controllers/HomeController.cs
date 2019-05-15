@@ -1,6 +1,7 @@
 ﻿using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.State_Pattern;
+using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -14,15 +15,13 @@ namespace G19.Controllers {
         //private readonly ISessionRepository _sessionRepository;
         public HomeController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
-           // _sessionRepository = sessionRepository;
+            // _sessionRepository = sessionRepository;
         }
 
         public IActionResult Index() {
             if (SessionState.AanwezigheidRegistrerenState()) {
                 //Session session = GeefHuidgeSessie();
                 //return View(_lidRepository.GetByFormule(session.Formule));
-
-               
                 return View(_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
@@ -40,11 +39,11 @@ namespace G19.Controllers {
 
             }
         }
-        
+
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad) {
             if (SessionState.AanwezigheidRegistrerenState()) {
-                var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad,SessionState.vandaag);
+                var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad, SessionState.vandaag);
                 return View(nameof(Index), leden);
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
@@ -55,11 +54,10 @@ namespace G19.Controllers {
 
         public IActionResult GeefAanwezigenVandaag() {
             if (SessionState.OefeningenBekijkenState()) {
-             //   Session session = GeefHuidgeSessie();
+                //   Session session = GeefHuidgeSessie();
                 var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
                 return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Je moet alle aanwezigen doorgeven door op de knop 'Aanwezigheden zijn geregistreerd' te drukken.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
@@ -71,8 +69,7 @@ namespace G19.Controllers {
                 _lidRepository.RegisteerAanwezigheid(lid);
                 _lidRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
@@ -85,8 +82,7 @@ namespace G19.Controllers {
                 _lidRepository.RegisteerAanwezigheid(lid);
                 _lidRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
@@ -99,6 +95,7 @@ namespace G19.Controllers {
             }
             return View("Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
         }
+
         //private Session GeefHuidgeSessie() {
         //    //return JsonConvert.DeserializeObject<Session>(HttpContext.Session.GetString("Sessie"));
         //    var session = _sessionRepository.GetAll().Select(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds));

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
+using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,27 +32,27 @@ namespace G19.Controllers {
         [HttpGet]
         [ServiceFilter(typeof(LidFilter))]
         public IActionResult Edit(Lid lid) {
-           
+
             if (lid == null)
                 return NotFound();
-            
+
             return View(new LidViewModel(lid));
         }
 
         [HttpPost]
         [ServiceFilter(typeof(LidFilter))]
-        public IActionResult Edit(Lid lid,LidViewModel lidViewModel) {
+        public IActionResult Edit(Lid lid, LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
                 try {
                     MapLidViewModelToLid(lidViewModel, lid);
                     _lidRepository.SaveChanges();
-                }catch (Exception e) {
+                } catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), lidViewModel);
                 }
                 return RedirectToAction(nameof(Index));
             }
-           
+
             return View(nameof(Edit), lidViewModel);
         }
 
@@ -78,6 +80,29 @@ namespace G19.Controllers {
             //lid.Id = LidViewModel.Id;
 
 
+        }
+
+        [HttpGet]
+        public IActionResult RegistreerNietLid() {
+            TempData["isNietLid"] = "true";
+            return View("Edit");
+        }
+
+        [HttpPost]
+        public IActionResult RegistreerNietLid(LidViewModel nietLidVM) {
+            if (ModelState.IsValid) {
+                try {
+                    Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };
+                    MapLidViewModelToLid(nietLidVM, nietLid);
+                    _lidRepository.Add(nietLid);
+                    _lidRepository.SaveChanges();
+                } catch (Exception e) {
+                    ModelState.AddModelError("", e.Message);
+                    return View(nameof(Edit), nietLidVM);
+                }
+                return View("~/Views/Home/Index.cshtml", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+            }
+            return View(nameof(Edit), nietLidVM);
         }
     }
 }
