@@ -21,10 +21,19 @@
                 <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Manage" class="navA">Veranderd Wachtwoord</a></li>
 
             }
-            @if (User.Identity.IsAuthenticated) {
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
                 <li>
-                        <button data-toggle="modal" data-target="#logout" data-whatever=""  type="submit" class="navA">Logout</button>
+                    <button data-toggle="modal" data-target="#logout" data-whatever="" type="submit" class="navA">Logout</button>
                 </li>
+            } else {
+                @if (User.Identity.IsAuthenticated) {
+                    <li>
+                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
+                            <button type="submit" class="navA">Logout</button>
+                        </form>
+                    </li>
+                }
             }
         </ul>
 

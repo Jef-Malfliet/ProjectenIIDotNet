@@ -78,7 +78,7 @@ namespace G19.Controllers {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(EditInSession), lidViewModelSession);
                 }
-                return RedirectToAction(nameof(EditInSession));
+                return RedirectToAction("GeefOefeningenLid", "Oefening", new { lidId = lid.Id });
             }
 
             return View(nameof(EditInSession), lidViewModelSession);
