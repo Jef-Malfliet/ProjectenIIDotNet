@@ -129,7 +129,12 @@ ul li {
 .containerOefeningen {
     margin-top: 6%;
 }
+.containerOefeningen .oefHeader{
+    display:inline;
+}
+.wijzig{
 
+}
 @media screen and (max-width :1000px) {
     .containerOefeningen {
         margin-top: 7%;

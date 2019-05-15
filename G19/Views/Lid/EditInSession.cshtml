@@ -1,0 +1,68 @@
+﻿@model G19.Models.ViewModels.LidViewModelSession
+
+@{
+    ViewData["Title"] = "Lid aanpassen";
+}
+<link href="~/css/WijzigenGegevens.css" rel="stylesheet" />
+
+<div class="col-md-4 wijziglidform">
+    <form method="post">
+        <div asp-validation-summary="All" class="allErrors"></div>
+        <div class="form-group">
+            <label asp-for="Email" class="formLabel">Emailadres</label>
+            <input asp-for="Email" class="form-control formControl" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmailOuders" class="formLabel">Emailadres ouders</label>
+            <input asp-for="EmailOuders" class="form-control formControl" />
+            <span asp-validation-for="EmailOuders" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="GSM" class="formLabel">Gsmnummer</label>
+            <input asp-for="GSM" class="form-control formControl" />
+            <span asp-validation-for="GSM" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefoon" class="formLabel"></label>
+            <input asp-for="Telefoon" class="form-control formControl" />
+            <span asp-validation-for="Telefoon" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="StraatNaam" class="formLabel">Straatnaam</label>
+            <input asp-for="StraatNaam" class="form-control formControl" />
+            <span asp-validation-for="StraatNaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Huisnummer" class="formLabel"></label>
+            <input asp-for="Huisnummer" class="form-control formControl" />
+            <span asp-validation-for="Huisnummer" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Busnummer" class="formLabel"></label>
+            <input asp-for="Busnummer" class="form-control formControl" />
+            <span asp-validation-for="Busnummer" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Stad" class="formLabel"></label>
+            <input asp-for="Stad" class="form-control formControl" />
+            <span asp-validation-for="Stad" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Postcode" class="formLabel"></label>
+            <input asp-for="Postcode" class="form-control formControl" />
+            <span asp-validation-for="Postcode" class="text-danger"></span>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a asp-controller="Oefening" asp-action="GeefOefeningenLid" asp-route-lidId="@Model.Id" class="btn btn-warning cancelBtn">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    <script asp-src-include="lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

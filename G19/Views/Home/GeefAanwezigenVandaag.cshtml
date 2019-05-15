@@ -15,10 +15,10 @@
                 <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag()?"var(--aanwezigheidGemeld)":"var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
                     <img src="~/img/stock.jpg" class="float-left pf" />
                     <p>@lid.Familienaam<br /> @lid.Voornaam</p>
+                    
 
                 </div>
             </a>
-
             }
         </div>
     </div>
