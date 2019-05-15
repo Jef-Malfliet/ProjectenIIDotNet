@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
+using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,17 +18,17 @@ namespace G19.Controllers {
     public class LidController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
-
         public LidController(ILidRepository lidRepository) {
             _lidRepository = lidRepository;
 
         }
-
+        [Authorize(Policy = "Lid")]
         public IActionResult Index() {
             return View("Index");
         }
 
         [HttpGet]
+        [Authorize(Policy = "Lid")]
         [ServiceFilter(typeof(LidFilter))]
         public IActionResult Edit(Lid lid) {
            
@@ -36,8 +37,18 @@ namespace G19.Controllers {
             
             return View(new LidViewModel(lid));
         }
+        [HttpGet]
+        [Authorize(Policy = "Lesgever")]
+        public IActionResult EditInSession() {
+            Lid lid = SessionState.huidigLid;
+            if (lid == null)
+                return NotFound();
+
+            return View(new LidViewModelSession(lid));
+        }
 
         [HttpPost]
+        [Authorize(Policy = "Lid")]
         [ServiceFilter(typeof(LidFilter))]
         public IActionResult Edit(Lid lid,LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
@@ -54,29 +65,64 @@ namespace G19.Controllers {
             return View(nameof(Edit), lidViewModel);
         }
 
+        [HttpPost]
+        [Authorize(Policy = "Lesgever")]
+        public IActionResult EditInSession(LidViewModelSession lidViewModelSession) {
+            Lid lid = _lidRepository.GetById(SessionState.huidigLid.Id);
+            if (ModelState.IsValid) {
+                try {
+                    MapLidViewModelToLidInSession(lidViewModelSession, lid);
+                    _lidRepository.SaveChanges();
+                    SessionState.VeranderHuidigLid(lid);
+                } catch (Exception e) {
+                    ModelState.AddModelError("", e.Message);
+                    return View(nameof(EditInSession), lidViewModelSession);
+                }
+                return RedirectToAction(nameof(EditInSession));
+            }
+
+            return View(nameof(EditInSession), lidViewModelSession);
+        }
+
         private void MapLidViewModelToLid(LidViewModel LidViewModel, Lid lid) {
-            lid.Voornaam = LidViewModel.Voornaam;
-            lid.Familienaam = LidViewModel.Achternaam;
+                lid.Voornaam = LidViewModel.Voornaam;
+                lid.Familienaam = LidViewModel.Achternaam;
+                lid.Rijksregisternummer = LidViewModel.Rijksregisternummer1 + "." + LidViewModel.Rijksregisternummer2 + "."
+                                     + LidViewModel.Rijksregisternummer3 + "-" + LidViewModel.Rijksregisternummer4 + "." + LidViewModel.Rijksregisternummer5;
+                lid.GeboorteDatum = LidViewModel.GeboorteDatum;
+                lid.Geslacht = LidViewModel.Geslacht;
+                lid.Land = LidViewModel.Land;
+            
+           
             lid.Email = LidViewModel.Email;
             lid.GSM = LidViewModel.GSM;
             lid.Telefoon = LidViewModel.Telefoon;
-            lid.Rijksregisternummer = LidViewModel.Rijksregisternummer1 + "." + LidViewModel.Rijksregisternummer2 + "."
-                                      + LidViewModel.Rijksregisternummer3 + "-" + LidViewModel.Rijksregisternummer4 + "." + LidViewModel.Rijksregisternummer5;
             lid.Busnummer = LidViewModel.Busnummer;
             lid.Huisnummer = LidViewModel.Huisnummer;
-            lid.EmailOuders = LidViewModel.EmailOuders;
-            lid.GeboorteDatum = LidViewModel.GeboorteDatum;
-            lid.Geslacht = LidViewModel.Geslacht;
-            lid.Land = LidViewModel.Land;
+            lid.EmailOuders = LidViewModel.EmailOuders; 
             lid.PostCode = LidViewModel.Postcode;
             lid.Stad = LidViewModel.Stad;
             lid.StraatNaam = LidViewModel.StraatNaam;
+
             // lid.Lessen = LidViewModel.Lessen;
             // lid.Graad = LidViewModel.Graad;
             // lid.Roltype = LidViewModel.Roltype;
             // lid.Wachtwoord = LidViewModel.Wachtwoord;
             //lid.Id = LidViewModel.Id;
 
+
+        }
+        private void MapLidViewModelToLidInSession(LidViewModelSession LidViewModelInSession, Lid lid) {
+            lid.Email = LidViewModelInSession.Email;
+            lid.GSM = LidViewModelInSession.GSM;
+            lid.Telefoon = LidViewModelInSession.Telefoon;
+            lid.Busnummer = LidViewModelInSession.Busnummer;
+            lid.Huisnummer = LidViewModelInSession.Huisnummer;
+            lid.EmailOuders = LidViewModelInSession.EmailOuders;
+            lid.PostCode = LidViewModelInSession.Postcode;
+            lid.Stad = LidViewModelInSession.Stad;
+            lid.StraatNaam = LidViewModelInSession.StraatNaam;
+            
 
         }
     }
