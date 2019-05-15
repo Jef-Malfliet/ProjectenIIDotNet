@@ -21,6 +21,13 @@ namespace G19Test.Controllers {
             _controller = new HomeController(_lidRepository.Object);
         }
 
+        [Fact]
+        public void TestIndex_GeeftIndexViewTerug() {
+            SessionState.AanwezigheidRegistrerenState();
+            var result = _controller.Index() as ViewResult;
+            Assert.Equal("Index", result?.ViewName);
+        }
+
         #region GeefAanwezighedenPerGraad
         [Fact]
         public void HttpGetGeefAanwezighedenPerGraad_GeeftIndexTerug() {
