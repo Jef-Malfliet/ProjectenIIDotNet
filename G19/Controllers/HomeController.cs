@@ -24,7 +24,7 @@ namespace G19.Controllers {
             if (sessie.AanwezigheidRegistrerenState()) {
                 //Session session = GeefHuidgeSessie();
                 //return View(_lidRepository.GetByFormule(session.Formule));
-                return View(_lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
+                return View("Index",_lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
                 return View("~/Views/Session/SessionStateMessage.cshtml");
