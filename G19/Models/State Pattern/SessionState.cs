@@ -1,30 +1,34 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace G19.Models.State_Pattern {
-    public static class SessionState {
 
-        public static SessionEnum state;
-        public static Lid huidigLid;
+    [JsonObject(MemberSerialization.OptIn)]
+    public class SessionState {
 
-        public static DayOfWeek vandaag = DateTime.Today.DayOfWeek;
+        [JsonProperty]
+        public SessionEnum state;
+        [JsonProperty]
+        public Lid huidigLid;
+        public DayOfWeek vandaag = DateTime.Today.DayOfWeek;
 
-        public static void FakeVandaag(DayOfWeek fakevandaag) {
+        public void FakeVandaag(DayOfWeek fakevandaag) {
             vandaag = fakevandaag;
         }
 
-        public static bool AanwezigheidRegistrerenState() {
+        public  bool AanwezigheidRegistrerenState() {
             return state == SessionEnum.RegistreerState;
         }
 
-        public static bool OefeningenBekijkenState() {
+        public bool OefeningenBekijkenState() {
             return state == SessionEnum.OefeningState;
         }
 
-        public static bool EindState() {
+        public bool EindState() {
             return state == SessionEnum.EindState;
         }
 
-        public static bool ToegestaandOefeningenBekijken(string graad,Boolean isAlsLidIngelogd) {
+        public bool ToegestaandOefeningenBekijken(string graad,Boolean isAlsLidIngelogd) {
             int lidGraad = (int)huidigLid.Graad;
             int oefGraad = 0;
             if (graad != "ZWART" && graad != "ALLES")
@@ -40,12 +44,12 @@ namespace G19.Models.State_Pattern {
             return false;
         }
 
-        public static void ToState(SessionEnum newState) {
-            SessionState.state = newState;
+        public void ToState(SessionEnum newState) {
+            state = newState;
         }
 
-        public static void VeranderHuidigLid(Lid lid) {
-            SessionState.huidigLid = lid;
+        public void VeranderHuidigLid(Lid lid) {
+            huidigLid = lid;
         }
 
     }

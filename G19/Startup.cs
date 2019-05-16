@@ -59,7 +59,7 @@ namespace G19 {
             services.AddScoped<IOefeningRepository, OefeningRepository>();
           //  services.AddScoped<ISessionRepository, SessionRepository>();
             services.AddScoped<DataInitializer>();
-
+            services.AddScoped<SessionFilter>();
             services.AddScoped<LidFilter>();
         }
 

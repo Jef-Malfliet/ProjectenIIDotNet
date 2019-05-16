@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace G19.Controllers {
     [Authorize]
     [ServiceFilter(typeof(LidFilter))]
+    [ServiceFilter(typeof(SessionFilter))]
     public class LidController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
@@ -40,8 +41,8 @@ namespace G19.Controllers {
         }
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult EditInSession() {
-            Lid lid = SessionState.huidigLid;
+        public IActionResult EditInSession(SessionState sessie) {
+            Lid lid = sessie.huidigLid;
             if (lid == null)
                 return NotFound();
 
@@ -68,13 +69,13 @@ namespace G19.Controllers {
 
         [HttpPost]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult EditInSession(LidViewModelSession lidViewModelSession) {
-            Lid lid = _lidRepository.GetById(SessionState.huidigLid.Id);
+        public IActionResult EditInSession(LidViewModelSession lidViewModelSession,SessionState sessie) {
+            Lid lid = _lidRepository.GetById(sessie.huidigLid.Id);
             if (ModelState.IsValid) {
                 try {
                     MapLidViewModelToLidInSession(lidViewModelSession, lid);
                     _lidRepository.SaveChanges();
-                    SessionState.VeranderHuidigLid(lid);
+                    sessie.VeranderHuidigLid(lid);
                 } catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(EditInSession), lidViewModelSession);
@@ -131,7 +132,7 @@ namespace G19.Controllers {
         }
 
         [HttpPost]
-        public IActionResult RegistreerNietLid(LidViewModel nietLidVM) {
+        public IActionResult RegistreerNietLid(LidViewModel nietLidVM,SessionState sessie) {
             if (ModelState.IsValid) {
                 try {
                     Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };
@@ -143,7 +144,7 @@ namespace G19.Controllers {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), nietLidVM);
                 }
-                return View("~/Views/Home/Index.cshtml", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+                return View("~/Views/Home/Index.cshtml", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
             }
             return View(nameof(Edit), nietLidVM);
         }

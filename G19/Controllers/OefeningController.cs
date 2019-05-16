@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace G19.Controllers {
     [Authorize]
+    [ServiceFilter(typeof(SessionFilter))]
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;
@@ -25,8 +26,8 @@ namespace G19.Controllers {
             _lidRepository = lidRepository;
             Configuration = configuration;
         }
-        public IActionResult Index() {
-            if (MagOefeningenBekijken()) {
+        public IActionResult Index(SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
                 ViewData["Graden"] = new List<GraadEnum>(new HashSet<GraadEnum>((GraadEnum[])Enum.GetValues(typeof(GraadEnum))));
                 return View(oefeningen);
@@ -38,9 +39,9 @@ namespace G19.Controllers {
         }
 
         [HttpPost]
-        public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel, int id) {
-            if (MagOefeningenBekijken()) {
-                string comment = commentViewModel.Comments + '~' + SessionState.huidigLid.Voornaam + ' ' + SessionState.huidigLid.Familienaam;
+        public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel, int id,SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
+                string comment = commentViewModel.Comments + '~' + sessie.huidigLid.Voornaam + ' ' + sessie.huidigLid.Familienaam;
                 _oefeningRepository.AddComment(id, comment);
                 _oefeningRepository.SaveChanges();
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
@@ -58,11 +59,11 @@ namespace G19.Controllers {
             }
         }
         [Route("Oefening/{graad}")]
-        public IActionResult GeefOefeningenPerGraad(string graad) {
-            TempData["Graad"] = SessionState.huidigLid.GeefGraadInGetal();
+        public IActionResult GeefOefeningenPerGraad(string graad,SessionState sessie) {
+            TempData["Graad"] = sessie.huidigLid.GeefGraadInGetal();
             TempData["active"] = graad;
-            if (MagOefeningenBekijken()) {
-                if (SessionState.ToegestaandOefeningenBekijken(graad, IsAlsLidIngelogd())) {
+            if (MagOefeningenBekijken(sessie)) {
+                if (sessie.ToegestaandOefeningenBekijken(graad, IsAlsLidIngelogd())) {
                     if (graad != "ZWART" && graad != "ALLES") {
                         return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
                     }
@@ -84,11 +85,11 @@ namespace G19.Controllers {
             }
         }
 
-        public IActionResult GeefOefeningenLid(int lidId) {
+        public IActionResult GeefOefeningenLid(int lidId,SessionState sessie) {
             var lid = _lidRepository.GetById(lidId);
             TempData["Graad"] = lid.GeefGraadInGetal();
-            SessionState.VeranderHuidigLid(lid);
-            if (MagOefeningenBekijken()) {
+            sessie.VeranderHuidigLid(lid);
+            if (MagOefeningenBekijken(sessie)) {
                 string graad = lid.Graad.ToString();
                 if (graad != "ZWART" && graad != "ALLES") {
                    
@@ -110,8 +111,8 @@ namespace G19.Controllers {
         }
 
         
-        public ActionResult GeefTextView(int Id) {
-            if (MagOefeningenBekijken()) {
+        public ActionResult GeefTextView(int Id,SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
 
                 return View("~/Views/Oefening/Text.cshtml", _oefeningRepository.GetById(Id));
             }
@@ -120,8 +121,8 @@ namespace G19.Controllers {
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
         }
-        public ActionResult GeefVideoView(int Id) {
-            if (MagOefeningenBekijken()) {
+        public ActionResult GeefVideoView(int Id, SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
 
                 return View("~/Views/Oefening/Video.cshtml", _oefeningRepository.GetById(Id));
             }
@@ -130,8 +131,8 @@ namespace G19.Controllers {
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
         }
-        public ActionResult GeefFotoView(int Id) {
-            if (MagOefeningenBekijken()) {
+        public ActionResult GeefFotoView(int Id, SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
 
                 return View("~/Views/Oefening/Fotos.cshtml", _oefeningRepository.GetById(Id));
             }
@@ -140,8 +141,8 @@ namespace G19.Controllers {
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
         }
-        public ActionResult GeefCommentView(int Id) {
-            if (MagOefeningenBekijken()) {
+        public ActionResult GeefCommentView(int Id, SessionState sessie) {
+            if (MagOefeningenBekijken(sessie)) {
 
                 return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(Id));
             }
@@ -166,8 +167,8 @@ namespace G19.Controllers {
         private Boolean IsAlsLidIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lid");
         }
-        private Boolean MagOefeningenBekijken() {
-            return SessionState.OefeningenBekijkenState() || IsAlsLidIngelogd();
+        private Boolean MagOefeningenBekijken(SessionState sessie) {
+            return sessie.OefeningenBekijkenState() || IsAlsLidIngelogd();
         }
         private async Task<bool> SendMailAsync(string comment, int oefId) {
 

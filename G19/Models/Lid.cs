@@ -3,24 +3,37 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace G19.Models {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Lid {
 
         #region Fields
+        [JsonProperty]
         private string _voornaam;
+        [JsonProperty]
         private string _familienaam;
+        [JsonProperty]
         private string _email;
+        [JsonProperty]
         private string _rijksregisternummer;
+        [JsonProperty]
         private string _gsm;
+        [JsonProperty]
         private string _telefoon;
+        [JsonProperty]
         private string _postcode;
+        [JsonProperty]
         private string _huisnummer;
+        [JsonProperty]
         private string _emailOuders;
+        [JsonProperty]
         private string _busnummer;
         #endregion
 
         #region Properties
+        [JsonProperty]
         public int Id { get; set; }
         public string Voornaam {
             get {

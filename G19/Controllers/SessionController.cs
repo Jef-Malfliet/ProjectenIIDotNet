@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.State_Pattern;
@@ -16,6 +17,7 @@ using Newtonsoft.Json;
 
 namespace G19.Controllers {
     [Authorize]
+    [ServiceFilter(typeof(SessionFilter))]
     public class SessionController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
@@ -31,17 +33,17 @@ namespace G19.Controllers {
 
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult StartNieuweSessie() {
-            SessionState.ToState(SessionEnum.RegistreerState);
-            SessionState.vandaag = DateTime.Today.DayOfWeek;
-            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+        public IActionResult StartNieuweSessie(SessionState sessie) {
+            sessie.ToState(SessionEnum.RegistreerState);
+            sessie.vandaag = DateTime.Today.DayOfWeek;
+            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
 
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult FakeToday(DayOfWeek dag) {
-            SessionState.FakeVandaag(dag);
-            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(SessionState.vandaag));
+        public IActionResult FakeToday(DayOfWeek dag,SessionState sessie) {
+            sessie.FakeVandaag(dag);
+            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
         //[HttpGet]
         //public IActionResult MaakNieuweSessie() {
@@ -65,8 +67,8 @@ namespace G19.Controllers {
         //}
 
         [Authorize(Policy = "Lesgever")]
-        public void EndSessionState() {
-            SessionState.ToState(SessionEnum.EindState);
+        public void EndSessionState(SessionState sessie) {
+            sessie.ToState(SessionEnum.EindState);
         }
     }
 }
