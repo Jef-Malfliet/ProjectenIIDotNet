@@ -13,12 +13,13 @@
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
                 <li> <a asp-controller="Home" asp-action="Index" class="navA">Aanwezigheid registreren</a></li>
                 <li><a asp-controller="Home" asp-action="GeefAanwezigenVandaag" class="navA">Raadplegen lesmateriaal</a></li>
-                <li><a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" class="navA">Hello @User.Identity.Name!</a></li>
 
             }
             @if ((await AuthorizationService.AuthorizeAsync(User, "Lid")).Succeeded) {
                 <li><a asp-controller="Lid" asp-action="Edit" class="navA">Gegevens lid wijzigen</a></li>
                 <li><a asp-area="Identity" asp-page="/Account/Manage/ChangePassword" title="Manage" class="navA">Veranderd Wachtwoord</a></li>
+                <li><a asp-controller="Oefening" asp-action="GeefOefeningenLid" class="navA">Raadplegen lesmateriaal</a></li>
+
 
             }
 
@@ -50,11 +51,14 @@
                     <form asp-area="Identity" asp-page="/Account/Logout" asp-route-currentUrl="@Url.Action("Index", "Home")" asp-route-returnUrl="@Url.Action("Index", "Session", new { area = "" })">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Geef code in om door te gaan</label>
-                            <input name="code" type="password" class="form-control" id="recipient-name">
+                            <input name="code" type="password" class="form-control" id="recipient-name" oninput="checkCode()">
+                        </div>
+                        <div id="errorMessage">
+                            <p>De code is niet correct!</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleer</button>
-                            <button type="submit" class="btn btn-primary">Alle aanwezigheden zijn geregistreerd</button>
+                            <button type="submit" class="btn btn-primary" id="confirmBtn">Log uit</button>
                         </div>
                     </form>
                 </div>
@@ -67,7 +71,22 @@
 
     window.onload = function () {
         $('#logout').on('show.bs.modal');
+    }
 
+    function checkCode() {
+        var code = document.getElementById("recipient-name").value;
+        var btn = document.getElementById("confirmBtn");
+        console.log(code);
+        if (code != 1234) {
+            $("#errorMessage").css("display", "block");
+            btn.disabled = true;
+            return false;
+        } else {
+            $("#errorMessage").css("display", "none");
+            btn.disabled = false;
+            return true;
+        }
+    }
 
 </script>
 

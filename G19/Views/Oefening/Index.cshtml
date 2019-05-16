@@ -1,4 +1,6 @@
 ﻿@model IEnumerable<G19.Models.Oefening>
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
 @{
     ViewData["Title"] = "Oefeningen";
 }
@@ -22,8 +24,10 @@
         </div>
         <div class="containerOefeningen">
             <h1 class="header oefHeader">Overzicht</h1>
-            <a class="wijzig header oefHeader " asp-controller="Lid" asp-action="EditInSession"><i class="fas fa-user-edit"></i> Wijzig persoonlijke gegevens</a>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
 
+                <a class="wijzig header oefHeader " asp-controller="Lid" asp-action="EditInSession"><i class="fas fa-user-edit"></i> Wijzig persoonlijke gegevens</a>
+            }
             <div class="containerOefeningenCards">
                 @foreach (var oefening in Model) {
                     <div class="card @(oefening.Graad.ToString("").ToLower().StartsWith("dan")?"zwart" : oefening.Graad.ToString("").ToLower())">

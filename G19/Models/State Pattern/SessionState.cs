@@ -24,7 +24,7 @@ namespace G19.Models.State_Pattern {
             return state == SessionEnum.EindState;
         }
 
-        public static bool ToegestaandOefeningenBekijken(string graad) {
+        public static bool ToegestaandOefeningenBekijken(string graad,Boolean isAlsLidIngelogd) {
             int lidGraad = (int)huidigLid.Graad;
             int oefGraad = 0;
             if (graad != "ZWART" && graad != "ALLES")
@@ -34,7 +34,7 @@ namespace G19.Models.State_Pattern {
             else if (graad == "ALLES")
                 oefGraad = (int)GraadEnum.DAN1;
 
-            if (state == SessionEnum.OefeningState) {
+            if (state == SessionEnum.OefeningState || isAlsLidIngelogd) {
                 return oefGraad <= lidGraad;
             }
             return false;
