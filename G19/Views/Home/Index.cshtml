@@ -23,13 +23,14 @@
         <div class="form-group form">
             <a class="buttons" asp-controller="Home" asp-action="GeefAlleLeden">Toon alle leden</a>
             <a class="buttons" id="irritant" asp-controller="Lid" asp-action="registreerNietLid">Registreer niet-ingeschreven lid</a>
-            <a class="buttons"  id="irritant" data-toggle="modal" data-target="#tostate" data-whatever="" >Aanwezigheden zijn geregistreerd</a>
+            <a class="buttons" id="irritant" data-toggle="modal" data-target="#tostate" data-whatever="">Aanwezigheden zijn geregistreerd</a>
         </div>
 
         <div class="containerAanwezighedenCards">
             @if (Model.LongCount() == 0) {
                 <p>Er zijn geen leden ingeschreven op deze vandaag</p>
-            } else {
+            }
+            else {
                 @foreach (var lid in Model) {
                     <a asp-controller="Home" asp-action="RegistreerAanwezigheid" asp-route-id="@lid.Id" class="cardButton">
                         <div class="card @(lid.Graad.ToString().ToLower().StartsWith("dan") ? "zwart" : lid.Graad.ToString().ToLower())" style="background-color:@(lid.benIkAanwezigVandaag() ? "var(--aanwezigheidGemeld)" : "var(--accent5)"); border: 5px solid @(lid.Graad.ToString("").ToLower().StartsWith("dan") ? "black" : lid.Graad.ToString("").ToLower())">
@@ -53,32 +54,49 @@
                 <div class="modal-body">
                     <form method="post" asp-controller="Home" asp-action="ToOefeningState">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Geef code in om door te gaan</label>
-                            <input name="code" type="password" class="form-control" id="recipient-name">
+                            <label for="code" class="col-form-label">Geef code in om door te gaan</label>
+                            <input name="code" type="password" class="form-control" id="code" oninput="checkThisCode()">
+                        </div>
+                        <div id="errorMessage">
+                            <p>De code is niet correct!</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleer</button>
-                            <button type="submit" class="btn btn-primary" >Alle aanwezigheden zijn geregistreerd </button>
+                            <button type="submit" class="btn btn-primary" id="btnCn">Alle aanwezigheden zijn geregistreerd </button>
                         </div>
                     </form>
                 </div>
-               
+
             </div>
         </div>
     </div>
 </body>
 <script>
 
-window.onload = function () {
+    window.onload = function () {
         $('#tostate').on('show.bs.modal', function (event) {
-                            var button = $(event.relatedTarget) 
-        //var recipient = button.data('whatever')
-       
-        //var modal = $(this)
-        //modal.find('.modal-title').text('New message to' + recipient)
-        //modal.find('.modal-body input').val(recipient)
-    })
+            var button = $(event.relatedTarget)
+            //var recipient = button.data('whatever')
 
+            //var modal = $(this)
+            //modal.find('.modal-title').text('New message to' + recipient)
+            //modal.find('.modal-body input').val(recipient)
+        })
+    }
+
+    function checkThisCode() {
+        var code = document.getElementById("code").value;
+        var btn = document.getElementById("btnCn");
+        console.log(code);
+        if (code == 1234) {
+            document.getElementById("errorMessage").style.display = "none";
+            btn.disabled = false;
+            return true;
+        } else {
+            document.getElementById("errorMessage").style.display = "block";
+            btn.disabled = true;
+            return false;
+        }
     }
 
 </script>

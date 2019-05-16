@@ -113,6 +113,10 @@
     }
 
 
+#errorMessage {
+    color: #D5A021;
+    display: none;
+}
 @media only screen and (min-width:768px) {
     .containerAanwezigheden {
         margin-top: 10vh;
