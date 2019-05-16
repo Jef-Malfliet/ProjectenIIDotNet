@@ -138,6 +138,7 @@ namespace G19.Controllers {
                     MapLidViewModelToLid(nietLidVM, nietLid);
                     _lidRepository.Add(nietLid);
                     _lidRepository.SaveChanges();
+                    
                 } catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), nietLidVM);

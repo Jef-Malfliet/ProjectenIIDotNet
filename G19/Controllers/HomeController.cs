@@ -55,7 +55,7 @@ namespace G19.Controllers {
         public IActionResult GeefAanwezigenVandaag() {
             if (SessionState.OefeningenBekijkenState()) {
                 //   Session session = GeefHuidgeSessie();
-                var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.benIkAanwezigVandaag());
+                var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.BenIkAanwezigVandaag());
                 return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
             } else {
                 TempData["SessionStateMessage"] = "Je moet alle aanwezigen doorgeven door op de knop 'Aanwezigheden zijn geregistreerd' te drukken.";
@@ -66,7 +66,7 @@ namespace G19.Controllers {
         public IActionResult RegistreerAanwezigheid(int id) {
             if (SessionState.AanwezigheidRegistrerenState()) {
                 var lid = _lidRepository.GetById(id);
-                _lidRepository.RegisteerAanwezigheid(lid);
+                lid.Aanwezigheden.Add(new Lid_Aanwezigheden { Aanwezigheid = DateTime.Now, LidId = id });
                 _lidRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
             } else {

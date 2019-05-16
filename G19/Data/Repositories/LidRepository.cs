@@ -53,7 +53,7 @@ namespace G19.Data.Repositories {
 
         public void RegisteerAanwezigheid(Lid lid) {
             var registreerLid = _context.Leden.FirstOrDefault(l => l.Id == lid.Id);
-            if (lid.benIkAanwezigVandaag()) {
+            if (lid.BenIkAanwezigVandaag()) {
                 var aanwezigheid = registreerLid.Aanwezigheden.FirstOrDefault(a => a.Aanwezigheid.Date == DateTime.Today);
                 registreerLid.Aanwezigheden.Remove(aanwezigheid);
 

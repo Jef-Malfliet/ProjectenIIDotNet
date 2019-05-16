@@ -195,10 +195,10 @@ namespace G19.Models {
         #endregion
 
         #region Methods
-        public Boolean benIkAanwezigVandaag() {
-            return Aanwezigheden.FirstOrDefault(aanwezigheid => aanwezigheid.Aanwezigheid.Date == DateTime.Today) != null;
+        public bool BenIkAanwezigVandaag() {
+            return Aanwezigheden.Any(aanwezigheid => aanwezigheid.Aanwezigheid.Date == DateTime.Today);
         }
-        public int geefGraadinGetal() {
+        public int GeefGraadInGetal() {
             switch (Graad) {
                 case GraadEnum.WIT: return 0;
                 case GraadEnum.GEEL: return 1;

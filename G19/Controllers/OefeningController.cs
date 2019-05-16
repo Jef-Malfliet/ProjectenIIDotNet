@@ -59,7 +59,7 @@ namespace G19.Controllers {
         }
         [Route("Oefening/{graad}")]
         public IActionResult GeefOefeningenPerGraad(string graad) {
-            TempData["Graad"] = SessionState.huidigLid.geefGraadinGetal();
+            TempData["Graad"] = SessionState.huidigLid.GeefGraadInGetal();
             TempData["active"] = graad;
             if (SessionState.OefeningenBekijkenState()) {
                 if (SessionState.ToegestaandOefeningenBekijken(graad)) {
@@ -86,7 +86,7 @@ namespace G19.Controllers {
 
         public IActionResult GeefOefeningenLid(int lidId) {
             var lid = _lidRepository.GetById(lidId);
-            TempData["Graad"] = lid.geefGraadinGetal();
+            TempData["Graad"] = lid.GeefGraadInGetal();
             SessionState.VeranderHuidigLid(lid);
             if (SessionState.OefeningenBekijkenState()) {
                 string graad = lid.Graad.ToString();
