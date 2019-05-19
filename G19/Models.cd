@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="G19.Models.Lid">
+    <Position X="0.5" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AQQCACAgAigxQAAAAACQAAQAGAAAAAgCAoiAgQIAAQE=</HashCode>
+      <FileName>Models\Lid.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Land" />
+      <Property Name="Lessen" />
+      <Property Name="Graad" />
+      <Property Name="Roltype" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="G19.Models.Lid_Aanwezigheden">
+    <Position X="7.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Lid_Aanwezigheden.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Models.Oefening">
+    <Position X="8.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAICAQAAgAEAAAAAEAAABAQQAAAAABAAAAAAAAIIIAg=</HashCode>
+      <FileName>Models\Oefening.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Graad" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="G19.Models.Oefening_Comments">
+    <Position X="6.5" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\Oefening_Comments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Models.Oefening_Images">
+    <Position X="9.25" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAQAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Oefening_Images.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Filters.SessionFilter">
+    <Position X="10" Y="10.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAASAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\SessionFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Filters.LidFilter">
+    <Position X="13.5" Y="10.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filters\UserFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Data.Repositories.LidRepository">
+    <Position X="0.5" Y="17.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>gAKAAAAABAAABEAAAAAABAAgAACAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Data\Repositories\LidRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="G19.Data.Repositories.OefeningRepository">
+    <Position X="4.5" Y="17.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAIAAAABAAgAAAABAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Data\Repositories\OefeningRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="G19.Data.ApplicationDbContext">
+    <Position X="20.75" Y="1.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Data.DataInitializer">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAABAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Data\DataInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Data.Mappers.Lid_AanwezighedenConfiguration" BaseTypeListCollapsed="true">
+    <Position X="26" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Mappers\Lid_AanwezighedenConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="G19.Data.Mappers.LidConfiguration" BaseTypeListCollapsed="true">
+    <Position X="24.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Mappers\LidConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="G19.Data.Mappers.Oefening_CommentsConfiguration" BaseTypeListCollapsed="true">
+    <Position X="19" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Mappers\Oefening_CommentsConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="G19.Data.Mappers.Oefening_ImagesConfiguration" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Mappers\Oefening_ImagesConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="G19.Data.Mappers.OefeningConfiguration" BaseTypeListCollapsed="true">
+    <Position X="22.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Mappers\OefeningConfiguration.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="G19.Controllers.HomeController">
+    <Position X="18" Y="13.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABAAAAAAEAEAAAAAEAIACAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Controllers.LidController">
+    <Position X="22.75" Y="13.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAIAAAAAAAEAAACAAAAAAAAQCAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LidController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Controllers.OefeningController">
+    <Position X="22.5" Y="16.75" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAEAABAIAAAEAEAAAAAgACAAAAYAiAmAEAAAAAA=</HashCode>
+      <FileName>Controllers\OefeningController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G19.Controllers.SessionController">
+    <Position X="17.75" Y="17" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAEAAAACAgA=</HashCode>
+      <FileName>Controllers\SessionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="G19.Models.Repositories.ILidRepository">
+    <Position X="0.5" Y="13.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gAKAAAAABAAAAEAAAAAABAAgAACAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Repositories\ILidRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="G19.Models.Repositories.IOefeningRepository">
+    <Position X="4" Y="14" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAIAAAAAAAgAAAABAAAAAAAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Repositories\IOefeningRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="G19.Models.FormuleEnum">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAASAAAAAAQAgAAAAAACAAAAAAAAAAABAACAA=</HashCode>
+      <FileName>Models\FormuleEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="G19.Models.GraadEnum">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAACAAAABAAAAAAAAAAAIGAAAEED4FwAIBAA=</HashCode>
+      <FileName>Models\GraadEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="G19.Models.LandEnum">
+    <Position X="4.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAACAAAAA=</HashCode>
+      <FileName>Models\LandEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="G19.Models.RolTypeEnum">
+    <Position X="4.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAACAAAAAAIAAAAAACACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RolTypeEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
