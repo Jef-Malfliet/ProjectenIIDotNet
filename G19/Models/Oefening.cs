@@ -88,19 +88,19 @@ namespace G19.Models {
             return "https://" + uri.Host + "/embed/" + videoId;
         }
 
-        public Boolean hasUitleg() {
+        public bool hasUitleg() {
             return Uitleg?.DefaultIfEmpty() != null;
         }
-        public Boolean hasImages() {
+        public bool hasImages() {
             if (Images != null) {
                 return Images.Count > 0;
             }
             return false;
         }
-        public Boolean hasVideo() {
+        public bool hasVideo() {
             return Video?.DefaultIfEmpty() != null ;
         }
-        public Boolean hasComments() {
+        public bool hasComments() {
             if (Comments != null) {
                 return Comments.Count > 0;
             }

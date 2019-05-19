@@ -2,7 +2,6 @@
 using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.State_Pattern;
-using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;

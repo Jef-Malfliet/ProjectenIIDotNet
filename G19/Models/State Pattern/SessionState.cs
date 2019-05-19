@@ -16,7 +16,7 @@ namespace G19.Models.State_Pattern {
             vandaag = fakevandaag;
         }
 
-        public  bool AanwezigheidRegistrerenState() {
+        public bool AanwezigheidRegistrerenState() {
             return state == SessionEnum.RegistreerState;
         }
 
@@ -28,7 +28,7 @@ namespace G19.Models.State_Pattern {
             return state == SessionEnum.EindState;
         }
 
-        public bool ToegestaandOefeningenBekijken(string graad,Boolean isAlsLidIngelogd) {
+        public bool ToegestaandOefeningenBekijken(string graad, bool isAlsLidIngelogd) {
             int lidGraad = (int)huidigLid.Graad;
             int oefGraad = 0;
             if (graad != "ZWART" && graad != "ALLES")

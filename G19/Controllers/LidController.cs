@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
@@ -55,7 +51,7 @@ namespace G19.Controllers {
         public IActionResult Edit(Lid lid, LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
                 try {
-                    MapLidViewModelToLid(lidViewModel, lid);
+                    lid.MapLidViewModelToLid(lidViewModel, lid);
                     _lidRepository.SaveChanges();
                 } catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
@@ -73,7 +69,7 @@ namespace G19.Controllers {
             Lid lid = _lidRepository.GetById(sessie.huidigLid.Id);
             if (ModelState.IsValid) {
                 try {
-                    MapLidViewModelToLidInSession(lidViewModelSession, lid);
+                    lid.MapLidViewModelToLidInSession(lidViewModelSession, lid);
                     _lidRepository.SaveChanges();
                     sessie.VeranderHuidigLid(lid);
                 } catch (Exception e) {
@@ -84,45 +80,6 @@ namespace G19.Controllers {
             }
 
             return View(nameof(EditInSession), lidViewModelSession);
-        }
-
-        private void MapLidViewModelToLid(LidViewModel LidViewModel, Lid lid) {
-            lid.Voornaam = LidViewModel.Voornaam;
-            lid.Familienaam = LidViewModel.Achternaam;
-            lid.Rijksregisternummer = LidViewModel.Rijksregisternummer1 + "." + LidViewModel.Rijksregisternummer2 + "."
-                                 + LidViewModel.Rijksregisternummer3 + "-" + LidViewModel.Rijksregisternummer4 + "." + LidViewModel.Rijksregisternummer5;
-            lid.GeboorteDatum = LidViewModel.GeboorteDatum;
-            lid.Geslacht = LidViewModel.Geslacht;
-            lid.Land = LidViewModel.Land;
-
-            lid.Email = LidViewModel.Email;
-            lid.GSM = LidViewModel.GSM;
-            lid.Telefoon = LidViewModel.Telefoon;
-            lid.Busnummer = LidViewModel.Busnummer;
-            lid.Huisnummer = LidViewModel.Huisnummer;
-            lid.EmailOuders = LidViewModel.EmailOuders;
-            lid.PostCode = LidViewModel.Postcode;
-            lid.Stad = LidViewModel.Stad;
-            lid.StraatNaam = LidViewModel.StraatNaam;
-
-            // lid.Lessen = LidViewModel.Lessen;
-            // lid.Graad = LidViewModel.Graad;
-            // lid.Roltype = LidViewModel.Roltype;
-            // lid.Wachtwoord = LidViewModel.Wachtwoord;
-            //lid.Id = LidViewModel.Id;
-
-        }
-
-        private void MapLidViewModelToLidInSession(LidViewModelSession LidViewModelInSession, Lid lid) {
-            lid.Email = LidViewModelInSession.Email;
-            lid.GSM = LidViewModelInSession.GSM;
-            lid.Telefoon = LidViewModelInSession.Telefoon;
-            lid.Busnummer = LidViewModelInSession.Busnummer;
-            lid.Huisnummer = LidViewModelInSession.Huisnummer;
-            lid.EmailOuders = LidViewModelInSession.EmailOuders;
-            lid.PostCode = LidViewModelInSession.Postcode;
-            lid.Stad = LidViewModelInSession.Stad;
-            lid.StraatNaam = LidViewModelInSession.StraatNaam;
         }
 
         [HttpGet]
@@ -136,7 +93,7 @@ namespace G19.Controllers {
             if (ModelState.IsValid) {
                 try {
                     Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };
-                    MapLidViewModelToLid(nietLidVM, nietLid);
+                    nietLid.MapLidViewModelToLid(nietLidVM, nietLid);
                     _lidRepository.Add(nietLid);
                     _lidRepository.SaveChanges();
                     

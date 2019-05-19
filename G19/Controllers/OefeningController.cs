@@ -5,13 +5,9 @@ using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace G19.Controllers {
     [Authorize]
@@ -19,12 +15,12 @@ namespace G19.Controllers {
     public class OefeningController : Controller {
         private readonly IOefeningRepository _oefeningRepository;
         private readonly ILidRepository _lidRepository;
-        public IConfiguration Configuration { get; set; }
+        private readonly IMailRepository _mailRepository;
 
-        public OefeningController(IOefeningRepository oefeningRepository, ILidRepository lidRepository, IConfiguration configuration) {
+        public OefeningController(IOefeningRepository oefeningRepository, ILidRepository lidRepository, IMailRepository mailRepository) {
             _oefeningRepository = oefeningRepository;
             _lidRepository = lidRepository;
-            Configuration = configuration;
+            _mailRepository = mailRepository;
         }
         public IActionResult Index(SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
@@ -45,7 +41,7 @@ namespace G19.Controllers {
                 _oefeningRepository.AddComment(id, comment);
                 _oefeningRepository.SaveChanges();
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
-                bool succes = SendMailAsync(comment, id).Result;
+                bool succes = _mailRepository.SendMailAsync(comment, id).Result;
                 if (succes) {
                     TempData["Message"] = "Mail succesvol verzonden.";
                 } else {
@@ -161,48 +157,14 @@ namespace G19.Controllers {
             return null;
 
         }
-        private Boolean IsAlsLesgeverIngelogd() {
+        private bool IsAlsLesgeverIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lesgever");
         }
-        private Boolean IsAlsLidIngelogd() {
+        private bool IsAlsLidIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lid");
         }
-        private Boolean MagOefeningenBekijken(SessionState sessie) {
+        private bool MagOefeningenBekijken(SessionState sessie) {
             return sessie.OefeningenBekijkenState() || IsAlsLidIngelogd();
-        }
-        private async Task<bool> SendMailAsync(string comment, int oefId) {
-
-            var oef = _oefeningRepository.GetById(oefId);
-
-            MailAddress from = new MailAddress(Configuration["Mail:From"]);
-            MailAddress to = new MailAddress(Configuration["Mail:To"]);
-            MailMessage mail = new MailMessage(from,to);
-            mail.Subject = "Nieuwe feedback op oefening " + oef.Naam + " - " + oef.Graad.ToString("");
-            mail.IsBodyHtml = true;
-            mail.Body = 
-                "<h2>Er is nieuwe feedback toegevoegd aan oefening " + oef.Naam + " van graad " + oef.Graad.ToString("") + "</h2>"
-                + "<br />"
-                + comment;
-
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(Configuration["Mail:From"], Configuration["Mail:FromPass"]);
-            smtp.EnableSsl = true;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-
-            smtp.SendCompleted += (s, e) => {
-                smtp.Dispose();
-                mail.Dispose();
-            };
-
-            try {
-                await smtp.SendMailAsync(mail);
-            } catch(Exception e) {
-                ModelState.AddModelError("", e.Message);
-                return false;
-            }
-            return true;
         }
     }
 }

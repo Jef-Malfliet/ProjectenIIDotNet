@@ -40,10 +40,6 @@
     width:80%;
 }
 
-/*.imgCont{
-    margin-top: 1%;
-}*/
-
 #mainText {
     margin-right: 1%;
     display: inline-block;
@@ -60,7 +56,6 @@
 }
 
 .navbar ul li a {
-    /*color: var(--white);*/
     font-size: 15px;
 }
 

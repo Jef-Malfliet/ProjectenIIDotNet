@@ -46,7 +46,7 @@
     }
 
 .loginCont {
-    margin: 10% auto;
+    margin: 10% 20%;
     opacity: 1 !important;
 }
 
@@ -61,7 +61,7 @@
 .bg-img {
     position: absolute;
     top: 15%;
-    left: 55%;
+    left: 65%;
     opacity:0.5;
     display: inline-block;
 }

@@ -1,10 +1,6 @@
 ﻿using G19.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace G19.Data.Mappers {
     public class Oefening_ImagesConfiguration : IEntityTypeConfiguration<Oefening_Images> {
