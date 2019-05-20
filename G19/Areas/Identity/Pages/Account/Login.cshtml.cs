@@ -9,19 +9,26 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using G19.Models.Repositories;
+using G19.Models.State_Pattern;
+using G19.Filters;
+using G19.Models;
 
 namespace G19.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
+    [ServiceFilter(typeof(SessionFilter))]
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ILidRepository _lidrepository;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger,ILidRepository lidRepository)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _lidrepository = lidRepository;
         }
 
         [BindProperty]
@@ -65,7 +72,7 @@ namespace G19.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(SessionState sessie,string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
 
@@ -77,6 +84,17 @@ namespace G19.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    Lid lid = _lidrepository.GetByEmail(Input.Email);
+                    if(lid.Roltype == RolTypeEnum.Lid) {
+                        sessie.VeranderHuidigLid(lid);
+                        sessie.ToState(SessionEnum.OefeningState);
+                    }
+
+
+
+
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -1,5 +1,7 @@
-﻿using G19.Models;
+﻿using G19.Filters;
+using G19.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace G19.Data {
             this._context = context;
             this._usermanager = usermanager;
         }
-
+        [ServiceFilter(typeof(SessionFilter))]
         public async Task InitializeData() {
 
             //Oefening oefening = new Oefening() {
@@ -68,15 +70,14 @@ namespace G19.Data {
             //    Formule = FormuleEnum.Dinsdag
             //}
 
-            foreach (Lid li in _context.Leden.ToList()) {
+            //foreach (Lid li in _context.Leden.ToList()) {
 
                 //int number = (li.Email).GetHashCode() % 97;
                 //try {
                 //    string va = (li.Voornaam + li.Familienaam);
                 //    va = va.Replace(" ", String.Empty);
-                //    string ww = va[5].ToString() +va [4].ToString() + va[7].ToString() + Math.Abs(number) + li.Email[2].ToString() + li.Familienaam[1].ToString() + va[1].ToString();
-                //    li.Wachtwoord = ww;
-                //li.Wachtwoord += "!";
+                //    li.Wachtwoord = va[5].ToString() +va [4].ToString() + va[7].ToString() + Math.Abs(number) + li.Email[2].ToString() + li.Familienaam[1].ToString() + va[1].ToString();
+                //    li.Wachtwoord += "!";
                 //} catch {
                 //    li.Wachtwoord = "Probleem123";
                 //}
@@ -99,7 +100,7 @@ namespace G19.Data {
                     //);
                     _context.SaveChanges();
 
-            }
+            //}
         }
     }
 }

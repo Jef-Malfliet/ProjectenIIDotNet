@@ -58,7 +58,7 @@ namespace G19.Controllers {
             TempData["Graad"] = sessie.huidigLid.GeefGraadInGetal();
             TempData["active"] = graad;
             if (MagOefeningenBekijken(sessie)) {
-                if (sessie.ToegestaandOefeningenBekijken(graad, IsAlsLidIngelogd())) {
+                if (sessie.ToegestaandOefeningenBekijken(graad)) {
                     if (graad != "ZWART" && graad != "ALLES") {
                         return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
                     }
@@ -81,7 +81,8 @@ namespace G19.Controllers {
         }
 
         public IActionResult GeefOefeningenLid(int lidId,SessionState sessie) {
-            var lid = _lidRepository.GetById(lidId);
+            var lid = _lidRepository.GetById(lidId) == null ?sessie.huidigLid:null;
+          
             TempData["Graad"] = lid.GeefGraadInGetal();
             sessie.VeranderHuidigLid(lid);
             if (MagOefeningenBekijken(sessie)) {
@@ -146,24 +147,24 @@ namespace G19.Controllers {
                 return View("~/Views/Session/SessionStateMessage.cshtml");
             }
         }
-        private Lid GeefLid(int Id) {
-            if (IsAlsLidIngelogd()) {
-                return _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
-            }
-            if (IsAlsLesgeverIngelogd()) {
-                return _lidRepository.GetById(Id);
-            }
-            return null;
+        //private Lid GeefLid(int Id) {
+        //    if (IsAlsLidIngelogd()) {
+        //        return _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
+        //    }
+        //    if (IsAlsLesgeverIngelogd()) {
+        //        return _lidRepository.GetById(Id);
+        //    }
+        //    return null;
 
-        }
-        private bool IsAlsLesgeverIngelogd() {
-            return HttpContext.User.HasClaim(c => c.Value == "lesgever");
-        }
-        private bool IsAlsLidIngelogd() {
-            return HttpContext.User.HasClaim(c => c.Value == "lid");
-        }
+        //}
+        //private bool IsAlsLesgeverIngelogd() {
+        //    return HttpContext.User.HasClaim(c => c.Value == "lesgever");
+        //}
+        //private bool IsAlsLidIngelogd() {
+        //    return HttpContext.User.HasClaim(c => c.Value == "lid");
+        //}
         private bool MagOefeningenBekijken(SessionState sessie) {
-            return sessie.OefeningenBekijkenState() || IsAlsLidIngelogd();
+            return sessie.OefeningenBekijkenState();
         }
     }
 }
