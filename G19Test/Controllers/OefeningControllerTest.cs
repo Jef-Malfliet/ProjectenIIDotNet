@@ -18,8 +18,11 @@ namespace G19Test.Controllers {
         private readonly OefeningController _controller;
         private readonly Mock<IOefeningRepository> _oefeningRepository;
         private readonly Mock<ILidRepository> _lidRepository;
+        private readonly Mock<IMailRepository> _mailRepository;
         private readonly DummyDbContext _context;
         private readonly _CommentsViewModel _model;
+        private readonly SessionState _sessie;
+
         public IConfiguration Configuration { get; set; }
 
 
@@ -28,47 +31,76 @@ namespace G19Test.Controllers {
             var httpcontext = new DefaultHttpContext();
             var tempData = new TempDataDictionary(httpcontext, Mock.Of<ITempDataProvider>());
 
-            var builder = new ConfigurationBuilder()
-                .AddUserSecrets<OefeningControllerTest>();
-
-            Configuration = builder.Build();
-
             _context = new DummyDbContext();
             _oefeningRepository = new Mock<IOefeningRepository>();
             _lidRepository = new Mock<ILidRepository>();
-            _controller = new OefeningController(_oefeningRepository.Object, _lidRepository.Object, Configuration) {
+            _mailRepository = new Mock<IMailRepository>();
+            _controller = new OefeningController(_oefeningRepository.Object, _lidRepository.Object, _mailRepository.Object) {
                 TempData = tempData
             };
             _model = new _CommentsViewModel() {
                 Comments = "Dit is de model comment"
             };
+
+            _sessie = new SessionState();
+            _sessie.VeranderHuidigLid(_context.Lid1);
         }
 
         [Fact]
         public void GeefCommentaarPost_GeldigeCommentaar_VoegtCommentaarToe() {
             _oefeningRepository.Setup(o => o.GetById(1)).Returns(_context.Oefening1ExtraCommentaar);
-            SessionState.ToState(SessionEnum.OefeningState);
-            var result = _controller.GeefCommentaar(_model, 1) as ViewResult;
-            _oefeningRepository.Setup(o => o.AddComment(1, _model.Comments));
+            _sessie.ToState(SessionEnum.OefeningState);
+
+            var result = _controller.GeefCommentaar(_model, 1, _sessie) as ViewResult;
+
             Assert.Equal(4, _context.Oefening1.Comments.Count);
-            //Assert.Equal(6, _context.Oefening1.AantalKeerBekeken);
+            _oefeningRepository.Verify(r => r.SaveChanges(), Times.Once);
         }
 
         [Fact]
         public void GeefCommentaarPost_GeldigeCommentaar_PersisteertGegevens() {
             _oefeningRepository.Setup(o => o.GetById(1)).Returns(_context.Oefening1);
-            SessionState.VeranderHuidigLid(_context.Lid1);
-            SessionState.ToState(SessionEnum.OefeningState);
-            var result = _controller.GeefCommentaar(_model, 1) as ViewResult;
+            _sessie.VeranderHuidigLid(_context.Lid1);
+            _sessie.ToState(SessionEnum.OefeningState);
+
+            var result = _controller.GeefCommentaar(_model, 1,_sessie) as ViewResult;
+
             _oefeningRepository.Verify(r => r.SaveChanges(), Times.Once);
         }
 
         [Fact]
         public void GeefCommentaarPost_GeldigeCommentaar_RedirectsNaarIndex() {
             _oefeningRepository.Setup(o => o.GetById(1)).Returns(_context.Oefening1);
-            SessionState.ToState(SessionEnum.OefeningState);
-            var result = _controller.GeefCommentaar(_model, 1) as ViewResult;
+            _mailRepository.Setup(m => m.SendMailAsync(It.IsAny<string>(), 1)).ReturnsAsync(true);
+            _sessie.ToState(SessionEnum.OefeningState);
+
+            var result = _controller.GeefCommentaar(_model, 1,_sessie) as ViewResult;
+
             Assert.Equal("~/Views/Oefening/Comments.cshtml", result?.ViewName);
+            Assert.Equal(_context.Oefening1ExtraCommentaar, result?.Model);
+            _oefeningRepository.Verify(r => r.SaveChanges(), Times.Once);
+        }
+
+        [Fact]
+        public void GeefCommentaarPost_GeldigeCommentaar_MailSuccesvolVerzonden() {
+            _sessie.ToState(SessionEnum.OefeningState);
+            _mailRepository.Setup(m => m.SendMailAsync(It.IsAny<string>(), 1)).ReturnsAsync(true);
+
+            var result = _controller.GeefCommentaar(_model, 1, _sessie) as ViewResult;
+
+            Assert.Equal("Mail succesvol verzonden.", _controller.TempData["Message"]);
+            Assert.Null(_controller.TempData["Error"]);
+        }
+
+        [Fact]
+        public void GeefCommentaarPost_GeldigeCommentaar_MailVerzondenMislukt() {
+            _sessie.ToState(SessionEnum.OefeningState);
+            _mailRepository.Setup(m => m.SendMailAsync(It.IsAny<string>(), 1)).ReturnsAsync(false);
+
+            var result = _controller.GeefCommentaar(_model, 1, _sessie) as ViewResult;
+
+            Assert.Null(_controller.TempData["Message"]);
+            Assert.Equal("Er ging iets mis bij het versturen van de mail, gelieve de lesgever te waarschuwen.", _controller.TempData["Error"]);
         }
     }
 }

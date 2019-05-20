@@ -12,6 +12,7 @@ using Xunit;
 namespace G19Test.Controllers {
     public class HomeControllerTest {
         private readonly HomeController _controller;
+        private readonly SessionState _sessie;
         private readonly Mock<ILidRepository> _lidRepository;
         private readonly DummyDbContext _context;
 
@@ -19,12 +20,13 @@ namespace G19Test.Controllers {
             _context = new DummyDbContext();
             _lidRepository = new Mock<ILidRepository>();
             _controller = new HomeController(_lidRepository.Object);
+            _sessie = new SessionState();
         }
 
         [Fact]
         public void TestIndex_GeeftIndexViewTerug() {
-            SessionState.AanwezigheidRegistrerenState();
-            var result = _controller.Index() as ViewResult;
+            _sessie.ToState(SessionEnum.RegistreerState);
+            var result = _controller.Index(_sessie) as ViewResult;
             Assert.Equal("Index", result?.ViewName);
         }
 
@@ -32,16 +34,16 @@ namespace G19Test.Controllers {
         [Fact]
         public void HttpGetGeefAanwezighedenPerGraad_GeeftIndexTerug() {
             _lidRepository.Setup(l => l.GetByGraadEnFormuleOfDay("wit", It.IsAny<DayOfWeek>())).Returns(new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 });
-            SessionState.ToState(SessionEnum.RegistreerState);
-            var result = _controller.GeefAanwezighedenPerGraad("wit") as ViewResult;
+            _sessie.ToState(SessionEnum.RegistreerState);
+            var result = _controller.GeefAanwezighedenPerGraad("wit", _sessie) as ViewResult;
             Assert.Equal("Index", result?.ViewName);
         }
 
         [Fact]
         public void HttpGetGeefAanwezighedenPerGraad_GeeftHetJuisteModelDoor() {
             _lidRepository.Setup(l => l.GetByGraadEnFormuleOfDay("wit", It.IsAny<DayOfWeek>())).Returns(new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 });
-            SessionState.ToState(SessionEnum.RegistreerState);
-            var result = _controller.GeefAanwezighedenPerGraad("wit") as ViewResult;
+            _sessie.ToState(SessionEnum.RegistreerState);
+            var result = _controller.GeefAanwezighedenPerGraad("wit",_sessie) as ViewResult;
             var model = new List<Lid> { _context.Lid3, _context.Lid4, _context.Lid5 };
             Assert.Equal(model, result?.Model);
         }

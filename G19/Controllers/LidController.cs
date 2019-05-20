@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using G19.Filters;
 using G19.Models;
 using G19.Models.Repositories;
@@ -35,15 +36,6 @@ namespace G19.Controllers {
 
             return View(new LidViewModel(lid));
         }
-        [HttpGet]
-        [Authorize(Policy = "Lesgever")]
-        public IActionResult EditInSession(SessionState sessie) {
-            Lid lid = sessie.huidigLid;
-            if (lid == null)
-                return NotFound();
-
-            return View(new LidViewModelSession(lid));
-        }
 
         [HttpPost]
         [Authorize(Policy = "Lid")]
@@ -57,15 +49,38 @@ namespace G19.Controllers {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), lidViewModel);
                 }
-                return RedirectToAction(nameof(Index),"Session");
+                return RedirectToAction(nameof(Index), "Session");
             }
 
             return View(nameof(Edit), lidViewModel);
         }
 
+        [HttpGet]
+        [Authorize(Policy = "Lesgever")]
+        public IActionResult EditInSession(SessionState sessie) {
+            if(sessie == null) {
+                return NotFound();
+            }
+            Lid lid = sessie.huidigLid;
+            if (lid == null)
+                return NotFound();
+
+            return View(new LidViewModelSession(lid));
+        }
+
         [HttpPost]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult EditInSession(LidViewModelSession lidViewModelSession,SessionState sessie) {
+        public IActionResult EditInSession(LidViewModelSession lidViewModelSession, SessionState sessie) {
+            if(lidViewModelSession == null) {
+                return View(nameof(EditInSession), lidViewModelSession);
+            }
+            if(sessie == null) {
+                return View(nameof(EditInSession), lidViewModelSession);
+            }
+            if(sessie.huidigLid == null) {
+                return View(nameof(EditInSession), lidViewModelSession);
+            }
+
             Lid lid = _lidRepository.GetById(sessie.huidigLid.Id);
             if (ModelState.IsValid) {
                 try {
@@ -89,14 +104,19 @@ namespace G19.Controllers {
         }
 
         [HttpPost]
-        public IActionResult RegistreerNietLid(LidViewModel nietLidVM,SessionState sessie) {
+        public IActionResult RegistreerNietLid(LidViewModel nietLidVM, SessionState sessie) {
             if (ModelState.IsValid) {
                 try {
                     Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };
+
                     nietLid.MapLidViewModelToLid(nietLidVM, nietLid);
                     _lidRepository.Add(nietLid);
                     _lidRepository.SaveChanges();
-                    
+                    List<Lid_Aanwezigheden> aanw = new List<Lid_Aanwezigheden>();
+                    aanw.Add(new Lid_Aanwezigheden() { LidId = nietLid.Id, Aanwezigheid = DateTime.Now });
+                    nietLid.Aanwezigheden = aanw;
+                    _lidRepository.SaveChanges();
+
                 } catch (Exception e) {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), nietLidVM);

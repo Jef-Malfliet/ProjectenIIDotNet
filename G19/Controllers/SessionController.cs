@@ -13,7 +13,7 @@ namespace G19.Controllers {
     public class SessionController : Controller {
         // GET: /<controller>/
         private readonly ILidRepository _lidRepository;
-       // private readonly ISessionRepository _sessionRepository;
+        // private readonly ISessionRepository _sessionRepository;
         public SessionController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
             _lidRepository = lidRepository;
             //_sessionRepository = sessionRepository;
@@ -26,14 +26,20 @@ namespace G19.Controllers {
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
         public IActionResult StartNieuweSessie(SessionState sessie) {
+            if (sessie == null) {
+                return View(nameof(Index));
+            }
             sessie.ToState(SessionEnum.RegistreerState);
             sessie.vandaag = DateTime.Today.DayOfWeek;
-            return View("../Home/Index",_lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
+            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
 
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
-        public IActionResult FakeToday(DayOfWeek dag,SessionState sessie) {
+        public IActionResult FakeToday(DayOfWeek dag, SessionState sessie) {
+            if (sessie == null) {
+                return View(nameof(Index));
+            }
             sessie.FakeVandaag(dag);
             return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
@@ -60,7 +66,9 @@ namespace G19.Controllers {
 
         [Authorize(Policy = "Lesgever")]
         public void EndSessionState(SessionState sessie) {
-            sessie.ToState(SessionEnum.EindState);
+            if (sessie != null) {
+                sessie.ToState(SessionEnum.EindState);
+            }
         }
     }
 }

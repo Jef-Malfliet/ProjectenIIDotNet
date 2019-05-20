@@ -40,7 +40,6 @@ namespace G19.Controllers {
                 string comment = commentViewModel.Comments + '~' + sessie.huidigLid.Voornaam + ' ' + sessie.huidigLid.Familienaam;
                 _oefeningRepository.AddComment(id, comment);
                 _oefeningRepository.SaveChanges();
-                IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
                 bool succes = _mailRepository.SendMailAsync(comment, id).Result;
                 if (succes) {
                     TempData["Message"] = "Mail succesvol verzonden.";
