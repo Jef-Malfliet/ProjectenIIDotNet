@@ -79,8 +79,8 @@ namespace G19.Controllers {
         }
 
         public IActionResult GeefOefeningenLid(int lidId, SessionState sessie) {
-            if (lidId <= 0) {
-                TempData["SessionStateMessage"] = "LidId mag niet 0 zijn";
+            if (lidId < 0) {
+                TempData["SessionStateMessage"] = "LidId mag niet kleiner zijn dan 0";
                 return RedirectToAction("SessionStateMessage", "Session");
             }
             if(sessie == null) {
@@ -88,8 +88,10 @@ namespace G19.Controllers {
                 return RedirectToAction("SessionStateMessage", "Session");
             }
 
-            var lid = _lidRepository.GetById(lidId);
+            var lid = GeefLid(lidId);
             TempData["Graad"] = lid.GeefGraadInGetal();
+            string graadlid = lid.Graad.ToString();
+            TempData["active"] = graadlid.StartsWith("DAN")?"ZWART":graadlid;
             sessie.VeranderHuidigLid(lid);
             if (MagOefeningenBekijken(sessie)) {
                 string graad = lid.Graad.ToString();
