@@ -209,11 +209,11 @@ namespace G19Test.Controllers {
 
         [Fact]
         public void GeefOefeningenLid_nulId_GeeftIndexViewEnOefeningen() {
-            var result = _controller.GeefOefeningenLid(0, _sessie) as RedirectToActionResult;
+            var result = _controller.GeefOefeningenLid(-1, _sessie) as RedirectToActionResult;
 
             Assert.Equal("SessionStateMessage", result?.ActionName);
             Assert.Equal("Session", result?.ControllerName);
-            Assert.Equal("LidId mag niet 0 zijn", _controller.TempData["SessionStateMessage"]);
+            Assert.Equal("LidId mag niet kleiner zijn dan 0", _controller.TempData["SessionStateMessage"]);
         }
 
         [Fact]
