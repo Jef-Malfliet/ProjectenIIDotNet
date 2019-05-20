@@ -23,6 +23,9 @@ namespace G19.Controllers {
             _mailRepository = mailRepository;
         }
         public IActionResult Index(SessionState sessie) {
+            if(sessie == null) {
+                return RedirectToAction("SessionStateMessage","Session");
+            }
             if (MagOefeningenBekijken(sessie)) {
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
                 ViewData["Graden"] = new List<GraadEnum>(new HashSet<GraadEnum>((GraadEnum[])Enum.GetValues(typeof(GraadEnum))));
@@ -30,7 +33,7 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Je moet eerst je aanwezigheid registreren.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 

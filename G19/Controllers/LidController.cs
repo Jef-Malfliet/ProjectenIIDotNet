@@ -43,6 +43,12 @@ namespace G19.Controllers {
         public IActionResult Edit(Lid lid, LidViewModel lidViewModel) {
             if (ModelState.IsValid) {
                 try {
+                    if (lid == null) {
+                        throw new ArgumentException("lid mag niet null zijn");
+                    }
+                    if (lidViewModel == null) {
+                        throw new ArgumentException("lidViewmodel mag niet null zijn");
+                    }
                     lid.MapLidViewModelToLid(lidViewModel, lid);
                     _lidRepository.SaveChanges();
                 } catch (Exception e) {
@@ -58,7 +64,7 @@ namespace G19.Controllers {
         [HttpGet]
         [Authorize(Policy = "Lesgever")]
         public IActionResult EditInSession(SessionState sessie) {
-            if(sessie == null) {
+            if (sessie == null) {
                 return NotFound();
             }
             Lid lid = sessie.huidigLid;
@@ -71,13 +77,13 @@ namespace G19.Controllers {
         [HttpPost]
         [Authorize(Policy = "Lesgever")]
         public IActionResult EditInSession(LidViewModelSession lidViewModelSession, SessionState sessie) {
-            if(lidViewModelSession == null) {
+            if (lidViewModelSession == null) {
                 return View(nameof(EditInSession), lidViewModelSession);
             }
-            if(sessie == null) {
+            if (sessie == null) {
                 return View(nameof(EditInSession), lidViewModelSession);
             }
-            if(sessie.huidigLid == null) {
+            if (sessie.huidigLid == null) {
                 return View(nameof(EditInSession), lidViewModelSession);
             }
 
@@ -107,6 +113,9 @@ namespace G19.Controllers {
         public IActionResult RegistreerNietLid(LidViewModel nietLidVM, SessionState sessie) {
             if (ModelState.IsValid) {
                 try {
+                    if (sessie == null) {
+                        throw new ArgumentException("sessie mag niet null zijn");
+                    }
                     Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };
 
                     nietLid.MapLidViewModelToLid(nietLidVM, nietLid);
@@ -121,7 +130,7 @@ namespace G19.Controllers {
                     ModelState.AddModelError("", e.Message);
                     return View(nameof(Edit), nietLidVM);
                 }
-                return View("~/Views/Home/Index.cshtml", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
+                return RedirectToAction("Index", "Home", sessie);
             }
             return View(nameof(Edit), nietLidVM);
         }

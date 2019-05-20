@@ -1,4 +1,5 @@
 ﻿using G19.Controllers;
+using G19.Models;
 using G19.Models.Repositories;
 using G19.Models.State_Pattern;
 using G19.Models.ViewModels;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using Moq;
+using System.Collections.Generic;
 using Xunit;
 
 [assembly: UserSecretsId("aspnet-G19-54AF2184-0909-4B6D-8E54-D1611826476F")]
@@ -22,9 +24,6 @@ namespace G19Test.Controllers {
         private readonly DummyDbContext _context;
         private readonly _CommentsViewModel _model;
         private readonly SessionState _sessie;
-
-        public IConfiguration Configuration { get; set; }
-
 
         public OefeningControllerTest() {
 
@@ -45,6 +44,36 @@ namespace G19Test.Controllers {
             _sessie = new SessionState();
             _sessie.VeranderHuidigLid(_context.Lid1);
         }
+
+        #region Index
+        [Fact]
+        public void Index_valid_GeeftOefeningen() {
+            _sessie.ToState(SessionEnum.OefeningState);
+            _oefeningRepository.Setup(o => o.GetAll()).Returns(new List<Oefening>() { _context.Oefening1 });
+
+            var result = _controller.Index(_sessie) as ViewResult;
+
+            Assert.Equal(new List<Oefening>() { _context.Oefening1 }, result?.Model);
+        }
+
+        [Fact]
+        public void Index_NullSessie_GeeftOefeningen() {
+            var result = _controller.Index(null) as RedirectToActionResult;
+
+            Assert.Equal("SessionStateMessage", result?.ActionName);
+            Assert.Equal("Session", result?.ControllerName);
+        }
+
+        //[Fact]
+        //public void Index_SessieNietOefeningState_GeeftOefeningen() {
+        //    _sessie.ToState(SessionEnum.RegistreerState);
+
+        //    var result = _controller.Index(_sessie) as RedirectToActionResult;
+
+        //    Assert.Equal("SessionStateMessage", result?.ActionName);
+        //    Assert.Equal("Session", result?.ControllerName);
+        //}
+        #endregion
 
         [Fact]
         public void GeefCommentaarPost_GeldigeCommentaar_VoegtCommentaarToe() {
