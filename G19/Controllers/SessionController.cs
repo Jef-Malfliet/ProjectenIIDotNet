@@ -24,6 +24,11 @@ namespace G19.Controllers {
         }
 
         [HttpGet]
+        public IActionResult SessionStateMessage() {
+            return View("SessionStateMessage");
+        }
+
+        [HttpGet]
         [Authorize(Policy = "Lesgever")]
         public IActionResult StartNieuweSessie(SessionState sessie) {
             if (sessie == null) {

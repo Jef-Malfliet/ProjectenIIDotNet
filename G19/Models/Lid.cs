@@ -178,6 +178,7 @@ namespace G19.Models {
         }
         public DateTime GeboorteDatum { get; set; }
         public string Geslacht { get; set; }
+        [JsonProperty]
         public GraadEnum Graad { get; set; }
         public LandEnum Land { get; set; }
         public FormuleEnum Lessen { get; set; }

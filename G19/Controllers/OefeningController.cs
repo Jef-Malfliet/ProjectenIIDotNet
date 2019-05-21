@@ -23,19 +23,21 @@ namespace G19.Controllers {
             _mailRepository = mailRepository;
         }
         public IActionResult Index(SessionState sessie) {
+            if (sessie == null) {
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (MagOefeningenBekijken(sessie)) {
                 IEnumerable<Oefening> oefeningen = _oefeningRepository.GetAll().OrderBy(o => o.Graad).ThenBy(o => o.Naam).ToList();
                 ViewData["Graden"] = new List<GraadEnum>(new HashSet<GraadEnum>((GraadEnum[])Enum.GetValues(typeof(GraadEnum))));
                 return View(oefeningen);
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Je moet eerst je aanwezigheid registreren.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
         [HttpPost]
-        public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel, int id,SessionState sessie) {
+        public IActionResult GeefCommentaar(_CommentsViewModel commentViewModel, int id, SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
                 string comment = commentViewModel.Comments + '~' + sessie.huidigLid.Voornaam + ' ' + sessie.huidigLid.Familienaam;
                 _oefeningRepository.AddComment(id, comment);
@@ -46,67 +48,73 @@ namespace G19.Controllers {
                 } else {
                     TempData["Error"] = "Er ging iets mis bij het versturen van de mail, gelieve de lesgever te waarschuwen.";
                 }
-                return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(id));
-            }
-            else {
+                return View("Comments", _oefeningRepository.GetById(id));
+            } else {
                 TempData["SessionStateMessage"] = "Je moet eerst je aanwezigheid registreren.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
+
         [Route("Oefening/{graad}")]
-        public IActionResult GeefOefeningenPerGraad(string graad,SessionState sessie) {
+        public IActionResult GeefOefeningenPerGraad(string graad, SessionState sessie) {
             TempData["Graad"] = sessie.huidigLid.GeefGraadInGetal();
             TempData["active"] = graad;
             if (MagOefeningenBekijken(sessie)) {
                 if (sessie.ToegestaandOefeningenBekijken(graad, IsAlsLidIngelogd())) {
                     if (graad != "ZWART" && graad != "ALLES") {
                         return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
-                    }
-                    else if (graad == "ZWART") {
+                    } else if (graad == "ZWART") {
                         return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString().StartsWith("DAN")).OrderBy(oef => oef.Graad));
-                    }
-                    else {
+                    } else {
                         return View(nameof(Index), _oefeningRepository.GetAll().OrderBy(oef => oef.Graad));
                     }
-                }
-                else {
+                } else {
                     TempData["SessionStateMessage"] = "Lid beschikt niet over de juiste graad.";
-                    return View("~/Views/Session/SessionStateMessage.cshtml");
+                    return RedirectToAction("SessionStateMessage", "Session");
                 }
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
-        public IActionResult GeefOefeningenLid(int lidId,SessionState sessie) {
-            var lid = _lidRepository.GetById(lidId);
+        public IActionResult GeefOefeningenLid(int lidId, SessionState sessie) {
+            if (lidId < 0) {
+                TempData["SessionStateMessage"] = "LidId mag niet kleiner zijn dan 0";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+            if(sessie == null) {
+                TempData["SessionStateMessage"] = "Sessie mag niet null zijn";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+
+            var lid = GeefLid(lidId);
             TempData["Graad"] = lid.GeefGraadInGetal();
+            string graadlid = lid.Graad.ToString();
+            TempData["active"] = graadlid.StartsWith("DAN")?"ZWART":graadlid;
             sessie.VeranderHuidigLid(lid);
             if (MagOefeningenBekijken(sessie)) {
                 string graad = lid.Graad.ToString();
-                if (graad != "ZWART" && graad != "ALLES") {
-                   
+                if (!graad.StartsWith("DAN") && graad != "ALLES") {
                     return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString() == graad).OrderBy(oef => oef.Graad));
-                }
-                else if (graad == "ZWART") {
+                } else if (graad.StartsWith("DAN")) {
                     return View(nameof(Index), _oefeningRepository.GetAll().Where(oef => oef.Graad.ToString().StartsWith("DAN")).OrderBy(oef => oef.Graad));
-                }
-                else {
+                } else {
                     return View(nameof(Index), _oefeningRepository.GetAll().OrderBy(oef => oef.Graad));
                 }
-            }
-            else {
+            } else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
-              
-                return View("~/Views/Session/SessionStateMessage.cshtml");
-
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
-        
-        public ActionResult GeefTextView(int Id,SessionState sessie) {
+
+        public ActionResult GeefTextView(int Id, SessionState sessie) {
+            if(Id <= 0 || sessie == null) {
+                TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+
             if (MagOefeningenBekijken(sessie)) {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
@@ -115,10 +123,15 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
         public ActionResult GeefVideoView(int Id, SessionState sessie) {
+            if (Id <= 0 || sessie == null) {
+                TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+
             if (MagOefeningenBekijken(sessie)) {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
@@ -127,10 +140,15 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
         public ActionResult GeefFotoView(int Id, SessionState sessie) {
+            if (Id <= 0 || sessie == null) {
+                TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+
             if (MagOefeningenBekijken(sessie)) {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
@@ -139,10 +157,15 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
         public ActionResult GeefCommentView(int Id, SessionState sessie) {
+            if (Id <= 0 || sessie == null) {
+                TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
+
             if (MagOefeningenBekijken(sessie)) {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
@@ -151,9 +174,10 @@ namespace G19.Controllers {
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
+
         private Lid GeefLid(int Id) {
             if (IsAlsLidIngelogd()) {
                 return _lidRepository.GetByEmail(HttpContext.User.Identity.Name);
@@ -162,7 +186,6 @@ namespace G19.Controllers {
                 return _lidRepository.GetById(Id);
             }
             return null;
-
         }
         private bool IsAlsLesgeverIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lesgever");
