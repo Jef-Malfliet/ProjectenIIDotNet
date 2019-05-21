@@ -108,7 +108,9 @@ namespace G19.Controllers {
         
         public ActionResult GeefTextView(int Id,SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
-
+                Oefening oef = _oefeningRepository.GetById(Id);
+                oef.AantalKeerBekeken++;
+                _oefeningRepository.SaveChanges();
                 return View("~/Views/Oefening/Text.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -118,7 +120,9 @@ namespace G19.Controllers {
         }
         public ActionResult GeefVideoView(int Id, SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
-
+                Oefening oef = _oefeningRepository.GetById(Id);
+                oef.AantalKeerBekeken++;
+                _oefeningRepository.SaveChanges();
                 return View("~/Views/Oefening/Video.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -128,7 +132,9 @@ namespace G19.Controllers {
         }
         public ActionResult GeefFotoView(int Id, SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
-
+                Oefening oef = _oefeningRepository.GetById(Id);
+                oef.AantalKeerBekeken++;
+                _oefeningRepository.SaveChanges();
                 return View("~/Views/Oefening/Fotos.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -138,7 +144,9 @@ namespace G19.Controllers {
         }
         public ActionResult GeefCommentView(int Id, SessionState sessie) {
             if (MagOefeningenBekijken(sessie)) {
-
+                Oefening oef = _oefeningRepository.GetById(Id);
+                oef.AantalKeerBekeken++;
+                _oefeningRepository.SaveChanges();
                 return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(Id));
             }
             else {
@@ -159,9 +167,11 @@ namespace G19.Controllers {
         private bool IsAlsLesgeverIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lesgever");
         }
+
         private bool IsAlsLidIngelogd() {
             return HttpContext.User.HasClaim(c => c.Value == "lid");
         }
+
         private bool MagOefeningenBekijken(SessionState sessie) {
             return sessie.OefeningenBekijkenState() || IsAlsLidIngelogd();
         }
