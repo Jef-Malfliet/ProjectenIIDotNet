@@ -33,15 +33,25 @@ namespace G19Test.Controllers {
         }
         #endregion
 
+        #region SessionStateMessage
+        [Fact]
+        public void TestSessionStateMessage_GeeftIndexViewTerug() {
+            var result = _controller.SessionStateMessage() as ViewResult;
+
+            Assert.Equal("SessionStateMessage", result?.ViewName);
+        }
+        #endregion
+
         #region Start Session
         [Fact]
         public void TestStartNieuweSessie_GeeftHomeIndexViewMetLedenVandaag() {
             _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek)).Returns(new List<Lid>() { _context.Lid1 });
 
-            var result = _controller.StartNieuweSessie(_sessie) as ViewResult;
+            var result = _controller.StartNieuweSessie(_sessie) as RedirectToActionResult;
 
-            Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);
-            Assert.Equal("../Home/Index", result?.ViewName);
+            Assert.Equal("Index", result?.ActionName);
+            Assert.Equal("Home", result?.ControllerName);
+            _lidRepostiory.Verify(l => l.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek), Times.Once);
             Assert.Equal(SessionEnum.RegistreerState, _sessie.state);
             Assert.Equal(DateTime.Today.DayOfWeek, _sessie.vandaag);
         }
@@ -59,11 +69,12 @@ namespace G19Test.Controllers {
         public void TestFakeToday_Vandaag_GeeftHomeIndexViewMetLedenMeegegevenDag() {
             _lidRepostiory.Setup(l => l.GetLedenInFormuleOfDay(DayOfWeek.Monday)).Returns(new List<Lid>() { _context.Lid1 });
 
-            var result = _controller.FakeToday(DayOfWeek.Monday, _sessie) as ViewResult;
+            var result = _controller.FakeToday(DayOfWeek.Monday, _sessie) as RedirectToActionResult;
 
             Assert.Equal(DayOfWeek.Monday, _sessie.vandaag);
-            Assert.Equal(new List<Lid>() { _context.Lid1 }, result?.Model);
-            Assert.Equal("../Home/Index", result?.ViewName);
+            Assert.Equal("Index", result?.ActionName);
+            Assert.Equal("Home", result?.ControllerName);
+            _lidRepostiory.Verify(l => l.GetLedenInFormuleOfDay(DayOfWeek.Monday), Times.Once);
         }
 
         [Fact]

@@ -119,7 +119,7 @@ namespace G19.Controllers {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
                 _oefeningRepository.SaveChanges();
-                return View("~/Views/Oefening/Text.cshtml", _oefeningRepository.GetById(Id));
+                return View("Text", _oefeningRepository.GetById(Id));
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
@@ -136,7 +136,7 @@ namespace G19.Controllers {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
                 _oefeningRepository.SaveChanges();
-                return View("~/Views/Oefening/Video.cshtml", _oefeningRepository.GetById(Id));
+                return View("Video", _oefeningRepository.GetById(Id));
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
@@ -153,7 +153,7 @@ namespace G19.Controllers {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
                 _oefeningRepository.SaveChanges();
-                return View("~/Views/Oefening/Fotos.cshtml", _oefeningRepository.GetById(Id));
+                return View("Fotos", _oefeningRepository.GetById(Id));
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";
@@ -170,7 +170,7 @@ namespace G19.Controllers {
                 Oefening oef = _oefeningRepository.GetById(Id);
                 oef.AantalKeerBekeken++;
                 _oefeningRepository.SaveChanges();
-                return View("~/Views/Oefening/Comments.cshtml", _oefeningRepository.GetById(Id));
+                return View("Comments", _oefeningRepository.GetById(Id));
             }
             else {
                 TempData["SessionStateMessage"] = "Niet gemachtigd om deze oefening te bekijken.";

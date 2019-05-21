@@ -36,7 +36,7 @@ namespace G19.Controllers {
             }
             sessie.ToState(SessionEnum.RegistreerState);
             sessie.vandaag = DateTime.Today.DayOfWeek;
-            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
+            return RedirectToAction("Index","Home", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
 
         [HttpGet]
@@ -46,7 +46,7 @@ namespace G19.Controllers {
                 return View(nameof(Index));
             }
             sessie.FakeVandaag(dag);
-            return View("../Home/Index", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
+            return RedirectToAction("Index", "Home", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
         //[HttpGet]
         //public IActionResult MaakNieuweSessie() {

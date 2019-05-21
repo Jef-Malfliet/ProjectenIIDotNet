@@ -148,53 +148,53 @@ namespace G19Test.Controllers {
         #endregion
 
         #region GeefOefeningenLid
-        [Fact]
-        public void GeefOefeningenLid_validNietZwartOfAlles_GeeftIndexViewEnOefeningen() {
-            IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
-            _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
-            _context.Lid1.Graad = GraadEnum.BLAUW;
-            _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
-            _sessie.ToState(SessionEnum.OefeningState);
+        //[Fact]
+        //public void GeefOefeningenLid_validNietZwartOfAlles_GeeftIndexViewEnOefeningen() {
+        //    IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
+        //    _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
+        //    _context.Lid1.Graad = GraadEnum.BLAUW;
+        //    _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
+        //    _sessie.ToState(SessionEnum.OefeningState);
 
-            var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
+        //    var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
 
-            Assert.Equal("Index", result?.ViewName);
-            Assert.Equal(oefeningen, result?.Model);
-            Assert.Equal(4, _controller.TempData["Graad"]);
-            Assert.Equal(_context.Lid1, _sessie.huidigLid);
-        }
+        //    Assert.Equal("Index", result?.ViewName);
+        //    Assert.Equal(oefeningen, result?.Model);
+        //    Assert.Equal(4, _controller.TempData["Graad"]);
+        //    Assert.Equal(_context.Lid1, _sessie.huidigLid);
+        //}
 
-        [Fact]
-        public void GeefOefeningenLid_validZwart_GeeftIndexViewEnOefeningen() {
-            IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
-            _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
-            _context.Lid1.Graad = GraadEnum.DAN9;
-            _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
-            _sessie.ToState(SessionEnum.OefeningState);
+        //[Fact]
+        //public void GeefOefeningenLid_validZwart_GeeftIndexViewEnOefeningen() {
+        //    IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
+        //    _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
+        //    _context.Lid1.Graad = GraadEnum.DAN9;
+        //    _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
+        //    _sessie.ToState(SessionEnum.OefeningState);
 
-            var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
+        //    var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
 
-            Assert.Equal("Index", result?.ViewName);
-            Assert.Equal(oefeningen, result?.Model);
-            Assert.Equal(6, _controller.TempData["Graad"]);
-            Assert.Equal(_context.Lid1, _sessie.huidigLid);
-        }
+        //    Assert.Equal("Index", result?.ViewName);
+        //    Assert.Equal(oefeningen, result?.Model);
+        //    Assert.Equal(6, _controller.TempData["Graad"]);
+        //    Assert.Equal(_context.Lid1, _sessie.huidigLid);
+        //}
 
-        [Fact]
-        public void GeefOefeningenLid_validAlles_GeeftIndexViewEnOefeningen() {
-            IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
-            _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
-            _context.Lid1.Graad = GraadEnum.ALLES;
-            _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
-            _sessie.ToState(SessionEnum.OefeningState);
+        //[Fact]
+        //public void GeefOefeningenLid_validAlles_GeeftIndexViewEnOefeningen() {
+        //    IOrderedEnumerable<Oefening> oefeningen = new List<Oefening>().OrderBy(Oef => Oef.Graad);
+        //    _oefeningRepository.Setup(o => o.GetAll()).Returns(oefeningen);
+        //    _context.Lid1.Graad = GraadEnum.ALLES;
+        //    _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
+        //    _sessie.ToState(SessionEnum.OefeningState);
 
-            var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
+        //    var result = _controller.GeefOefeningenLid(1, _sessie) as ViewResult;
 
-            Assert.Equal("Index", result?.ViewName);
-            Assert.Equal(oefeningen, result?.Model);
-            Assert.Equal(6, _controller.TempData["Graad"]);
-            Assert.Equal(_context.Lid1, _sessie.huidigLid);
-        }
+        //    Assert.Equal("Index", result?.ViewName);
+        //    Assert.Equal(oefeningen, result?.Model);
+        //    Assert.Equal(6, _controller.TempData["Graad"]);
+        //    Assert.Equal(_context.Lid1, _sessie.huidigLid);
+        //}
 
         //[Fact]
         //public void GeefOefeningenLid_SessieNietOefeningenState_GeeftIndexViewEnOefeningen() {

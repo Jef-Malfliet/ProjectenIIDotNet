@@ -255,6 +255,18 @@ namespace G19Test.Controllers {
             Assert.Equal(lid, _sessie.huidigLid);
             _lidRepository.Verify(m => m.SaveChanges(), Times.Once);
         }
+
+        [Fact]
+        public void HttpPostEditInSession_LidIsNull_ReturnsIndexView() {
+            _lidRepository.Setup(l => l.GetById(It.IsAny<int>())).Returns((Lid)null);
+            _sessie.VeranderHuidigLid(_context.Lid1);
+
+            var result = _controller.EditInSession(_modelSessie, _sessie) as ViewResult;
+
+            Assert.False(_controller.ModelState.IsValid);
+            Assert.Equal("EditInSession", result?.ViewName);
+            Assert.Equal(_modelSessie, result?.Model);
+        }
         #endregion
 
         #region RegistreerNietLid

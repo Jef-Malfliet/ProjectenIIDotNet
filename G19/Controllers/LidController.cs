@@ -113,7 +113,7 @@ namespace G19.Controllers {
         public IActionResult RegistreerNietLid(LidViewModel nietLidVM, SessionState sessie) {
             if (ModelState.IsValid) {
                 try {
-                    if (sessie == null) {
+                    if (sessie == null || nietLidVM == null) {
                         throw new ArgumentException("sessie mag niet null zijn");
                     }
                     Lid nietLid = new Lid() { Roltype = RolTypeEnum.Niet_lid, Wachtwoord = "NietLidWachtwoord", Graad = GraadEnum.WIT };

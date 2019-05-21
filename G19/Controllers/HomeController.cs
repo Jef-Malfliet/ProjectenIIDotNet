@@ -20,51 +20,68 @@ namespace G19.Controllers {
         }
 
         public IActionResult Index(SessionState sessie) {
+            if(sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.AanwezigheidRegistrerenState()) {
                 //Session session = GeefHuidgeSessie();
                 //return View(_lidRepository.GetByFormule(session.Formule));
                 return View("Index",_lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
-
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
         public IActionResult GeefAlleLeden(SessionState sessie) {
+            if(sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.AanwezigheidRegistrerenState()) {
                 return View(nameof(Index), _lidRepository.GetAll());
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
-
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
         [Route("Home/{graad}")]
         public IActionResult GeefAanwezighedenPerGraad(string graad,SessionState sessie) {
+            if(graad == null || sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.AanwezigheidRegistrerenState()) {
                 var leden = _lidRepository.GetByGraadEnFormuleOfDay(graad, sessie.vandaag);
                 return View(nameof(Index), leden);
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
-
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
         public IActionResult GeefAanwezigenVandaag(SessionState sessie) {
+            if (sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.OefeningenBekijkenState()) {
                 //   Session session = GeefHuidgeSessie();
                 var aanwezigeLedenVandaag = _lidRepository.GetAll().Where(l => l.BenIkAanwezigVandaag());
                 return View(nameof(GeefAanwezigenVandaag), aanwezigeLedenVandaag);
             } else {
                 TempData["SessionStateMessage"] = "Je moet alle aanwezigen doorgeven door op de knop 'Aanwezigheden zijn geregistreerd' te drukken.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
 
         }
         public IActionResult RegistreerAanwezigheid(int id,SessionState sessie) {
+            if (id < 0 || sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.AanwezigheidRegistrerenState()) {
                 var lid = _lidRepository.GetById(id);
                 lid.Aanwezigheden.Add(new Lid_Aanwezigheden { Aanwezigheid = DateTime.Now, LidId = id });
@@ -72,12 +89,15 @@ namespace G19.Controllers {
                 return RedirectToAction(nameof(Index));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
-
         }
 
         public IActionResult RegistreerExtraLid(string voornaam, string familienaam,SessionState sessie) {
+            if(voornaam == null || familienaam == null|| sessie == null) {
+                TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
+                return RedirectToAction("SessionStateMessage", "Session");
+            }
             if (sessie.AanwezigheidRegistrerenState()) {
                 var lid = _lidRepository.GetByNames(voornaam, familienaam);
                 _lidRepository.RegisteerAanwezigheid(lid);
@@ -85,11 +105,14 @@ namespace G19.Controllers {
                 return RedirectToAction(nameof(Index));
             } else {
                 TempData["SessionStateMessage"] = "Alle aanwezigheden zijn reeds doorgegeven.";
-                return View("~/Views/Session/SessionStateMessage.cshtml");
+                return RedirectToAction("SessionStateMessage", "Session");
             }
         }
 
         public IActionResult ToOefeningState(string code,SessionState sessie) {
+            if(code == null || sessie == null) {
+                return View("Index", _lidRepository.GetLedenInFormuleOfDay(DateTime.Today.DayOfWeek));
+            }
             if (code == "1234") {
                 sessie.ToState(SessionEnum.OefeningState);
                 return RedirectToAction(nameof(GeefAanwezigenVandaag));
