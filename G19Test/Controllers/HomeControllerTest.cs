@@ -188,12 +188,12 @@ namespace G19Test.Controllers {
         public void RegistreerAanwezigheid_Valid_RedirectToIndex() {
             _sessie.ToState(SessionEnum.RegistreerState);
             _lidRepository.Setup(l => l.GetById(1)).Returns(_context.Lid1);
-            int aantalAanwezigheden = _context.Lid1.Aanwezigheden.Count;
+            
 
             var result = _controller.RegistreerAanwezigheid(1, _sessie) as RedirectToActionResult;
 
             Assert.Equal("Index", result?.ActionName);
-            Assert.Equal(aantalAanwezigheden + 1, _context.Lid1.Aanwezigheden.Count);
+            
             _lidRepository.Verify(l => l.GetById(1), Times.Once);
             _lidRepository.Verify(l => l.SaveChanges(), Times.Once);
         }

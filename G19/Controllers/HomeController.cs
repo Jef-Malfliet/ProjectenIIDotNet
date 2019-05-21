@@ -84,7 +84,8 @@ namespace G19.Controllers {
             }
             if (sessie.AanwezigheidRegistrerenState()) {
                 var lid = _lidRepository.GetById(id);
-                lid.Aanwezigheden.Add(new Lid_Aanwezigheden { Aanwezigheid = DateTime.Now, LidId = id });
+                _lidRepository.RegisteerAanwezigheid(lid);
+               
                 _lidRepository.SaveChanges();
                 return RedirectToAction(nameof(Index));
             } else {
