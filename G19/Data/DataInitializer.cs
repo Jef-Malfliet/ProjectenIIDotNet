@@ -38,7 +38,6 @@ namespace G19.Data {
                     await _usermanager.RemovePasswordAsync(createdUser);
                     await _usermanager.AddPasswordAsync(createdUser, lid.Wachtwoord);
                     await _usermanager.AddClaimAsync(createdUser, new Claim(ClaimTypes.Role, "lid"));
-
                 }
             }
             _context.SaveChanges();
