@@ -69,6 +69,10 @@ namespace G19.Data {
             //}
 
             foreach (Lid li in _context.Leden.ToList()) {
+                //if(li.Roltype == RolTypeEnum.Lesgever) {
+                //    _usermanager.Users
+                //    _usermanager.AddClaimAsync()
+                //}
 
                 //int number = (li.Email).GetHashCode() % 97;
                 //try {

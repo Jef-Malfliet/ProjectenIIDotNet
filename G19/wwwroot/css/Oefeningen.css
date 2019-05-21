@@ -45,7 +45,7 @@ ul li {
 }
 
     .oefeningButton:hover {
-        color: var(--accent2);
+        color: var(--white);
     }
 
 .graadBox {
