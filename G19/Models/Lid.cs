@@ -229,6 +229,9 @@ namespace G19.Models {
         }
 
         public void MapLidViewModelToLidInSession(LidViewModelSession LidViewModelInSession, Lid lid) {
+            if(lid == null || LidViewModelInSession == null) {
+                throw new ArgumentException("mogen beide niet null zijn");
+            }
             lid.Email = LidViewModelInSession.Email;
             lid.GSM = LidViewModelInSession.GSM;
             lid.Telefoon = LidViewModelInSession.Telefoon;
@@ -241,6 +244,9 @@ namespace G19.Models {
         }
 
         public void MapLidViewModelToLid(LidViewModel LidViewModel, Lid lid) {
+            if (lid == null || LidViewModel == null) {
+                throw new ArgumentException("mogen beide niet null zijn");
+            }
             lid.Voornaam = LidViewModel.Voornaam;
             lid.Familienaam = LidViewModel.Achternaam;
             lid.Rijksregisternummer = LidViewModel.Rijksregisternummer1 + "." + LidViewModel.Rijksregisternummer2 + "."
