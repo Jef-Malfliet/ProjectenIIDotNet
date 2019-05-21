@@ -198,7 +198,9 @@ namespace G19.Models {
                 _postcode = value;
             }
         }
+        [JsonProperty]
         public string Stad { get; set; }
+        [JsonProperty]
         public string StraatNaam { get; set; }
         public RolTypeEnum Roltype { get; set; }
         public string Wachtwoord { get; set; }
