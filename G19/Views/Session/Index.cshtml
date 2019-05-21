@@ -6,7 +6,6 @@
 <link href="~/css/Session.css" rel="stylesheet" />
 
 <div class="sessionoverzicht">
-    @* <a class="btn btn-dark" asp-controller="Session" asp-action="MaakNieuweSessie">Start nieuwe Sessie</a>*@
     @if ((await AuthorizationService.AuthorizeAsync(User, "Lesgever")).Succeeded) {
         <a class="btn btn-success makeBtn" asp-controller="Session" asp-action="StartNieuweSessie">Start nieuwe Sessie</a>
     }

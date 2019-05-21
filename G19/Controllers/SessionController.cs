@@ -11,12 +11,12 @@ namespace G19.Controllers {
     [Authorize]
     [ServiceFilter(typeof(SessionFilter))]
     public class SessionController : Controller {
-        // GET: /<controller>/
+       
         private readonly ILidRepository _lidRepository;
-        // private readonly ISessionRepository _sessionRepository;
-        public SessionController(ILidRepository lidRepository/*, ISessionRepository sessionRepository*/) {
+      
+        public SessionController(ILidRepository lidRepository) {
             _lidRepository = lidRepository;
-            //_sessionRepository = sessionRepository;
+            
         }
         [HttpGet]
         public IActionResult Index() {
@@ -48,26 +48,6 @@ namespace G19.Controllers {
             sessie.FakeVandaag(dag);
             return RedirectToAction("Index", "Home", _lidRepository.GetLedenInFormuleOfDay(sessie.vandaag));
         }
-        //[HttpGet]
-        //public IActionResult MaakNieuweSessie() {
-        //    ViewData["formules"] = new SelectList(Enum.GetValues(typeof(FormuleEnum)));
-        //    return View("NieuweSessie");
-        //}
-        //[HttpPost]
-        //public IActionResult MaakNieuweSessie(SessionViewModel model) {
-        //    Session session = new Session { Formule = model.Formule, Date = model.Date };
-        //    _sessionRepository.Add(session);
-        //    _sessionRepository.SaveChanges();
-        //    SessionState.ToState(SessionEnum.RegistreerState);
-        //    // HttpContext.Session.SetString("Sessie", JsonConvert.SerializeObject(session));
-        //    return View("../Home/Index",_lidRepository.GetAll().Where(l=>l.Lessen.ToString().Contains(session.Date.Day.ToString())));
-        //}
-        //[HttpPost]
-        //public IActionResult StartBestaandeSessie() {
-        //    Session dichtsteSessie = _sessionRepository.GetAll().OrderBy(s => Math.Abs(DateTime.Now.Subtract(s.Date).TotalSeconds)).FirstOrDefault();
-        //    SessionState.ToState(SessionEnum.RegistreerState);
-        //    return View("BestaandeSessie", dichtsteSessie);
-        //}
 
         [Authorize(Policy = "Lesgever")]
         public void EndSessionState(SessionState sessie) {

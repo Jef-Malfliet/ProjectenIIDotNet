@@ -16,6 +16,6 @@ namespace G19.Models.Repositories {
         IEnumerable<Lid> GetByGraad(string graad);
         IEnumerable<Lid> GetByGraadEnFormuleOfDay(string graad, DayOfWeek dag);
         IEnumerable<Lid> GetLedenInFormuleOfDay(DayOfWeek dag);
-      //  IEnumerable<Lid> GetByFormule(FormuleEnum formule);
+     
     }
 }

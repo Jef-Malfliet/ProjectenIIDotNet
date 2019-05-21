@@ -1,6 +1,5 @@
 ﻿namespace G19.Models {
     public class Oefening_Images {
-        //public int Id { get; set; }
         public int OefeningId { get; set; }
         public string Images { get; set; }
         public string getImageName() {

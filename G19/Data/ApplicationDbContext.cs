@@ -9,8 +9,6 @@ namespace G19.Data {
         public DbSet<Lid> Leden { get; set; }
         public DbSet<Oefening> Oefeningen { get; set; }
 
-       // public DbSet<Session> Sessions { get; set; }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {
 
@@ -22,8 +20,7 @@ namespace G19.Data {
             builder.ApplyConfiguration(new Oefening_CommentsConfiguration());
             builder.ApplyConfiguration(new Oefening_ImagesConfiguration());
             builder.ApplyConfiguration(new Lid_AanwezighedenConfiguration());
-            //builder.ApplyConfiguration(new SessionConfiguration());
-          // builder.ApplyConfiguration(new Session_LidConfiguration());
+         
 
         }
 

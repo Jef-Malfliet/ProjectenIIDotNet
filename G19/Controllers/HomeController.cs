@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace G19.Controllers {
     [Authorize(Policy = "Lesgever")]
