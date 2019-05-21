@@ -20,7 +20,7 @@
             <a class="@((int)@TempData["Graad"] > 3?"":"not") @((string)TempData["active"] == "BLAUW" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BLAUW">BLAUW</a>
             <a class="@((int)@TempData["Graad"] > 4?"":"not") @((string)TempData["active"] == "BRUIN" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="BRUIN">BRUIN</a>
             <a class="@((int)@TempData["Graad"] > 5?"":"not") @((string)TempData["active"] == "ZWART" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ZWART">ZWART</a>
-            <a class="@((int)@TempData["Graad"] > 6?"":"not") @((string)TempData["active"] == "ALLES" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
+            <a class="@((int)@TempData["Graad"] > 5?"":"not") @((string)TempData["active"] == "ALLES" ? "active" : "")" asp-controller="Oefening" asp-action="GeefOefeningenPerGraad" asp-route-graad="ALLES">ALLES</a>
         </div>
         <div class="containerOefeningen">
             <h1 class="header oefHeader">Overzicht</h1>
