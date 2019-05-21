@@ -99,7 +99,7 @@ namespace G19.Models {
                 if (value != null) {
                     Regex regex = new Regex(@"^((0[1-9]{1}[0-9]{7})|(0{2}[1-9]{1}[0-9]{9}))$");
                     Match match = regex.Match(value);
-                    if (!match.Success && string.IsNullOrEmpty(GSM)) {
+                    if (!match.Success && !string.IsNullOrEmpty(GSM)) {
                         throw new ArgumentException("Telefoon voldoet niet aan de voorwaarden.");
                     }
                 }
