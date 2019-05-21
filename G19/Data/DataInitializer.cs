@@ -30,14 +30,14 @@ namespace G19.Data {
                     IdentityUser newIdentityUser = new IdentityUser(lid.Email);
                     await _usermanager.CreateAsync(newIdentityUser, lid.Wachtwoord);
                     if (lid.Roltype == RolTypeEnum.Lesgever) {
-                        await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "Lesgever"));
+                        await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "lesgever"));
                     }
-                    await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "Lid"));
+                    await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "lid"));
                 }
                 else {
                     await _usermanager.RemovePasswordAsync(createdUser);
                     await _usermanager.AddPasswordAsync(createdUser, lid.Wachtwoord);
-                    await _usermanager.AddClaimAsync(createdUser, new Claim(ClaimTypes.Role, "Lid"));
+                    await _usermanager.AddClaimAsync(createdUser, new Claim(ClaimTypes.Role, "lid"));
 
                 }
             }
