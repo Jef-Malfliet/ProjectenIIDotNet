@@ -41,13 +41,13 @@ namespace G19 {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSession();
             services.AddAuthorization(options => {
-                options.AddPolicy("Lid", policy => policy.RequireClaim(ClaimTypes.Role, "lid"));
+                options.AddPolicy("Lid", policy => policy.RequireClaim(ClaimTypes.Role, "Lid"));
             });
             services.AddAuthorization(options => {
-                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "admin"));
+                options.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Role, "Admin"));
             });
             services.AddAuthorization(options => {
-                options.AddPolicy("Lesgever", policy => policy.RequireClaim(ClaimTypes.Role, "lesgever"));
+                options.AddPolicy("Lesgever", policy => policy.RequireClaim(ClaimTypes.Role, "Lesgever"));
             });
 
             services.AddScoped<ILidRepository, LidRepository>();
@@ -81,7 +81,7 @@ namespace G19 {
                     template: "{controller=Session}/{action=Index}/{id?}");
             });
 
-            initializer.InitializeData().Wait();
+            //initializer.InitializeData().Wait();
         }
     }
 }

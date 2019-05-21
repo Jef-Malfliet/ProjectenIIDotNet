@@ -1,7 +1,6 @@
 ﻿using G19.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,93 +17,45 @@ namespace G19.Data {
         }
 
         public async Task InitializeData() {
+            _usermanager.Options.Password.RequireDigit = false;
+            _usermanager.Options.Password.RequiredLength = 1;
+            _usermanager.Options.Password.RequiredUniqueChars = 1;
+            _usermanager.Options.Password.RequireLowercase = false;
+            _usermanager.Options.Password.RequireNonAlphanumeric = false;
+            _usermanager.Options.Password.RequireUppercase = false;
 
-            //Oefening oefening = new Oefening() {
-            //    AantalKeerBekeken = 5,
-            //    Graad = GraadEnum.BLAUW,
-            //    Id = 10010,
-            //    Naam = "Nantes oefening",
-            //    Comments = new List<Oefening_Comments>() { new Oefening_Comments() { OefeningId = 10010, Comments = "comment1" }, new Oefening_Comments() { OefeningId = 10010, Comments = "comment2" } },
-            //    Images = new List<Oefening_Images>() { new Oefening_Images() { OefeningId = 10010, Images = "PADJE" }, new Oefening_Images() { OefeningId = 10010, Images = "PADJE2" } },
-            //    //Comments = new List<string>() { "fqsfsdf","qsfsd"},
-            //    //Images = new List<string>() {  "fqsfsdf", "qsfsd"  },
+            foreach (var lid in _context.Leden) {
+                var createdUser = _usermanager.Users.FirstOrDefault(u => u.UserName == lid.Email);
+                if ( createdUser == null) {
+                    IdentityUser newIdentityUser = new IdentityUser(lid.Email);
+                    await _usermanager.CreateAsync(newIdentityUser, lid.Wachtwoord);
+                    if (lid.Roltype == RolTypeEnum.Lesgever) {
+                        await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "Lesgever"));
+                    }
+                    await _usermanager.AddClaimAsync(newIdentityUser, new Claim(ClaimTypes.Role, "Lid"));
+                }
+                else {
+                    await _usermanager.RemovePasswordAsync(createdUser);
+                    await _usermanager.AddPasswordAsync(createdUser, lid.Wachtwoord);
+                    await _usermanager.AddClaimAsync(createdUser, new Claim(ClaimTypes.Role, "Lid"));
 
-            //    Uitleg = "uitlegoefening",
-            //    Video = "https://www.youtube.com/embed/t7pY-PffCTo"
+                }
+            }
+            _context.SaveChanges();
+        }
 
-            //};
-            //_context.Oefeningen.Add(oefening);
+        private static string GetStringSha256Hash(string text) {
+            if (String.IsNullOrEmpty(text))
+                return String.Empty;
 
-            //Lid INDY = new Lid() {
-            //    Id = 500,
-            //    Busnummer = "01",
-            //    Email = "Indyvancanegem@hotmail.com",
-            //    Familienaam = "Van CANEGEM",
-            //    Lessen = FormuleEnum.Dinsdag,
-            //    GeboorteDatum = DateTime.Now,
-            //    Geslacht = "MAN",
-            //    Graad = GraadEnum.BRUIN,
-            //    GSM = "0483060043",
-            //    Land = LandEnum.België,
-            //    PostCode = "9240",
-            //    Rijksregisternummer = "98.08.16-183.93",
-            //    Roltype = RolTypeEnum.Beheerder,
-            //    Huisnummer = "132",
-            //    Stad = "Zele",
-            //    StraatNaam = "Ommegangstraat 132",
-            //    Voornaam = "KELLYYY",
-            //    Wachtwoord = "P@ssword1111",
-            //    Telefoon = "053444541",
-            //    EmailOuders = "test@hotmail.com"
-            //};
-
-            //_context.Leden.Add(INDY);
-            //IdentityUser user = new IdentityUser("admin2@hotmail.com");
-            //await _usermanager.CreateAsync(user, "P@ssword1111");
-            //await _usermanager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "lesgever"));
-
-            //_context.Sessions.Add(new Models.Session() {
-            //    Date = DateTime.Now,
-            //    Formule = FormuleEnum.Dinsdag
-            //}
-
-            foreach (Lid li in _context.Leden.ToList()) {
-                //if(li.Roltype == RolTypeEnum.Lesgever) {
-                //    _usermanager.Users
-                //    _usermanager.AddClaimAsync()
-                //}
-
-                //int number = (li.Email).GetHashCode() % 97;
-                //try {
-                //    string va = (li.Voornaam + li.Familienaam);
-                //    va = va.Replace(" ", String.Empty);
-                //    string ww = va[5].ToString() +va [4].ToString() + va[7].ToString() + Math.Abs(number) + li.Email[2].ToString() + li.Familienaam[1].ToString() + va[1].ToString();
-                //    li.Wachtwoord = ww;
-                //li.Wachtwoord += "!";
-                //} catch {
-                //    li.Wachtwoord = "Probleem123";
-                //}
-
-              //  try {
-                //    if (_context.Users.Count(u => u.UserName == li.Email) == 0 && li.Id != 88 && li.Id != 176) {
-
-                //    IdentityUser user = new IdentityUser(li.Email);
-
-                //    await _usermanager.CreateAsync(user, li.Wachtwoord);
-                //    await _usermanager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "lid"));
-                //    _context.SaveChanges();
-
-                //}
-                    //} catch {
-                    //    li.Wachtwoord = "Probleem1234";
-                    //}
-
-
-                    //);
-                    _context.SaveChanges();
-
+            using (var sha = new System.Security.Cryptography.SHA256Managed()) {
+                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return BitConverter.ToString(hash).Replace("-", String.Empty);
             }
         }
+
     }
 }
+
 
