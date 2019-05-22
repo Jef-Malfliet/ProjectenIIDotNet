@@ -80,7 +80,7 @@ namespace G19 {
                     template: "{controller=Session}/{action=Index}/{id?}");
             });
 
-         //   initializer.InitializeData().Wait();
+             initializer.InitializeData().Wait();
         }
     }
 }
