@@ -10,15 +10,15 @@ for details on configuring this project to bundle and minify static web assets. 
     --accent1: #157A6E; /*greenish*/
     --accent2: #D5A021; /*yellowish*/
     --accent3: #725752; /*brownish*/
-    --accent4: #A32F4A; /*wine red*/
-    --accent5: #AFAFAF;
+    --accent4: #f6f5f6; /*wine red*/
+    --accent5: #f6f5f6;
     --yellow: #D8D25D /*#fbba0a*/;
     --orange: #D87152 /*#f08d0c*/;
     --green: #5E966F /*#269433*/;
     --blue: #474677 /*#2962df*/;
     --brown: #B27E62 /*#955937*/;
     --black: #232323;
-    --aanwezigheidGemeld: #53B271;
+    --aanwezigheidGemeld: #173F5F;
     /*Fonts*/
     --headerFont: 'Montserrat', sans-serif;
     --bodyFont: "Sanchez", serif;
@@ -41,7 +41,7 @@ h6 {
 body {
     /* Margin bottom by footer height */
     /*margin-bottom: 60px;*/
-    background-color: var(--primary);
+    background-color: rgb(245,247,249);
 }
 
 /*CONTAINER VOOR ALLE CONTENT DIE GERENDERD WORDT*/

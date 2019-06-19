@@ -19,7 +19,7 @@
 
 .navbar {
     width: 100vw;
-    background-color: var(--counter);
+    background-color: #173F5F;;
     font-family: var(--headerFont);
     font-weight: bold;
     align-content: center;
@@ -28,7 +28,7 @@
     z-index: 1000;
     height: 10vh;
     align-content: center;
-    color: var(--white);
+    color: #f6f5f6;
 }
 
 #logo {
@@ -60,13 +60,13 @@
 }
 
 .navA {
-    color: var(--white);
+    color: #f6f5f6;
     text-decoration: none;
     margin: 0;
 }
 
 .navbar ul li a:hover {
-    color: var(--primary);
+    color: var(--counter);
 }
 
 @media only screen and (min-width:768px) {

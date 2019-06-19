@@ -56,7 +56,7 @@
 }
 
     .containerAanwezigheden h1 {
-        color: #D5A021;
+        color: #20639B;
         font-size: 24px;
         font-weight: bold;
     }
@@ -65,11 +65,12 @@
     display: flex;
     flex-direction: column;
     width: 50%;
+    font-family:Montserrat,sans-serif;
 }
 
     .form a, #irritant {
-        background: var(--counter);
-        color: #D5A021;
+        background: #173F5F;
+        color: #f6f5f6;
         padding: 15px 5px 15px 5px;
         border-radius: 10px;
         margin: 5px;
@@ -77,7 +78,7 @@
     }
 
         .form a:hover, #irritant:hover {
-            background-color: #D5A021;
+            background-color: #20639B;
             color: var(--white);
         }
 
@@ -98,6 +99,7 @@
     height: 25vh;
     max-width: 230px;
     margin:0px !important;
+    border-radius:20px;
 }
 
     .card img {
@@ -108,8 +110,10 @@
     }
 
     .card p {
+        font-family:Montserrat,sans-serif;
+        font-weight:bold;
         text-align: center;
-        color: var(--white);
+        color: black;
     }
 
 

@@ -27,19 +27,19 @@
 }
 
     .SessionStateMessage h1 {
-        color: var(--orange);
+        color: #20639B;
         font-weight: bold;
         font-family: var(--headerFont);
         margin-bottom: 3vh;
-        text-align:center;
-        font-size:48px;
-
+        text-align: center;
+        font-size: 48px;
     }
-    .SessionStateMessage i{
-        color:var(--orange);
-        font-size:200px;
+    .SessionStateMessage i {
+        color: #20639B;
+        font-size: 200px;
         margin: 0 auto;
-        padding-bottom:3vh;;
+        padding-bottom: 3vh;
+        ;
     }
     .SessionStateMessage p{
         text-align:center;

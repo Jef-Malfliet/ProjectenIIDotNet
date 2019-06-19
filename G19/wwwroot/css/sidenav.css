@@ -20,7 +20,7 @@
 
 .sidenav {
     display: flex;
-    background-color: var(--counter);
+    background-color: #173F5F;
     height: 90vh;
     font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
@@ -30,8 +30,8 @@
     top: 10vh;
     z-index: 100;
 }
-.active{
-    background-color: #D5A021;
+.active {
+    background-color: #20639B;
     color: var(--white) !important;
 }
 .not {
@@ -41,7 +41,7 @@
 
 .sidenav a, .sidenav a:active {
     text-decoration: none;
-    color: var(--accent2);
+    color: #f6f5f6;
     width: 100%;
     padding: 3%;
     text-align: center;
@@ -49,6 +49,7 @@
 
 .sidenav a:hover {
     background-color: var(--primary);
+    color:#20639B;
 }
 
 @media only screen and (min-width:768px) {

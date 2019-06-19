@@ -8,7 +8,7 @@
 
 h1 {
     font-family: var(--headerFont);
-    color: var(--white);
+    color: #173F5F;
     font-size: 36px;
     font-weight: bold;
     margin-left: 10px;
@@ -41,7 +41,7 @@ ul li {
     text-align: center;
     background: none;
     border: none;
-    font-family: var(--bodyFont);
+    font-family: Montserrat,sans-serif;
 }
 
     .oefeningButton:hover {
@@ -63,7 +63,7 @@ ul li {
 
 
 .graadBox .has:hover {
-    color: var(--primary);
+    color: #20639B;
 }
 
 .hasnt {
@@ -102,7 +102,7 @@ ul li {
 }
 
 .card {
-    background-color: var(--counter);
+    background-color: #173F5F;
     height: 90%;
     margin: 10px;
     align-items: center;
